@@ -1,0 +1,3342 @@
+<!DOCTYPE html>
+<html lang="fr" class="h-full bg-slate-50">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>C2M Pressing Pro - Suite Unifiée & Caisse Premium</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#f0f9ff',
+                            100: '#e0f2fe',
+                            200: '#bae6fd',
+                            500: '#0ea5e9',
+                            600: '#0284c7',
+                            700: '#0369a1',
+                            900: '#0c4a6e',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Outfit', 'Plus Jakarta Sans', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace']
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        .page-transition {
+            animation: fadeIn 0.25s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(6px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 5px;
+            height: 5px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #f1f5f9;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 9999px;
+        }
+    </style>
+</head>
+<body class="text-slate-800 bg-slate-50 min-h-screen flex flex-col">
+
+    <!-- ÉCRAN D'AUTHENTIFICATION SÉCURISÉ -->
+    <div id="login-screen" class="fixed inset-0 bg-slate-950/95 backdrop-blur-md z-[100] flex items-center justify-center p-4">
+        <div class="bg-white rounded-3xl w-full max-w-md p-6 sm:p-8 shadow-2xl space-y-6 border border-slate-100 text-center transition-all">
+            <div class="inline-flex p-4 rounded-2xl bg-sky-500/10 text-sky-600 mb-1">
+                <i data-lucide="shield-check" class="w-12 h-12 animate-pulse"></i>
+            </div>
+            <div>
+                <h1 class="text-2xl font-extrabold text-slate-900 tracking-tight">C2M Pressing Pro</h1>
+                <p class="text-xs text-slate-500 mt-1">Authentification sécurisée & Point de Vente (POS)</p>
+            </div>
+
+            <!-- Sélection utilisateur -->
+            <div class="space-y-2 text-left">
+                <label for="user-select-dropdown" class="block text-xs font-bold uppercase tracking-wider text-slate-400">Choisir un profil d'accès</label>
+                <div class="relative">
+                    <select id="user-select-dropdown" onchange="onUserDropdownChange()" class="w-full bg-slate-100 border border-slate-200 rounded-2xl p-3.5 text-xs font-bold text-slate-800 focus:ring-2 focus:ring-sky-500 focus:outline-none appearance-none cursor-pointer">
+                        <option value="" disabled selected>-- Sélectionnez votre nom --</option>
+                    </select>
+                    <div class="absolute inset-y-0 right-4 flex items-center pointer-events-none text-slate-500">
+                        <i data-lucide="chevron-down" class="w-4 h-4"></i>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Clavier PIN interactif -->
+            <div id="pin-section" class="hidden space-y-4">
+                <div class="flex justify-between items-center bg-slate-50 p-3.5 rounded-2xl border border-slate-200">
+                    <span class="text-xs text-slate-400 font-bold">Code secret :</span>
+                    <span id="pin-display" class="text-xl font-mono font-black text-sky-600 tracking-widest">****</span>
+                </div>
+                <div class="grid grid-cols-3 gap-2">
+                    <button type="button" onclick="pressPin('1')" class="py-3 bg-slate-100 hover:bg-slate-200 active:scale-95 rounded-xl font-black text-base text-slate-800 transition-all">1</button>
+                    <button type="button" onclick="pressPin('2')" class="py-3 bg-slate-100 hover:bg-slate-200 active:scale-95 rounded-xl font-black text-base text-slate-800 transition-all">2</button>
+                    <button type="button" onclick="pressPin('3')" class="py-3 bg-slate-100 hover:bg-slate-200 active:scale-95 rounded-xl font-black text-base text-slate-800 transition-all">3</button>
+                    <button type="button" onclick="pressPin('4')" class="py-3 bg-slate-100 hover:bg-slate-200 active:scale-95 rounded-xl font-black text-base text-slate-800 transition-all">4</button>
+                    <button type="button" onclick="pressPin('5')" class="py-3 bg-slate-100 hover:bg-slate-200 active:scale-95 rounded-xl font-black text-base text-slate-800 transition-all">5</button>
+                    <button type="button" onclick="pressPin('6')" class="py-3 bg-slate-100 hover:bg-slate-200 active:scale-95 rounded-xl font-black text-base text-slate-800 transition-all">6</button>
+                    <button type="button" onclick="pressPin('7')" class="py-3 bg-slate-100 hover:bg-slate-200 active:scale-95 rounded-xl font-black text-base text-slate-800 transition-all">7</button>
+                    <button type="button" onclick="pressPin('8')" class="py-3 bg-slate-100 hover:bg-slate-200 active:scale-95 rounded-xl font-black text-base text-slate-800 transition-all">8</button>
+                    <button type="button" onclick="pressPin('9')" class="py-3 bg-slate-100 hover:bg-slate-200 active:scale-95 rounded-xl font-black text-base text-slate-800 transition-all">9</button>
+                    <button type="button" onclick="deletePinDigit()" class="py-3 bg-rose-50 hover:bg-rose-100 text-rose-600 rounded-xl font-extrabold text-xs flex items-center justify-center gap-1 transition-all">
+                        <i data-lucide="delete" class="w-4 h-4"></i>
+                    </button>
+                    <button type="button" onclick="pressPin('0')" class="py-3 bg-slate-100 hover:bg-slate-200 active:scale-95 rounded-xl font-black text-base text-slate-800 transition-all">0</button>
+                    <button type="button" onclick="validatePin()" id="btn-login-submit" class="py-3 bg-sky-600 hover:bg-sky-500 text-white rounded-xl font-extrabold text-xs flex items-center justify-center gap-1.5 shadow-md shadow-sky-600/10 active:scale-95 transition-all">
+                        <i data-lucide="log-in" class="w-3.5 h-3.5"></i> Entrer
+                    </button>
+                </div>
+            </div>
+
+            <div id="login-error" class="hidden text-xs text-rose-500 font-bold bg-rose-50 py-3 px-4 rounded-xl border border-rose-200">
+                Code secret erroné. Veuillez réessayer.
+            </div>
+        </div>
+    </div>
+
+    <!-- Interface Applicative Unifiée -->
+    <div class="min-h-screen flex flex-col lg:flex-row bg-slate-50">
+        
+        <!-- Sidebar Navigation -->
+        <aside class="hidden lg:flex flex-col w-72 bg-slate-900 text-slate-300 border-r border-slate-800 shrink-0">
+            <!-- Header Branding -->
+            <div class="p-6 border-b border-slate-800 flex items-center justify-between">
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-2xl bg-gradient-to-tr from-sky-500 to-cyan-400 flex items-center justify-center text-white font-extrabold text-lg shadow-lg shadow-sky-500/20">
+                        C2M
+                    </div>
+                    <div>
+                        <h2 class="font-extrabold text-white text-sm leading-tight font-sans">Pressing Manager</h2>
+                        <div class="flex items-center gap-1 mt-0.5">
+                            <span id="sync-status-badge" class="text-[9px] text-amber-400 font-bold uppercase tracking-wider flex items-center gap-1">
+                                <span class="w-1.5 h-1.5 rounded-full bg-amber-400 animate-pulse"></span> Mode Local Seul 💾
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Horloge & Simulation -->
+            <div class="px-6 py-4 bg-slate-950/40 border-b border-slate-800/80 space-y-2">
+                <div class="flex justify-between items-center text-xs">
+                    <span class="text-slate-400 flex items-center gap-1.5"><i data-lucide="clock" class="w-3.5 h-3.5"></i>Heure d'activité :</span>
+                    <span id="simulated-time-display" class="font-bold text-amber-400 font-mono">20:30 🌙</span>
+                </div>
+                <label class="flex items-center gap-2 cursor-pointer bg-slate-900 p-2.5 rounded-xl border border-slate-800 hover:border-slate-700 transition-all">
+                    <input type="checkbox" id="simulated-time-toggle" checked onchange="toggleSimulatedTime()" class="sr-only peer">
+                    <div class="w-7 h-4 bg-slate-700 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-slate-300 after:border after:rounded-full after:h-3 after:w-3 after:transition-all peer-checked:bg-amber-500 relative"></div>
+                    <span class="text-[10px] font-bold text-slate-300 uppercase">Simuler après 20h 🌙</span>
+                </label>
+                <!-- Bouton Synchro Force -->
+                <button onclick="forceCloudSync()" id="btn-force-sync" class="hidden w-full mt-2 py-1.5 bg-sky-600 hover:bg-sky-500 text-white rounded-xl text-[10px] font-bold flex items-center justify-center gap-1 transition-all">
+                    <i data-lucide="refresh-cw" class="w-3 h-3"></i> Synchroniser le Cloud
+                </button>
+            </div>
+
+            <!-- Profil connecté -->
+            <div class="p-4 mx-4 my-4 bg-slate-800/40 border border-slate-800 rounded-2xl flex items-center gap-3">
+                <div class="w-10 h-10 rounded-xl bg-sky-500/20 text-sky-400 flex items-center justify-center font-bold" id="sidebar-avatar">
+                    OP
+                </div>
+                <div class="flex-1 min-w-0">
+                    <p class="text-xs text-slate-500 uppercase tracking-wider font-bold">Session active</p>
+                    <p class="text-sm font-bold text-white truncate text-ellipsis overflow-hidden" id="sidebar-username">Opérateur</p>
+                </div>
+                <button onclick="logout()" class="p-1.5 hover:bg-red-500/10 text-slate-400 hover:text-red-400 rounded-lg transition-all" title="Fermer la session">
+                    <i data-lucide="power" class="w-4 h-4"></i>
+                </button>
+            </div>
+
+            <!-- Liens de navigation -->
+            <nav class="flex-1 px-4 space-y-1">
+                <button onclick="switchTab('dashboard')" id="nav-dashboard" class="flex items-center gap-3 w-full px-4 py-3 rounded-xl font-medium text-sm transition-all text-white bg-slate-800/80">
+                    <i data-lucide="layout-dashboard" class="w-5 h-5"></i> Tableau de bord
+                </button>
+                <button onclick="switchTab('caisse')" id="nav-caisse" class="flex items-center gap-3 w-full px-4 py-3 rounded-xl font-medium text-sm transition-all hover:bg-slate-800/50 hover:text-white">
+                    <i data-lucide="calculator" class="w-5 h-5"></i> Caisse & POS Premium
+                </button>
+                <button onclick="switchTab('finances')" id="nav-finances" class="flex items-center gap-3 w-full px-4 py-3 rounded-xl font-medium text-sm transition-all hover:bg-slate-800/50 hover:text-white">
+                    <i data-lucide="wallet" class="w-5 h-5"></i> Frais & Épargne
+                </button>
+                <button onclick="switchTab('clients')" id="nav-clients" class="flex items-center gap-3 w-full px-4 py-3 rounded-xl font-medium text-sm transition-all hover:bg-slate-800/50 hover:text-white">
+                    <i data-lucide="users" class="w-5 h-5"></i> Gestion Clients
+                </button>
+                <button onclick="switchTab('manuel')" id="nav-manuel" class="flex items-center gap-3 w-full px-4 py-3 rounded-xl font-medium text-sm transition-all hover:bg-slate-800/50 hover:text-white">
+                    <i data-lucide="book-open" class="w-5 h-5"></i> Guides Machines (3)
+                </button>
+                <button onclick="switchTab('parametres')" id="nav-parametres" class="flex items-center gap-3 w-full px-4 py-3 rounded-xl font-medium text-sm transition-all hover:bg-slate-800/50 hover:text-white">
+                    <i data-lucide="settings" class="w-5 h-5"></i> Configuration
+                </button>
+            </nav>
+
+            <div class="p-6 border-t border-slate-800 text-[10px] text-slate-500 space-y-1">
+                <p class="font-bold text-slate-400 font-mono">C2M Technologies - Dakar</p>
+                <p>Parcelles Assainies Unité 7</p>
+                <p>+221 70 752 89 05</p>
+            </div>
+        </aside>
+
+        <!-- Menu Mobile / Tablette -->
+        <div class="lg:hidden flex flex-col bg-slate-900 text-white shadow-md z-40">
+            <div class="flex items-center justify-between p-4 border-b border-slate-800">
+                <div class="flex items-center gap-2">
+                    <span class="w-8 h-8 rounded-xl bg-gradient-to-tr from-sky-500 to-cyan-400 flex items-center justify-center font-extrabold text-sm text-white">C2M</span>
+                    <span class="font-bold text-sm">C2M Pressing Pro</span>
+                </div>
+                <div class="flex items-center gap-2">
+                    <button onclick="toggleMobileMenu()" class="p-2 bg-slate-800 rounded-lg text-slate-300">
+                        <i data-lucide="menu" class="w-5 h-5"></i>
+                    </button>
+                    <button onclick="logout()" class="p-2 bg-red-500/10 text-red-400 rounded-lg">
+                        <i data-lucide="power" class="w-5 h-5"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Liens Mobile -->
+            <div id="mobile-menu-links" class="hidden bg-slate-950 p-4 border-b border-slate-800 space-y-2">
+                <button onclick="switchTabMobile('dashboard')" class="flex items-center gap-3 w-full px-4 py-3 rounded-xl text-xs font-semibold hover:bg-slate-800 text-slate-300">
+                    <i data-lucide="layout-dashboard" class="w-4 h-4"></i> Tableau de bord
+                </button>
+                <button onclick="switchTabMobile('caisse')" class="flex items-center gap-3 w-full px-4 py-3 rounded-xl text-xs font-semibold hover:bg-slate-800 text-slate-300">
+                    <i data-lucide="calculator" class="w-4 h-4"></i> Caisse & POS Premium
+                </button>
+                <button onclick="switchTabMobile('finances')" class="flex items-center gap-3 w-full px-4 py-3 rounded-xl text-xs font-semibold hover:bg-slate-800 text-slate-300">
+                    <i data-lucide="wallet" class="w-4 h-4"></i> Frais & Épargne
+                </button>
+                <button onclick="switchTabMobile('clients')" class="flex items-center gap-3 w-full px-4 py-3 rounded-xl text-xs font-semibold hover:bg-slate-800 text-slate-300">
+                    <i data-lucide="users" class="w-4 h-4"></i> Clients & Fidélité
+                </button>
+                <button onclick="switchTabMobile('manuel')" class="flex items-center gap-3 w-full px-4 py-3 rounded-xl text-xs font-semibold hover:bg-slate-800 text-slate-300">
+                    <i data-lucide="book-open" class="w-4 h-4"></i> Guides Machines
+                </button>
+                <button onclick="switchTabMobile('parametres')" class="flex items-center gap-3 w-full px-4 py-3 rounded-xl text-xs font-semibold hover:bg-slate-800 text-slate-300">
+                    <i data-lucide="settings" class="w-4 h-4"></i> Configuration
+                </button>
+            </div>
+        </div>
+
+        <!-- Conteneur Applicatif Principal -->
+        <main class="flex-1 flex flex-col overflow-y-auto p-4 sm:p-6 lg:p-8 space-y-6">
+            
+            <!-- BANDEAU SUGGESTION ÉPARGNE DE FIN DE JOURNÉE -->
+            <div id="savings-suggestion-banner" class="hidden bg-gradient-to-r from-amber-500 via-orange-500 to-yellow-500 text-white rounded-3xl p-6 shadow-xl shadow-orange-500/10 flex flex-col md:flex-row items-center justify-between gap-4 transition-all page-transition">
+                <div class="flex items-start gap-4">
+                    <div class="p-4 bg-white/20 rounded-2xl">
+                        <i data-lucide="piggy-bank" class="w-8 h-8 text-white"></i>
+                    </div>
+                    <div>
+                        <div class="flex items-center gap-2">
+                            <span class="px-2 py-0.5 bg-white/30 text-[10px] rounded-full font-black uppercase tracking-wider">Clôture recommandée 🌙</span>
+                            <span class="text-xs font-bold text-yellow-100" id="suggestion-banner-time">Heure : 20:30</span>
+                        </div>
+                        <h4 class="font-extrabold text-lg mt-1">Suggestion d'Épargne Journalière (<span class="savings-pct-badge font-black">20</span>% recommandée)</h4>
+                        <p class="text-xs text-orange-50/90 max-w-xl mt-1">
+                            Sur un total de ventes de <strong id="suggested-day-sales">0 F</strong> aujourd'hui, sécurisez <strong id="suggested-savings-amount" class="text-white text-sm underline font-black">0 F</strong> dans le coffre-fort d'épargne.
+                        </p>
+                    </div>
+                </div>
+                <div class="flex gap-2 w-full md:w-auto shrink-0 font-sans">
+                    <button onclick="ignoreSavingsSuggestion()" class="flex-1 md:flex-none text-xs font-bold text-white bg-white/10 hover:bg-white/20 px-4 py-3 rounded-xl transition-all">
+                        Ignorer
+                    </button>
+                    <button onclick="executeSuggestedSavings()" class="flex-1 md:flex-none flex items-center justify-center gap-1.5 text-xs font-black text-slate-900 bg-white hover:bg-yellow-50 px-5 py-3 rounded-xl shadow-md transition-all active:scale-95">
+                        <i data-lucide="arrow-down-to-line" class="w-4 h-4"></i> Confirmer le dépôt
+                    </button>
+                </div>
+            </div>
+
+            <!-- Onglet 1: Tableau de Bord (Dashboard) -->
+            <div id="tab-dashboard" class="page-transition space-y-6">
+                
+                <!-- ENTÊTE DE FILTRES MULTI-PÉRIODES -->
+                <div class="bg-white p-6 rounded-3xl border border-slate-100 shadow-sm space-y-4">
+                    <div class="flex flex-col xl:flex-row justify-between items-start xl:items-center gap-4">
+                        <div>
+                            <h2 class="text-xl font-extrabold text-slate-950 tracking-tight flex items-center gap-2">
+                                <i data-lucide="calendar" class="text-sky-600 w-5 h-5"></i>
+                                Bilan Financier & Analyse Périodique
+                            </h2>
+                            <p class="text-xs text-slate-500 mt-1">Suivi du chiffre d'affaires, des dépenses d'exploitation, de l'épargne et des factures en attente.</p>
+                        </div>
+
+                        <!-- Sélecteurs dynamiques de périodes -->
+                        <div class="flex flex-wrap items-center gap-2 w-full xl:w-auto font-sans animate">
+                            <div class="bg-slate-100 p-1 rounded-xl flex gap-1">
+                                <button onclick="changeTimeframePeriod('journalier')" id="timeframe-journalier" class="px-4 py-1.5 text-xs font-extrabold rounded-lg transition-all bg-sky-600 text-white shadow-sm">
+                                    Journalier
+                                </button>
+                                <button onclick="changeTimeframePeriod('mensuel')" id="timeframe-mensuel" class="px-4 py-1.5 text-xs font-bold rounded-lg text-slate-600 hover:text-slate-900 transition-all">
+                                    Mensuel
+                                </button>
+                                <button onclick="changeTimeframePeriod('annuel')" id="timeframe-annuel" class="px-4 py-1.5 text-xs font-bold rounded-lg text-slate-600 hover:text-slate-900 transition-all">
+                                    Annuel
+                                </button>
+                            </div>
+
+                            <!-- Sélecteur de date interactif -->
+                            <div class="flex items-center gap-1 bg-slate-50 border border-slate-200 rounded-xl px-2 py-1">
+                                <span class="text-[10px] text-slate-400 font-bold uppercase pl-1" id="date-picker-label">Date:</span>
+                                <input type="date" id="dashboard-target-date" onchange="onDashboardDateChanged()" class="bg-transparent border-none text-xs font-extrabold text-slate-800 focus:outline-none focus:ring-0">
+                            </div>
+
+                            <button onclick="resetDashboardFilter()" class="px-3.5 py-1.5 bg-slate-900 hover:bg-slate-800 text-white rounded-xl text-xs font-extrabold transition-all">
+                                Réinitialiser
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="text-xs bg-sky-50 text-sky-900 p-3 rounded-2xl border border-sky-100 font-bold flex justify-between items-center">
+                        <span class="flex items-center gap-2">
+                            <span class="w-2 h-2 rounded-full bg-sky-500 animate-pulse"></span>
+                            Période d'analyse sélectionnée : <strong id="active-timeframe-label" class="underline font-extrabold">Journalier (Toutes dates)</strong>
+                        </span>
+                        <span class="text-[9px] uppercase bg-sky-600 text-white px-2.5 py-0.5 rounded-full font-black">Actif</span>
+                    </div>
+                </div>
+
+                <!-- ALERTE DES DETTES EN RETARD (+2 JOURS OUVRABLES HORS DIMANCHES) -->
+                <div id="overdue-debts-card" class="hidden bg-gradient-to-r from-rose-600 to-orange-500 text-white p-6 rounded-3xl shadow-xl space-y-4 page-transition">
+                    <div class="flex items-start gap-4">
+                        <div class="p-3 bg-white/20 rounded-2xl shrink-0">
+                            <i data-lucide="alert-triangle" class="w-6 h-6 text-white animate-pulse"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-extrabold text-base">⚠️ Alerte de Recouvrement (Dettes de +2 Jours Ouvrables)</h4>
+                            <p class="text-xs text-red-50/90 leading-relaxed mt-0.5">
+                                Factures avec un solde impayé depuis plus de deux jours d'activité consécutifs (excluant les dimanches) :
+                            </p>
+                        </div>
+                    </div>
+                    <!-- Liste des clients débiteurs -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3" id="overdue-debts-list-container"></div>
+                </div>
+
+                <!-- Grille de Métriques Dynamiques -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                    <!-- CA de la période -->
+                    <div class="bg-white p-5 rounded-3xl border border-slate-100 shadow-sm flex flex-col justify-between space-y-4">
+                        <div class="flex justify-between items-start">
+                            <div class="p-3 rounded-2xl bg-sky-500/10 text-sky-600">
+                                <i data-lucide="trending-up" class="w-6 h-6"></i>
+                            </div>
+                            <span class="text-[10px] uppercase font-extrabold tracking-wider text-sky-600 bg-sky-50 px-2 py-0.5 rounded-full" id="stat-period-tag-1">Période</span>
+                        </div>
+                        <div>
+                            <p class="text-xs font-medium text-slate-400">Ventes Totales (Chiffre d'Affaires)</p>
+                            <h3 class="text-xl sm:text-2xl font-black text-slate-950 mt-1" id="stat-sales-value">0 F</h3>
+                        </div>
+                    </div>
+
+                    <!-- Somme Perçue Réelle -->
+                    <div class="bg-white p-5 rounded-3xl border border-slate-100 shadow-sm flex flex-col justify-between space-y-4">
+                        <div class="flex justify-between items-start">
+                            <div class="p-3 rounded-2xl bg-emerald-500/10 text-emerald-600">
+                                <i data-lucide="circle-dollar-sign" class="w-6 h-6"></i>
+                            </div>
+                            <span class="text-[10px] uppercase font-extrabold tracking-wider text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded-full" id="stat-period-tag-perceived">Période</span>
+                        </div>
+                        <div>
+                            <p class="text-xs font-medium text-slate-400">Total Encaissé Réel</p>
+                            <h3 class="text-xl sm:text-2xl font-black text-slate-950 mt-1" id="stat-perceived-value">0 F</h3>
+                        </div>
+                    </div>
+
+                    <!-- Dépenses de la période -->
+                    <div class="bg-white p-5 rounded-3xl border border-slate-100 shadow-sm flex flex-col justify-between space-y-4">
+                        <div class="flex justify-between items-start">
+                            <div class="p-3 rounded-2xl bg-rose-500/10 text-rose-600">
+                                <i data-lucide="receipt" class="w-6 h-6"></i>
+                            </div>
+                            <span class="text-[10px] uppercase font-extrabold tracking-wider text-rose-600 bg-rose-50 px-2 py-0.5 rounded-full" id="stat-period-tag-2">Période</span>
+                        </div>
+                        <div>
+                            <p class="text-xs font-medium text-slate-400">Charges d'Exploitation</p>
+                            <h3 class="text-xl sm:text-2xl font-black text-slate-950 mt-1" id="stat-expenses-value">0 F</h3>
+                        </div>
+                    </div>
+
+                    <!-- Reste à Percevoir (Dettes) -->
+                    <div class="bg-white p-5 rounded-3xl border border-slate-100 shadow-sm flex flex-col justify-between space-y-4">
+                        <div class="flex justify-between items-start">
+                            <div class="p-3 rounded-2xl bg-amber-500/10 text-amber-600">
+                                <i data-lucide="coins" class="w-6 h-6"></i>
+                            </div>
+                            <span class="text-[10px] uppercase font-extrabold tracking-wider text-amber-600 bg-amber-50 px-2 py-0.5 rounded-full">Recouvrement</span>
+                        </div>
+                        <div>
+                            <p class="text-xs font-medium text-slate-400">Total Restant Dû (Dettes)</p>
+                            <h3 class="text-xl sm:text-2xl font-black text-slate-950 mt-1" id="stat-debt-value">0 F</h3>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- TABLEAU JOURNALIER SYNTHÉTIQUE DES ENCAISSEMENTS -->
+                <div class="bg-white p-6 rounded-3xl border border-slate-100 shadow-sm space-y-4">
+                    <div class="flex justify-between items-center border-b border-slate-100 pb-2">
+                        <div>
+                            <h3 class="font-bold text-sm text-slate-900 flex items-center gap-2 font-sans">
+                                <i data-lucide="file-text" class="text-sky-600 w-4.5 h-4.5"></i> Bilan d'Activité Journalier
+                            </h3>
+                            <p class="text-[10px] text-slate-400">Cliquez sur une journée pour filtrer l'ensemble des données financières sur cette date spécifique.</p>
+                        </div>
+                        <span class="px-2.5 py-0.5 bg-slate-100 text-slate-600 text-[9px] font-black uppercase rounded-full">Registre</span>
+                    </div>
+
+                    <div class="overflow-x-auto custom-scrollbar">
+                        <table class="w-full text-left text-xs min-w-[700px]">
+                            <thead class="bg-slate-50 text-slate-500 font-extrabold uppercase tracking-wider border-b border-slate-100">
+                                <tr>
+                                    <th class="p-3">Date d'activité</th>
+                                    <th class="p-3 text-right">CA Ventes</th>
+                                    <th class="p-3 text-right">Encaissé Réel</th>
+                                    <th class="p-3 text-right">Reste à Percevoir</th>
+                                    <th class="p-3 text-right">Charges</th>
+                                    <th class="p-3 text-center">Alertes Retard</th>
+                                    <th class="p-3 text-center">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="daily-ledger-rows" class="divide-y divide-slate-100 font-semibold text-slate-700">
+                                <!-- Données chargées dynamiquement -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Graphiques & Activités récentes -->
+                <div class="grid grid-cols-1 xl:grid-cols-12 gap-6">
+                    <!-- Graphique analytique -->
+                    <div class="bg-white p-6 rounded-3xl border border-slate-100 shadow-sm xl:col-span-8 flex flex-col justify-between">
+                        <div class="flex justify-between items-center mb-4">
+                            <div>
+                                <h4 class="font-bold text-slate-900 text-sm font-sans">Évolution Financière Semestrielle</h4>
+                                <p class="text-xs text-slate-400">Répartition comparative hebdomadaire des revenus, frais et épargnes</p>
+                            </div>
+                        </div>
+                        <div class="h-64 flex items-center justify-center relative">
+                            <canvas id="financeChart" class="w-full h-full"></canvas>
+                        </div>
+                    </div>
+
+                    <!-- Flux de Caisse récents -->
+                    <div class="bg-white p-6 rounded-3xl border border-slate-100 shadow-sm xl:col-span-4 flex flex-col justify-between">
+                        <div class="space-y-1 mb-4">
+                            <h4 class="font-bold text-slate-900 text-sm font-sans">Flux de Caisse</h4>
+                            <p class="text-xs text-slate-400">Dernières transactions enregistrées en point de vente</p>
+                        </div>
+                        <div class="flex-1 space-y-3 overflow-y-auto max-h-64 pr-1 custom-scrollbar" id="dashboard-recent-orders"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Onglet 2: Caisse & POS Premium -->
+            <div id="tab-caisse" class="page-transition hidden space-y-6">
+                <div>
+                    <h2 class="text-2xl font-extrabold text-slate-950 tracking-tight flex items-center gap-2">
+                        <i data-lucide="calculator" class="text-sky-600 w-6 h-6"></i>
+                        Caisse Enregistreuse & POS Premium
+                    </h2>
+                    <p class="text-xs text-slate-500 mt-1">Gérez le panier client de manière fluide, appliquez des tarifs d'usine et validez en un clic.</p>
+                </div>
+
+                <!-- Division de l'écran POS -->
+                <div class="grid grid-cols-1 xl:grid-cols-12 gap-6">
+                    
+                    <!-- Colonne de gauche: Catalogue & Articles -->
+                    <div class="xl:col-span-7 space-y-4">
+                        
+                        <!-- Barre de recherche & Filtres catégories -->
+                        <div class="bg-white p-4 rounded-3xl border border-slate-100 shadow-sm space-y-3">
+                            <div class="relative">
+                                <span class="absolute inset-y-0 left-3 flex items-center text-slate-400">
+                                    <i data-lucide="search" class="w-4 h-4"></i>
+                                </span>
+                                <input type="text" id="pos-search-input" oninput="filterPOSCatalog()" placeholder="Rechercher une prestation (ex: couette, lavage rap...)" class="w-full bg-slate-50 border border-slate-200 rounded-2xl pl-10 pr-4 py-2.5 text-xs font-bold focus:ring-2 focus:ring-sky-500 focus:outline-none">
+                            </div>
+
+                            <!-- Tabs de catégories -->
+                            <div class="flex gap-1 overflow-x-auto custom-scrollbar pb-1">
+                                <button onclick="setPOSActiveCategory('all')" id="pos-cat-all" class="px-3.5 py-1.5 rounded-xl text-xs font-extrabold transition-all bg-sky-600 text-white shrink-0">
+                                    🌟 Tous
+                                </button>
+                                <button onclick="setPOSActiveCategory('lavage')" id="pos-cat-lavage" class="px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all bg-slate-100 text-slate-600 hover:bg-slate-200 shrink-0">
+                                    🧼 Lavage
+                                </button>
+                                <button onclick="setPOSActiveCategory('sechage')" id="pos-cat-sechage" class="px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all bg-slate-100 text-slate-600 hover:bg-slate-200 shrink-0">
+                                    🔥 Séchage
+                                </button>
+                                <button onclick="setPOSActiveCategory('repassage')" id="pos-cat-repassage" class="px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all bg-slate-100 text-slate-600 hover:bg-slate-200 shrink-0">
+                                    👔 Repassage
+                                </button>
+                                <button onclick="setPOSActiveCategory('forfait')" id="pos-cat-forfait" class="px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all bg-slate-100 text-slate-600 hover:bg-slate-200 shrink-0">
+                                    📦 Kgs & Forfaits
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Grille du Catalogue dynamique -->
+                        <div id="pos-catalog-grid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3">
+                            <!-- Les fiches de services seront injectées ici -->
+                        </div>
+                    </div>
+
+                    <!-- Colonne de droite: Panier, Client, Caisse & Calculatrice -->
+                    <div class="xl:col-span-5 space-y-4">
+                        
+                        <!-- Panel Client & Fidélisation -->
+                        <div class="bg-white p-5 rounded-3xl border border-slate-100 shadow-sm space-y-4">
+                            <div class="flex items-center gap-2 border-b border-slate-100 pb-2">
+                                <i data-lucide="user-check" class="text-sky-600 w-4 h-4"></i>
+                                <h3 class="font-bold text-xs uppercase tracking-wider text-slate-900 font-sans">Informations Client</h3>
+                            </div>
+                            
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 relative">
+                                <div>
+                                    <label class="block text-[10px] font-bold text-slate-400 uppercase mb-1">Nom complet ou Recherche</label>
+                                    <input type="text" id="order-client-name" oninput="onClientNameInput()" placeholder="Rechercher ou saisir..." class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-xs font-extrabold focus:outline-none focus:ring-1 focus:ring-sky-500" autocomplete="off">
+                                    <div id="autocomplete-suggestions" class="absolute left-0 right-0 bg-white border border-slate-200 rounded-xl mt-1 shadow-lg z-50 hidden max-h-40 overflow-y-auto divide-y divide-slate-100"></div>
+                                </div>
+                                <div>
+                                    <label class="block text-[10px] font-bold text-slate-400 uppercase mb-1">Téléphone</label>
+                                    <input type="tel" id="order-client-phone" oninput="onClientPhoneInput()" placeholder="77XXXXXXX" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-xs font-extrabold focus:outline-none focus:ring-1 focus:ring-sky-500">
+                                </div>
+                            </div>
+
+                            <!-- Remise fidélité active -->
+                            <div id="loyalty-banner" class="hidden bg-emerald-500/10 border border-emerald-500/20 rounded-2xl p-3 flex items-center justify-between text-xs text-emerald-800 page-transition">
+                                <div class="flex items-center gap-2">
+                                    <i data-lucide="party-popper" class="w-5 h-5 text-emerald-600 animate-bounce"></i>
+                                    <div>
+                                        <p class="font-bold text-emerald-900">Remise Client Activée !</p>
+                                        <p class="text-[10px] text-emerald-600/95" id="loyalty-banner-desc">Remise automatique de 10% appliquée sur cette 10ème commande.</p>
+                                    </div>
+                                </div>
+                                <span class="px-2.5 py-1 bg-emerald-600 text-white font-extrabold rounded-lg text-[10px]">-10%</span>
+                            </div>
+                        </div>
+
+                        <!-- Panier de commande de caisse -->
+                        <div class="bg-white p-5 rounded-3xl border border-slate-100 shadow-sm space-y-4">
+                            <div class="flex justify-between items-center border-b border-slate-100 pb-2">
+                                <h3 class="font-bold text-xs uppercase tracking-wider text-slate-950 font-sans flex items-center gap-2">
+                                    <i data-lucide="shopping-cart" class="text-sky-600 w-4 h-4"></i> Lignes du Panier
+                                </h3>
+                                <button onclick="clearCurrentCart()" class="text-[10px] text-rose-500 hover:text-rose-600 font-extrabold flex items-center gap-1">
+                                    <i data-lucide="trash-2" class="w-3.5 h-3.5"></i> Vider le panier
+                                </button>
+                            </div>
+
+                            <!-- Liste du Panier -->
+                            <div class="space-y-2 max-h-56 overflow-y-auto pr-1 custom-scrollbar" id="cart-items-container">
+                                <p class="text-center text-xs text-slate-400 py-6 font-semibold">Aucun service sélectionné dans la grille de gauche.</p>
+                            </div>
+
+                            <!-- Options de paiement et de livraison -->
+                            <div class="grid grid-cols-2 gap-2 pt-2 border-t border-slate-100">
+                                <div>
+                                    <label class="block text-[9px] font-bold text-slate-400 uppercase mb-1">État Paiement</label>
+                                    <select id="order-payment-status" onchange="onPaymentStatusChange()" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-2.5 py-1.5 text-xs font-bold text-slate-700 focus:outline-none">
+                                        <option value="Totalement payé">Totalement payé</option>
+                                        <option value="Avance">Avance / Acompte</option>
+                                        <option value="Non payé">Non payé</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label class="block text-[9px] font-bold text-slate-400 uppercase mb-1">État Linge</label>
+                                    <select id="order-laundry-status" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-2.5 py-1.5 text-xs font-bold text-slate-700 focus:outline-none">
+                                        <option value="En cours de lavage">🫧 En cours de lavage</option>
+                                        <option value="Prêt">✨ Prêt (À récupérer)</option>
+                                        <option value="Livré">🚚 Livré au client</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <!-- Champ Acompte (si actif) -->
+                            <div id="advance-input-container" class="hidden page-transition">
+                                <label class="block text-[10px] font-bold text-slate-400 uppercase mb-1">Montant Acompte Perçu (FCFA)</label>
+                                <input type="number" id="order-advance-amount" value="0" min="0" oninput="updateCartDisplay()" class="w-full bg-slate-50 border border-slate-200 rounded-xl p-2 text-xs font-black text-amber-600 focus:outline-none">
+                            </div>
+
+                            <!-- Sélecteur d'Heure d'Enregistrement -->
+                            <div>
+                                <label class="block text-[9px] font-bold text-slate-400 uppercase mb-1">Date & Heure d'Enregistrement 📅</label>
+                                <input type="datetime-local" id="order-date-time" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-2.5 py-1.5 text-xs font-bold text-slate-700 focus:outline-none">
+                            </div>
+
+                            <!-- Ticket Financier de Caisse -->
+                            <div class="bg-slate-50 p-4 rounded-2xl border border-slate-200 space-y-3 font-semibold">
+                                <div class="flex justify-between text-xs text-slate-500">
+                                    <span>Sous-total commande</span>
+                                    <span id="cart-subtotal" class="font-extrabold text-slate-800">0 F</span>
+                                </div>
+                                <div id="cart-discount-row" class="flex justify-between text-xs text-emerald-600 hidden">
+                                    <span>Remise fidélité 10% (10ème passage)</span>
+                                    <span id="cart-discount-value" class="font-black">- 0 F</span>
+                                </div>
+                                <div id="cart-balance-due-row" class="flex justify-between text-xs text-rose-500 hidden font-bold">
+                                    <span>Montant restant dû (Dette) :</span>
+                                    <span id="cart-balance-due" class="font-black">0 F</span>
+                                </div>
+                                <div class="border-t border-slate-200 pt-2 flex justify-between text-sm font-black text-slate-900">
+                                    <span>NET À PERCEVOIR EN DIRECT :</span>
+                                    <span id="cart-total" class="text-sky-600 text-base font-black">0 F</span>
+                                </div>
+
+                                <button onclick="checkoutOrder()" class="w-full py-3 bg-sky-600 hover:bg-sky-500 text-white rounded-xl text-xs font-black shadow-lg shadow-sky-600/20 transition-all active:scale-95">
+                                    Valider & Imprimer le Ticket
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Calculatrice intégrée de comptoir -->
+                        <div class="bg-slate-900 text-white p-5 rounded-3xl border border-slate-800 shadow-xl space-y-4">
+                            <div class="flex items-center justify-between border-b border-slate-800 pb-2">
+                                <h3 class="font-bold text-xs uppercase tracking-widest text-slate-400 flex items-center gap-1.5 font-sans">
+                                    <i data-lucide="calculator" class="w-4 h-4 text-amber-400 animate-pulse"></i> Calculatrice Comptoir
+                                </h3>
+                                <button onclick="clearCalc()" class="text-[10px] bg-slate-800 hover:bg-slate-700 text-amber-400 font-bold px-2.5 py-1 rounded-md transition-all">
+                                    Effacer
+                                </button>
+                            </div>
+
+                            <div class="bg-slate-950 p-3 rounded-2xl border border-slate-800 text-right space-y-1">
+                                <div class="text-[10px] text-slate-500 font-mono tracking-wider h-4 overflow-hidden" id="calc-formula"></div>
+                                <div class="text-xl font-black font-mono tracking-tight text-white truncate" id="calc-display">0</div>
+                            </div>
+
+                            <div class="grid grid-cols-4 gap-2 text-xs font-bold font-mono">
+                                <button onclick="pressCalc('(')" class="py-2.5 bg-slate-800 hover:bg-slate-700 rounded-xl">(</button>
+                                <button onclick="pressCalc(')')" class="py-2.5 bg-slate-800 hover:bg-slate-700 rounded-xl">)</button>
+                                <button onclick="pressCalc('%')" class="py-2.5 bg-slate-800 hover:bg-slate-700 rounded-xl">%</button>
+                                <button onclick="pressCalc('/')" class="py-2.5 bg-amber-500 hover:bg-amber-400 text-slate-950 rounded-xl">÷</button>
+
+                                <button onclick="pressCalc('7')" class="py-2.5 bg-slate-800/60 hover:bg-slate-800 rounded-xl">7</button>
+                                <button onclick="pressCalc('8')" class="py-2.5 bg-slate-800/60 hover:bg-slate-800 rounded-xl">8</button>
+                                <button onclick="pressCalc('9')" class="py-2.5 bg-slate-800/60 hover:bg-slate-800 rounded-xl">9</button>
+                                <button onclick="pressCalc('*')" class="py-2.5 bg-amber-500 hover:bg-amber-400 text-slate-950 rounded-xl">×</button>
+
+                                <button onclick="pressCalc('4')" class="py-2.5 bg-slate-800/60 hover:bg-slate-800 rounded-xl">4</button>
+                                <button onclick="pressCalc('5')" class="py-2.5 bg-slate-800/60 hover:bg-slate-800 rounded-xl">5</button>
+                                <button onclick="pressCalc('6')" class="py-2.5 bg-slate-800/60 hover:bg-slate-800 rounded-xl">6</button>
+                                <button onclick="pressCalc('-')" class="py-2.5 bg-amber-500 hover:bg-amber-400 text-slate-950 rounded-xl">-</button>
+
+                                <button onclick="pressCalc('1')" class="py-2.5 bg-slate-800/60 hover:bg-slate-800 rounded-xl">1</button>
+                                <button onclick="pressCalc('2')" class="py-2.5 bg-slate-800/60 hover:bg-slate-800 rounded-xl">2</button>
+                                <button onclick="pressCalc('3')" class="py-2.5 bg-slate-800/60 hover:bg-slate-800 rounded-xl">3</button>
+                                <button onclick="pressCalc('+')" class="py-2.5 bg-amber-500 hover:bg-amber-400 text-slate-950 rounded-xl">+</button>
+
+                                <button onclick="pressCalc('0')" class="col-span-2 py-2.5 bg-slate-800/60 hover:bg-slate-800 rounded-xl">0</button>
+                                <button onclick="pressCalc('.')" class="py-2.5 bg-slate-800/60 hover:bg-slate-800 rounded-xl">.</button>
+                                <button onclick="evalCalc()" class="py-2.5 bg-sky-500 hover:bg-sky-400 text-white rounded-xl">=</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Onglet 3: Frais & Épargne (Finances) -->
+            <div id="tab-finances" class="page-transition hidden space-y-6">
+                <div>
+                    <h2 class="text-2xl font-extrabold text-slate-950 tracking-tight flex items-center gap-2">
+                        <i data-lucide="wallet" class="text-sky-600 w-6 h-6"></i>
+                        Gestion des Flux & Coffre d'Épargne
+                    </h2>
+                    <p class="text-xs text-slate-500 mt-1">Gérez vos charges d'exploitation, mouvementez la réserve d'épargne et éditez vos transactions.</p>
+                </div>
+
+                <div class="grid grid-cols-1 xl:grid-cols-12 gap-6">
+                    <!-- Frais d'exploitation -->
+                    <div class="bg-white p-6 rounded-3xl border border-slate-100 shadow-sm xl:col-span-6 space-y-4">
+                        <div class="flex items-center gap-2 border-b border-slate-100 pb-2">
+                            <i data-lucide="receipt" class="text-rose-500 w-4.5 h-4.5"></i>
+                            <h3 class="font-bold text-sm text-slate-900 font-sans">Enregistrer un Frais d'Exploitation</h3>
+                        </div>
+
+                        <div class="space-y-3">
+                            <div>
+                                <label class="block text-xs font-semibold text-slate-500 mb-1">Type de charge</label>
+                                <select id="expense-category" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2.5 text-xs focus:ring-1 focus:ring-sky-500 focus:outline-none font-bold">
+                                    <option value="Électricité (Senelec)">🔌 Électricité (Senelec/Woyofal)</option>
+                                    <option value="Détergent / Lessive">🧼 Détergent / Lessive Pro</option>
+                                    <option value="Eau (Sen'Eau)">🚰 Eau (Sen'Eau)</option>
+                                    <option value="Eau de Javel">🧪 Eau de Javel & Assouplissants</option>
+                                    <option value="Entretien / Pièces">🛠️ Maintenance & Réparation des machines</option>
+                                    <option value="Divers / Autre">🏷️ Autre charge d'exploitation</option>
+                                </select>
+                            </div>
+
+                            <div>
+                                <label class="block text-xs font-semibold text-slate-500 mb-1">Montant déboursé (FCFA)</label>
+                                <input type="number" id="expense-amount" placeholder="Ex: 5000" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2.5 text-xs focus:ring-1 focus:ring-sky-500 focus:outline-none font-bold text-slate-800">
+                            </div>
+
+                            <div>
+                                <label class="block text-xs font-semibold text-slate-500 mb-1">Détails de la charge</label>
+                                <textarea id="expense-desc" rows="2" placeholder="Ex: Achat recharge Woyofal..." class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2.5 text-xs focus:ring-1 focus:ring-sky-500 focus:outline-none font-medium"></textarea>
+                            </div>
+
+                            <button onclick="registerExpense()" class="w-full flex items-center justify-center gap-2 bg-rose-600 hover:bg-rose-500 text-white py-2.5 rounded-xl text-xs font-extrabold shadow-md transition-all active:scale-95">
+                                <i data-lucide="plus-circle" class="w-4 h-4"></i> Valider le Paiement de la Charge
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Coffre d'épargne -->
+                    <div class="bg-white p-6 rounded-3xl border border-slate-100 shadow-sm xl:col-span-6 space-y-4">
+                        <div class="flex justify-between items-center border-b border-slate-100 pb-2">
+                            <h3 class="font-bold text-sm text-slate-900 flex items-center gap-2 font-sans">
+                                <i data-lucide="piggy-bank" class="text-amber-500 w-4.5 h-4.5 animate-bounce"></i> Coffre-Fort d'Épargne Réserve
+                            </h3>
+                            <span class="px-2 py-0.5 bg-amber-500/10 text-amber-600 text-[9px] font-black uppercase rounded-full">Trésorerie</span>
+                        </div>
+
+                        <div class="p-4 bg-amber-500/10 rounded-2xl flex items-center justify-between border border-amber-500/20">
+                            <div>
+                                <span class="text-[9px] uppercase font-extrabold text-amber-700/80">Solde Actuel d'Épargne Réserve</span>
+                                <h3 id="savings-balance-status" class="text-2xl font-black text-amber-600 mt-0.5">0 F</h3>
+                            </div>
+                            <div class="text-right">
+                                <span class="text-[9px] uppercase font-extrabold text-slate-400">Taux recommandé</span>
+                                <p class="text-xs font-black text-slate-700 mt-0.5"><span class="savings-pct-badge font-black">20</span>% s/ Recettes à 20h</p>
+                            </div>
+                        </div>
+
+                        <div class="space-y-3 pt-2">
+                            <h4 class="text-xs font-extrabold text-slate-700">Mouvementer le Coffre</h4>
+                            <div class="grid grid-cols-2 gap-2 font-sans">
+                                <button onclick="setSavingsAction('deposit')" id="btn-savings-deposit" class="py-2 bg-amber-500 text-white rounded-xl text-xs font-bold transition-all border border-amber-500">
+                                    Déposer (Fonds)
+                                </button>
+                                <button onclick="setSavingsAction('withdraw')" id="btn-savings-withdraw" class="py-2 bg-slate-50 text-slate-600 rounded-xl text-xs font-bold transition-all border border-slate-200">
+                                    Retirer (Coffre)
+                                </button>
+                            </div>
+
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-1">
+                                <div>
+                                    <label class="block text-xs font-semibold text-slate-500 mb-1">Montant (F)</label>
+                                    <input type="number" id="savings-amount" placeholder="Montant..." class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2.5 text-xs focus:ring-1 focus:ring-sky-500 focus:outline-none font-bold">
+                                </div>
+                                <div>
+                                    <label class="block text-xs font-semibold text-slate-500 mb-1">Justification</label>
+                                    <input type="text" id="savings-justification" placeholder="Ajustement..." class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2.5 text-xs focus:ring-1 focus:ring-sky-500 focus:outline-none font-bold">
+                                </div>
+                            </div>
+
+                            <button onclick="executeSavingsTransaction()" class="w-full py-2.5 bg-amber-600 hover:bg-amber-500 text-white rounded-xl text-xs font-extrabold transition-all shadow-md active:scale-95 font-sans">
+                                Valider le mouvement de trésorerie
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Grand Livre Comptable Complet -->
+                <div class="bg-white p-6 rounded-3xl border border-slate-100 shadow-sm space-y-4">
+                    <div class="flex justify-between items-center border-b border-slate-100 pb-2">
+                        <h3 class="font-bold text-sm text-slate-900 flex items-center gap-2 font-sans">
+                            <i data-lucide="history" class="text-sky-600 w-4 h-4"></i> Grand Livre & Écritures Comptables
+                        </h3>
+                        <span class="text-xs text-slate-400 font-bold hidden lg:inline">Modifications et Suppressions réservées à la Direction</span>
+                    </div>
+                    <div class="overflow-x-auto custom-scrollbar">
+                        <table class="w-full text-left text-xs min-w-[800px]">
+                            <thead class="bg-slate-50 text-slate-400 font-bold uppercase tracking-wider border-b border-slate-100">
+                                <tr>
+                                    <th class="p-3">Horodatage</th>
+                                    <th class="p-3">Type</th>
+                                    <th class="p-3">Détails Client & Prestation</th>
+                                    <th class="p-3">État Linge</th>
+                                    <th class="p-3">État Paiement</th>
+                                    <th class="p-3 text-right">Montant</th>
+                                    <th class="p-3 text-center">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="accounting-ledger-rows" class="divide-y divide-slate-100 font-medium text-slate-700">
+                                <!-- Généré dynamiquement -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Onglet 4: Gestion des Clients (CRM) -->
+            <div id="tab-clients" class="page-transition hidden space-y-6">
+                <div>
+                    <h2 class="text-2xl font-extrabold text-slate-950 tracking-tight flex items-center gap-2">
+                        <i data-lucide="users" class="text-sky-600 w-6 h-6"></i>
+                        Portefeuille Clients & Fidélité
+                    </h2>
+                    <p class="text-xs text-slate-500 mt-1">Supervisez l'historique de vos clients et gérez les remises de 10% éligibles.</p>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                    <!-- Nouveau Client -->
+                    <div class="bg-white p-6 rounded-3xl border border-slate-100 shadow-sm space-y-4 h-fit">
+                        <h3 class="font-bold text-sm text-slate-900 flex items-center gap-2 border-b border-slate-100 pb-2 font-sans">
+                            <i data-lucide="user-plus" class="text-sky-600 w-4.5 h-4.5"></i> Nouveau Client
+                        </h3>
+                        <div class="space-y-3 font-sans">
+                            <div>
+                                <label class="block text-xs font-semibold text-slate-500 mb-1">Nom complet du client</label>
+                                <input type="text" id="new-client-name" placeholder="Ex: Amadou Diop" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-xs focus:ring-1 focus:ring-sky-500 focus:outline-none font-bold">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-semibold text-slate-500 mb-1">Numéro de téléphone</label>
+                                <input type="tel" id="new-client-phone" placeholder="Ex: 77XXXXXXX" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-xs focus:ring-1 focus:ring-sky-500 focus:outline-none font-bold">
+                            </div>
+                            <button onclick="registerNewClient()" class="w-full bg-sky-600 hover:bg-sky-500 text-white py-2.5 rounded-xl text-xs font-bold transition-all active:scale-95 shadow-md">
+                                Enregistrer le Client
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Liste complète -->
+                    <div class="bg-white p-6 rounded-3xl border border-slate-100 shadow-sm lg:col-span-2 space-y-4">
+                        <h3 class="font-bold text-sm text-slate-900 border-b border-slate-100 pb-2 flex justify-between items-center font-sans">
+                            <span>Membres C2M Pressing</span>
+                            <span class="text-xs text-slate-400 font-bold" id="total-clients-count">0 clients</span>
+                        </h3>
+                        <div class="overflow-x-auto custom-scrollbar">
+                            <table class="w-full text-left text-xs min-w-[500px]">
+                                <thead class="bg-slate-50 text-slate-400 font-bold uppercase tracking-wider border-b border-slate-100">
+                                    <tr>
+                                        <th class="p-3">ID Client</th>
+                                        <th class="p-3">Nom complet</th>
+                                        <th class="p-3">Téléphone</th>
+                                        <th class="p-3 text-center">Total Commandes</th>
+                                        <th class="p-3 text-center">Prochaine Remise (10%)</th>
+                                        <th class="p-3 text-right">Statut</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="clients-list-rows" class="divide-y divide-slate-100 font-medium">
+                                    <!-- Généré dynamiquement -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Onglet 5: Guides Techniques (3 Machines Coréen/LG) -->
+            <div id="tab-manuel" class="page-transition hidden space-y-6">
+                <div class="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-4">
+                    <div>
+                        <h2 class="text-2xl font-extrabold text-slate-950 tracking-tight flex items-center gap-2">
+                            <i data-lucide="book-open" class="text-sky-600 w-6 h-6"></i>
+                            Formation & Guides Techniques de Traduction
+                        </h2>
+                        <p class="text-xs text-slate-500 mt-1">Consultez et traduisez instantanément les panneaux de commande de vos trois machines.</p>
+                    </div>
+
+                    <div class="bg-slate-200/60 p-1 rounded-xl flex gap-1 shadow-sm w-full lg:w-auto font-sans">
+                        <button onclick="setActiveManualType('13kg')" id="btn-manual-13kg" class="flex-1 lg:flex-none px-4 py-1.5 text-xs font-extrabold rounded-lg bg-white text-slate-900 shadow-sm">
+                            LG TROMM 13 kg
+                        </button>
+                        <button onclick="setActiveManualType('21kg')" id="btn-manual-21kg" class="flex-1 lg:flex-none px-4 py-1.5 text-xs font-semibold rounded-lg text-slate-600 hover:text-slate-900">
+                            LG TROMM 21 kg Pro
+                        </button>
+                        <button onclick="setActiveManualType('10kg')" id="btn-manual-10kg" class="flex-1 lg:flex-none px-4 py-1.5 text-xs font-semibold rounded-lg text-slate-600 hover:text-slate-900">
+                            LG 10 kg Standard
+                        </button>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 xl:grid-cols-12 gap-6">
+                    <!-- Traduction -->
+                    <div class="bg-white p-6 rounded-3xl border border-slate-100 shadow-sm xl:col-span-8 space-y-4">
+                        <h3 class="font-bold text-sm text-slate-900 border-b border-slate-100 pb-2 flex items-center gap-2 font-sans" id="manual-machine-title">
+                            Guide de Traduction active
+                        </h3>
+
+                        <div class="overflow-x-auto custom-scrollbar">
+                            <table class="w-full text-left text-xs min-w-[600px]">
+                                <thead class="bg-slate-50 text-slate-500 font-bold uppercase border-b border-slate-100">
+                                    <tr>
+                                        <th class="p-3">Sélecteur Coréen (Écran)</th>
+                                        <th class="p-3">Traduction en Français</th>
+                                        <th class="p-3">Explication d'Usage & Astuces</th>
+                                        <th class="p-3 text-right">Temps Moyen</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="manual-table-rows" class="divide-y divide-slate-100 font-medium">
+                                    <!-- Généré dynamiquement -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- FAQ et Capsule de Formation -->
+                    <div class="bg-white p-6 rounded-3xl border border-slate-100 shadow-sm xl:col-span-4 space-y-6">
+                        <div class="space-y-3">
+                            <h3 class="font-bold text-sm text-slate-900 border-b border-slate-100 pb-2 font-sans">Simulateur Vidéo de Formation</h3>
+                            <div class="relative bg-slate-950 rounded-2xl overflow-hidden aspect-video shadow-md" id="tutorial-player">
+                                <div class="absolute inset-0 bg-cover bg-center opacity-65 flex items-center justify-center cursor-pointer" style="background-image: url('https://images.unsplash.com/photo-1545173168-9f1947eebd01?q=80&w=600&auto=format&fit=crop');" onclick="playMockVideo(0)">
+                                    <div class="w-12 h-12 rounded-full bg-sky-500 hover:bg-sky-400 flex items-center justify-center text-white shadow-lg transition-all">
+                                        <i data-lucide="play" class="w-5 h-5 fill-white"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="space-y-2 text-xs font-semibold font-sans">
+                            <button onclick="selectVideoSource(0)" id="video-btn-0" class="w-full flex items-center justify-between p-2.5 rounded-xl bg-sky-50 border border-sky-200 text-sky-800 font-bold text-left">
+                                <span>1. Enregistrement d'une commande & Avance</span>
+                                <i data-lucide="chevron-right" class="w-4 h-4 text-sky-600"></i>
+                            </button>
+                            <button onclick="selectVideoSource(1)" id="video-btn-1" class="w-full flex items-center justify-between p-2.5 rounded-xl hover:bg-slate-50 text-slate-600 text-left">
+                                <span>2. Configuration des Tarifs d'Usine</span>
+                                <i data-lucide="chevron-right" class="w-4 h-4 text-slate-400"></i>
+                            </button>
+                            <button onclick="selectVideoSource(2)" id="video-btn-2" class="w-full flex items-center justify-between p-2.5 rounded-xl hover:bg-slate-50 text-slate-600 text-left">
+                                <span>3. Gestion de l'Épargne Recommandée</span>
+                                <i data-lucide="chevron-right" class="w-4 h-4 text-slate-400"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Onglet 6: Configuration Administrateur -->
+            <div id="tab-parametres" class="page-transition hidden space-y-6">
+                <div>
+                    <h2 class="text-2xl font-extrabold text-slate-950 tracking-tight flex items-center gap-2">
+                        <i data-lucide="settings" class="text-sky-600 w-6 h-6"></i>
+                        Configuration Administrative
+                    </h2>
+                    <p class="text-xs text-slate-500 mt-1">Ajustez la tarification par défaut, gérez vos comptes d'accès caissier et configurez le cloud.</p>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+                    <!-- Configuration des Tarifs -->
+                    <div class="bg-white p-6 rounded-3xl border border-slate-100 shadow-sm lg:col-span-6 space-y-4">
+                        <h3 class="font-bold text-sm text-slate-900 border-b border-slate-100 pb-2 font-sans">Prix des Prestations</h3>
+                        <div class="space-y-3" id="admin-prices-panel"></div>
+                    </div>
+
+                    <!-- Comptes, Sécurité & IMPORT / EXPORT -->
+                    <div class="bg-white p-6 rounded-3xl border border-slate-100 shadow-sm lg:col-span-6 space-y-6">
+                        
+                        <!-- MODULE DE SYNCHRONISATION CLOUD GITHUB -->
+                        <div class="space-y-4 bg-sky-500/10 p-5 rounded-2xl border border-sky-200">
+                            <h3 class="font-bold text-sm text-slate-900 border-b border-sky-300 pb-2 flex items-center gap-2 font-sans">
+                                <i data-lucide="refresh-cw" class="text-sky-600 w-5 h-5 animate-spin-slow"></i> Configuration Cloud & Synchronisation
+                            </h3>
+                            <p class="text-xs text-slate-600 leading-relaxed">
+                                Connectez vos différents téléphones et ordinateurs en liant un jeton d'accès GitHub. Les ventes seront fusionnées automatiquement en temps réel.
+                            </p>
+                            
+                            <div class="space-y-3 text-xs font-sans">
+                                <div>
+                                    <label class="block font-bold text-slate-500 mb-1">GitHub Personal Access Token (PAT)</label>
+                                    <input type="password" id="cfg-github-token" placeholder="ghp_xxxxxxxxxxxxxxxxxxxxxxxx" class="w-full bg-white border border-slate-200 rounded-xl px-3 py-2 font-mono text-xs focus:outline-none focus:ring-2 focus:ring-sky-500">
+                                </div>
+                                <div class="grid grid-cols-2 gap-2">
+                                    <div>
+                                        <label class="block font-bold text-slate-500 mb-1">Dépôt (ex: pseudo/depot)</label>
+                                        <input type="text" id="cfg-github-repo" placeholder="cora-mboup/pressing-c2m" class="w-full bg-white border border-slate-200 rounded-xl px-3 py-2 focus:outline-none focus:ring-2 focus:ring-sky-500">
+                                    </div>
+                                    <div>
+                                        <label class="block font-bold text-slate-500 mb-1">Fichier de Stockage</label>
+                                        <input type="text" id="cfg-github-path" value="data.json" class="w-full bg-white border border-slate-200 rounded-xl px-3 py-2 focus:outline-none focus:ring-2 focus:ring-sky-500">
+                                    </div>
+                                </div>
+                                <button onclick="saveGithubConfig()" class="w-full py-2.5 bg-sky-600 hover:bg-sky-500 text-white rounded-xl text-xs font-black shadow-md transition-all active:scale-95">
+                                    Activer la Synchronisation Cloud
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- MODULE D'EXPORT / IMPORT DE SAUVEGARDE -->
+                        <div class="space-y-4 bg-sky-50/50 p-5 rounded-2xl border border-sky-100">
+                            <h3 class="font-bold text-sm text-slate-900 border-b border-sky-200/60 pb-2 flex items-center gap-2 font-sans">
+                                <i data-lucide="download-cloud" class="text-sky-600 w-5 h-5"></i> Sauvegarde & Migration de Données
+                            </h3>
+                            <p class="text-xs text-slate-600 leading-relaxed">
+                                Téléchargez ou synchronisez toutes les ventes, fiches clients, charges et configurations de prix pour les importer sur un autre appareil sans aucune perte de données.
+                            </p>
+                            
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-1">
+                                <!-- Bouton Exporter -->
+                                <button onclick="exportApplicationData()" class="flex items-center justify-center gap-2 px-4 py-3 bg-sky-600 hover:bg-sky-500 text-white rounded-xl text-xs font-extrabold transition-all active:scale-95 shadow-md shadow-sky-600/10">
+                                    <i data-lucide="download" class="w-4 h-4"></i> Exporter mes Données (.json)
+                                </button>
+                                
+                                <!-- Bouton Importer -->
+                                <div class="relative">
+                                    <input type="file" id="import-file-input" onchange="importApplicationData(event)" accept=".json" class="hidden">
+                                    <button onclick="document.getElementById('import-file-input').click()" class="w-full flex items-center justify-center gap-2 px-4 py-3 bg-white hover:bg-slate-50 text-slate-700 border border-slate-200 rounded-xl text-xs font-extrabold transition-all active:scale-95 shadow-sm">
+                                        <i data-lucide="upload" class="w-4 h-4"></i> Importer un fichier (.json)
+                                    </button>
+                                </div>
+                            </div>
+                            <p class="text-[10px] text-slate-400 italic font-medium">Note : L'importation remplace de manière sécurisée l'historique de votre navigateur actuel.</p>
+                        </div>
+
+                        <!-- Code secret de l'utilisateur actif -->
+                        <div class="space-y-4">
+                            <h3 class="font-bold text-sm text-slate-900 border-b border-slate-100 pb-2 flex items-center gap-2 font-sans">
+                                <i data-lucide="lock" class="text-sky-600 w-4 h-4"></i> Modifier mon Code PIN d'accès 🔐
+                            </h3>
+                            <div class="grid grid-cols-2 gap-3 text-xs font-sans">
+                                <div>
+                                    <label class="block font-semibold text-slate-500 mb-1">PIN Actuel</label>
+                                    <input type="password" id="current-pin-input" placeholder="Code actuel..." maxlength="4" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 font-bold text-slate-700 focus:outline-none">
+                                </div>
+                                <div>
+                                    <label class="block font-semibold text-slate-500 mb-1">Nouveau PIN</label>
+                                    <input type="password" id="new-pin-input" placeholder="Nouveau code..." maxlength="4" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 font-bold text-slate-700 focus:outline-none">
+                                </div>
+                            </div>
+                            <button onclick="updateActiveUserPin()" class="w-full py-2 bg-sky-600 hover:bg-sky-500 text-white rounded-xl text-xs font-bold transition-all shadow-md active:scale-95 font-sans">
+                                Modifier mon code secret
+                            </button>
+                        </div>
+
+                        <!-- Équipe de caissiers (Réservé au Gérant) -->
+                        <div class="space-y-4 border-t border-slate-100 pt-4">
+                            <h3 class="font-bold text-sm text-slate-900 border-b border-slate-100 pb-2 font-sans">Collaborateurs de Caisse</h3>
+                            <div class="space-y-3 bg-slate-50 p-4 rounded-2xl border border-slate-200/60 text-xs font-sans">
+                                <h4 class="font-bold text-sky-600">Caissier 1</h4>
+                                <div class="grid grid-cols-2 gap-2">
+                                    <input type="text" id="edit-c1-name" placeholder="Nom Caissier 1" class="bg-white border border-slate-200 rounded-xl px-3 py-2 font-bold focus:outline-none">
+                                    <input type="password" id="edit-c1-pin" placeholder="Code PIN (4 chiffres)" maxlength="4" class="bg-white border border-slate-200 rounded-xl px-3 py-2 font-bold focus:outline-none">
+                                </div>
+                                <button onclick="updateCaissierAccount('u2')" class="px-3 py-1.5 bg-sky-600 hover:bg-sky-500 text-white font-extrabold rounded-lg transition-all shadow-sm">
+                                    Enregistrer Caissier 1
+                                </button>
+                            </div>
+
+                            <div class="space-y-3 bg-slate-50 p-4 rounded-2xl border border-slate-200/60 text-xs font-sans">
+                                <h4 class="font-bold text-indigo-600">Caissier 2</h4>
+                                <div class="grid grid-cols-2 gap-2">
+                                    <input type="text" id="edit-c2-name" placeholder="Nom Caissier 2" class="bg-white border border-slate-200 rounded-xl px-3 py-2 font-bold focus:outline-none">
+                                    <input type="password" id="edit-c2-pin" placeholder="Code PIN (4 chiffres)" maxlength="4" class="bg-white border border-slate-200 rounded-xl px-3 py-2 font-bold focus:outline-none">
+                                </div>
+                                <button onclick="updateCaissierAccount('u3')" class="px-3 py-1.5 bg-indigo-600 hover:bg-indigo-500 text-white font-extrabold rounded-lg transition-all shadow-sm">
+                                    Enregistrer Caissier 2
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Maintenance Base de données -->
+                        <div class="space-y-4 border-t border-slate-100 pt-4">
+                            <h3 class="font-bold text-sm text-slate-900 border-b border-slate-100 pb-2 flex items-center gap-2 font-sans">
+                                <i data-lucide="database" class="text-rose-500 w-4 h-4"></i> Restauration & Maintenance
+                            </h3>
+                            <button onclick="triggerRestoreFactorySettings()" class="w-full py-2.5 bg-rose-50 border border-rose-200 hover:bg-rose-100 text-rose-700 rounded-xl text-xs font-extrabold transition-all font-sans">
+                                Restaurer l'application aux configurations d'usine
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </main>
+    </div>
+
+    <!-- MODAL DE RECTIFICATION DE COMMANDE (MODE DIRECTION) -->
+    <div id="edit-transaction-modal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm z-[110] flex items-center justify-center p-4 hidden">
+        <div class="bg-white rounded-3xl w-full max-w-md p-6 shadow-2xl space-y-4 border border-slate-100 relative">
+            <h3 class="font-bold text-slate-900 text-sm flex items-center gap-2 font-sans">
+                <i data-lucide="edit-3" class="text-sky-600 w-4.5 h-4.5"></i> Rectifier ou Supprimer une transaction
+            </h3>
+            <input type="hidden" id="edit-tx-id">
+            
+            <div class="space-y-3 text-xs font-sans">
+                <div>
+                    <label class="block text-[11px] font-bold text-slate-500 mb-1">Prestation / Détail complet</label>
+                    <input type="text" id="edit-tx-detail" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 font-bold focus:outline-none">
+                </div>
+                <div class="grid grid-cols-2 gap-2">
+                    <div>
+                        <label class="block text-[11px] font-bold text-slate-500 mb-1">Montant Net (FCFA)</label>
+                        <input type="number" id="edit-tx-amount" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 font-bold text-sky-600 focus:outline-none">
+                    </div>
+                    <div>
+                        <label class="block text-[11px] font-bold text-slate-500 mb-1">État Paiement</label>
+                        <select id="edit-tx-payment" onchange="onEditPaymentStatusChange()" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 font-semibold focus:outline-none">
+                            <option value="Totalement payé">Totalement payé</option>
+                            <option value="Avance">Avance</option>
+                            <option value="Non payé">Non payé</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div id="edit-tx-advance-row" class="hidden">
+                    <label class="block text-[11px] font-bold text-slate-500 mb-1">Montant Avancé (FCFA)</label>
+                    <input type="number" id="edit-tx-advance-val" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 font-bold text-amber-600 focus:outline-none">
+                </div>
+
+                <div class="grid grid-cols-2 gap-2">
+                    <div>
+                        <label class="block text-[11px] font-bold text-slate-500 mb-1">État de la Lessive</label>
+                        <select id="edit-tx-laundry" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 font-semibold focus:outline-none">
+                            <option value="En cours de lavage">En cours de lavage</option>
+                            <option value="Prêt">Prêt</option>
+                            <option value="Livré">Livré</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-[11px] font-bold text-slate-500 mb-1">Date d'Enregistrement 📅</label>
+                        <input type="datetime-local" id="edit-tx-date" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 font-bold text-slate-700 focus:outline-none">
+                    </div>
+                </div>
+            </div>
+
+            <div class="flex justify-between items-center pt-2 font-sans border-t border-slate-100">
+                <button onclick="triggerDeleteFromModal()" class="px-3.5 py-2 bg-rose-50 hover:bg-rose-100 text-rose-600 font-bold text-xs rounded-xl transition-all flex items-center gap-1.5">
+                    <i data-lucide="trash-2" class="w-4 h-4"></i> Supprimer
+                </button>
+                <div class="flex gap-2">
+                    <button onclick="closeEditTxModal()" class="px-4 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold text-xs rounded-xl transition-all">
+                        Annuler
+                    </button>
+                    <button onclick="saveTxChanges()" class="px-4 py-2 bg-sky-600 hover:bg-sky-500 text-white font-extrabold text-xs rounded-xl transition-all">
+                        Confirmer
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL POUR LES ARTICLES AUX KILOS (SAISIE DU POIDS) -->
+    <div id="kg-service-modal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm z-[115] flex items-center justify-center p-4 hidden">
+        <div class="bg-white rounded-3xl w-full max-w-sm p-6 shadow-2xl space-y-4 border border-slate-100">
+            <div class="flex items-center gap-2 border-b border-slate-100 pb-2">
+                <i data-lucide="scale" class="text-sky-600 w-5 h-5"></i>
+                <h3 class="font-bold text-slate-900 text-sm font-sans" id="kg-modal-title">Saisie du Poids</h3>
+            </div>
+            <input type="hidden" id="kg-modal-service-id">
+            
+            <div class="space-y-2 font-sans">
+                <p class="text-[11px] text-slate-500 font-semibold" id="kg-modal-description">Indiquez la masse totale de vêtements en kilogrammes.</p>
+                <div>
+                    <label class="block text-[10px] font-bold text-slate-400 uppercase mb-1">Poids du linge (kg)</label>
+                    <input type="number" id="kg-modal-value" value="3.0" min="0.1" step="0.1" class="w-full bg-slate-50 border border-slate-200 rounded-2xl p-3 text-sm font-black text-slate-800 focus:outline-none focus:ring-2 focus:ring-sky-500">
+                </div>
+                <div class="bg-sky-50 p-3 rounded-2xl border border-sky-100 text-[10px] text-sky-800 font-bold leading-relaxed" id="kg-modal-rule-notice">
+                    Note : Un tarif dégressif s'applique.
+                </div>
+            </div>
+
+            <div class="flex justify-end gap-2 pt-2 border-t border-slate-100 font-sans">
+                <button onclick="closeKgServiceModal()" class="px-4 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold text-xs rounded-xl transition-all">
+                    Annuler
+                </button>
+                <button onclick="confirmKgServiceAdd()" class="px-5 py-2 bg-sky-600 hover:bg-sky-500 text-white font-extrabold text-xs rounded-xl transition-all">
+                    Valider l'ajout
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- REÇU CLIENT (TICKET DE CAISSE TACTILE) -->
+    <div id="receipt-modal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm z-[110] flex items-center justify-center p-4 hidden">
+        <div class="bg-white rounded-3xl w-full max-w-sm p-6 shadow-2xl space-y-4 border border-slate-100 relative">
+            <div class="text-center font-sans">
+                <span class="text-sky-600 font-black text-xl tracking-wider">C2M PRESSING</span>
+                <p class="text-[10px] text-slate-400 mt-1">Parcelles Assainies Unité 7, Dakar<br>Téléphone: 70 752 89 05</p>
+                <div class="w-12 h-[2px] bg-sky-500 mx-auto my-2"></div>
+                <h4 class="font-bold text-xs uppercase tracking-widest text-slate-700">Ticket de Caisse</h4>
+            </div>
+
+            <div id="receipt-content" class="text-xs space-y-3 font-mono text-slate-700"></div>
+
+            <div class="border-t border-dashed border-slate-200 pt-3 text-center space-y-2 font-sans">
+                <p class="text-[10px] text-slate-400 font-semibold italic">Merci de votre confiance ! À bientôt !</p>
+                <div class="grid grid-cols-2 gap-2">
+                    <button onclick="closeReceiptModal()" class="w-full bg-slate-100 hover:bg-slate-200 text-slate-700 py-2 rounded-xl text-xs font-bold transition-all">
+                        Fermer
+                    </button>
+                    <button onclick="printReceipt()" class="w-full bg-sky-600 hover:bg-sky-500 text-white py-2 rounded-xl text-xs font-extrabold transition-all">
+                        Imprimer
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL DE CONFIRMATION PERSONNALISÉ (Remplacement complet de window.confirm) -->
+    <div id="confirm-modal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm z-[130] flex items-center justify-center p-4 hidden">
+        <div class="bg-white rounded-3xl w-full max-w-sm p-6 shadow-2xl space-y-4 border border-slate-100 text-center">
+            <div class="inline-flex p-3 rounded-2xl bg-rose-50 text-rose-600 mb-1 animate-pulse" id="confirm-icon-bg">
+                <i data-lucide="alert-triangle" class="w-8 h-8" id="confirm-icon"></i>
+            </div>
+            <div>
+                <h3 class="text-base font-extrabold text-slate-900" id="confirm-title">Confirmation</h3>
+                <p class="text-xs text-slate-500 mt-2 leading-relaxed" id="confirm-message">Êtes-vous sûr de vouloir effectuer cette action ?</p>
+            </div>
+            <div class="flex gap-2 pt-2 font-sans">
+                <button id="btn-confirm-cancel" class="flex-1 py-2.5 bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold text-xs rounded-xl transition-all">
+                    Annuler
+                </button>
+                <button id="btn-confirm-proceed" class="flex-1 py-2.5 bg-rose-600 hover:bg-rose-500 text-white font-extrabold text-xs rounded-xl transition-all shadow-md">
+                    Confirmer
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast de notification -->
+    <div id="toast-container" class="fixed bottom-4 right-4 z-[120] space-y-2 font-sans"></div>
+
+    <script>
+        // --- BASE DE DONNÉES PAR DÉFAUT (TARIFS COMMERCIAUX DE L'APPLI PREMIUM) ---
+        const defaultTarifs = {
+            S001: 2500, // Lavage Standard 21kg
+            S002: 1500, // Lavage Rapide 21kg
+            S003: 1000, // Séchage Standard
+            S004: 500,  // Séchage Rapide (1-3 pièces)
+            S005: 300,  // Chemise / Pantalon
+            S006: 1000, // Robe / Costume
+            S007: 4000, // Lavage + Séchage + Repassage (Complet)
+            lavage_kg: 300, // Lavage standard au kg supplémentaire
+            lavage_forfait_3kg: 1000, // Forfait minimum -3kg au kg
+            pack_kg: 600, // Pack complet au kg (Lavage & Repassage)
+            sechage_piece: 500, // Séchage thermique par pièce
+            lavage_couette: 2500, // Lavage Couette unitaire
+            habit_special: 2000 // Costume & Habit Spécial par pièce
+        };
+
+        const defaultUsers = [
+            { id: "u1", name: "Directeur C2M", pin: "1234", role: "admin" },
+            { id: "u2", name: "Amadou Ndiaye (Caissier 1)", pin: "0000", role: "caissier" },
+            { id: "u3", name: "Fatou Sow (Caissier 2)", pin: "1111", role: "caissier" }
+        ];
+
+        const defaultClients = [
+            { id: "C001", name: "Moussa Diop", phone: "771234567", orderCount: 9, status: "Régulier" }, 
+            { id: "C002", name: "Fatou Sow", phone: "781234567", orderCount: 5, status: "Nouveau" },
+            { id: "C003", name: "Ibrahima Gueye", phone: "709876543", orderCount: 19, status: "Excellent" } 
+        ];
+
+        function getSimulatedDateISO(day, hours, mins) {
+            return `2026-06-${String(day).padStart(2, '0')}T${String(hours).padStart(2, '0')}:${String(mins).padStart(2, '0')}`;
+        }
+
+        const defaultTransactions = [
+            { id: "T101", date: getSimulatedDateISO(29, 10, 30), type: "Commande", detail: "Moussa Diop (771234567) - Lavage Standard 21kg", amount: 2500, paymentStatus: "Avance", advanceAmount: 1000, laundryStatus: "En cours de lavage", user: "Amadou Ndiaye (Caissier 1)" },
+            { id: "T102", date: getSimulatedDateISO(26, 14, 15), type: "Commande", detail: "Fatou Sow (781234567) - Pack Complet (Lav+Séch+Rep) (x1.0)", amount: 4000, paymentStatus: "Non payé", advanceAmount: 0, laundryStatus: "Prêt", user: "Amadou Ndiaye (Caissier 1)" },
+            { id: "T103", date: getSimulatedDateISO(30, 9, 0), type: "Commande", detail: "Ibrahima Gueye (709876543) - Séchage Standard (x1.0)", amount: 1000, paymentStatus: "Totalement payé", advanceAmount: 0, laundryStatus: "Livré", user: "Fatou Sow (Caissier 2)" },
+            { id: "T104", date: getSimulatedDateISO(30, 11, 20), type: "Dépense", detail: "Détergent - Lessive liquide pro", amount: 4500, paymentStatus: "Totalement payé", advanceAmount: 0, laundryStatus: "-", user: "Amadou Ndiaye (Caissier 1)" },
+            { id: "T105", date: getSimulatedDateISO(24, 10, 0), type: "Dépense", detail: "Senelec - Woyofal d'exploitation", amount: 15000, paymentStatus: "Totalement payé", advanceAmount: 0, laundryStatus: "-", user: "Amadou Ndiaye (Caissier 1)" }
+        ];
+
+        const defaultSavings = [
+            { date: getSimulatedDateISO(29, 20, 10), type: "Dépôt Automatique (20h)", justification: "Clôture du 29 Juin", amount: 2440, user: "Amadou Ndiaye (Caissier 1)" }
+        ];
+
+        const defaultSessions = [
+            { id: "S01", userName: "Amadou Ndiaye (Caissier 1)", role: "caissier", login: getSimulatedDateISO(30, 8, 0), logout: "En cours", active: true }
+        ];
+
+        // --- CATALOGUE DES SERVICES (POUR LA RECHERCHE ET LE POS) ---
+        const servicesCatalog = [
+            { id: "S001", name: "Lavage Standard 21kg", category: "lavage", unit: "Lavage", description: "Pour les chemises, draps, coton de tous les jours.", icon: "washing-machine" },
+            { id: "S002", name: "Lavage Rapide 21kg", category: "lavage", unit: "Lavage", description: "Idéal linge de sport ou fraîchement porté.", icon: "zap" },
+            { id: "S003", name: "Séchage Standard", category: "sechage", unit: "Cycle", description: "Séchage thermique régulier.", icon: "wind" },
+            { id: "S004", name: "Séchage Rapide (1-3 pcs)", category: "sechage", unit: "Cycle", description: "Idéal pour petites retouches express.", icon: "sun" },
+            { id: "S005", name: "Chemise / Pantalon", category: "repassage", unit: "Pièce", description: "Repassage suspendu.", icon: "shirt" },
+            { id: "S006", name: "Robe / Costume", category: "repassage", unit: "Pièce", description: "Finitions soignées sur veste ou robe.", icon: "pocket" },
+            { id: "S007", name: "Pack Complet (Lav+Séch+Rep)", category: "forfait", unit: "Forfait", description: "Service tout-en-un.", icon: "package" },
+            { id: "lavage_kg", name: "Lavage au Kg (min 3kg)", category: "forfait", unit: "kg", description: "Forfait 1000F jusqu'à 3kg, puis 300F/kg supp.", icon: "scale" },
+            { id: "pack_kg", name: "Pack complet au Kg", category: "forfait", unit: "kg", description: "Lavage et repassage cumulé au kilo.", icon: "scale" },
+            { id: "sechage_piece", name: "Séchage Thermique", category: "sechage", unit: "Pièce", description: "Séchage par vêtement individuel.", icon: "flame" },
+            { id: "lavage_couette", name: "Lavage Couette", category: "lavage", unit: "Pièce", description: "Pour les duvets et couettes de lit.", icon: "bed" },
+            { id: "habit_special", name: "Costume & Habit Spécial", category: "repassage", unit: "Pièce", description: "Habits de gala, robes traditionnelles, etc.", icon: "gem" }
+        ];
+
+        // --- STOCKAGE LOCAL (PERSISTANCE DU CONFIG) ---
+        let systemTarifs = {};
+        let users = [];
+        let clients = [];
+        let transactions = [];
+        let savingsTransactions = [];
+        let sessions = [];
+
+        // Variable globale pour traquer l'identification unique du fichier GitHub (sha)
+        let currentGitSha = null;
+
+        function loadFromLocalStorage() {
+            try {
+                systemTarifs = localStorage.getItem("C2M_systemTarifs") ? JSON.parse(localStorage.getItem("C2M_systemTarifs")) : defaultTarifs;
+                users = localStorage.getItem("C2M_users") ? JSON.parse(localStorage.getItem("C2M_users")) : defaultUsers;
+                clients = localStorage.getItem("C2M_clients") ? JSON.parse(localStorage.getItem("C2M_clients")) : defaultClients;
+                transactions = localStorage.getItem("C2M_transactions") ? JSON.parse(localStorage.getItem("C2M_transactions")) : defaultTransactions;
+                savingsTransactions = localStorage.getItem("C2M_savingsTransactions") ? JSON.parse(localStorage.getItem("C2M_savingsTransactions")) : defaultSavings;
+                sessions = localStorage.getItem("C2M_sessions") ? JSON.parse(localStorage.getItem("C2M_sessions")) : defaultSessions;
+                
+                // Charger les identifiants GitHub configurés
+                if(localStorage.getItem("C2M_gitToken")) document.getElementById('cfg-github-token').value = localStorage.getItem("C2M_gitToken");
+                if(localStorage.getItem("C2M_gitRepo")) document.getElementById('cfg-github-repo').value = localStorage.getItem("C2M_gitRepo");
+                if(localStorage.getItem("C2M_gitPath")) document.getElementById('cfg-github-path').value = localStorage.getItem("C2M_gitPath");
+            } catch (e) {
+                console.error("Échec de chargement local, restauration usine.", e);
+                restoreDataToMemory();
+            }
+        }
+
+        function saveToLocalStorage() {
+            try {
+                localStorage.setItem("C2M_systemTarifs", JSON.stringify(systemTarifs));
+                localStorage.setItem("C2M_users", JSON.stringify(users));
+                localStorage.setItem("C2M_clients", JSON.stringify(clients));
+                localStorage.setItem("C2M_transactions", JSON.stringify(transactions));
+                localStorage.setItem("C2M_savingsTransactions", JSON.stringify(savingsTransactions));
+                localStorage.setItem("C2M_sessions", JSON.stringify(sessions));
+                
+                // Lancer la synchronisation vers GitHub automatiquement après chaque écriture
+                pushDataToGitHub();
+            } catch (e) {
+                console.error("Échec d'écriture dans localStorage", e);
+            }
+        }
+
+        // --- STREAMING_CHUNK:Implementing GitHub API synchronization logic... -->
+        // --- MODULE CENTRAL DE SYNCHRONISATION GITHUB API ---
+        function saveGithubConfig() {
+            const token = document.getElementById('cfg-github-token').value.trim();
+            const repo = document.getElementById('cfg-github-repo').value.trim();
+            const path = document.getElementById('cfg-github-path').value.trim();
+
+            if(!token || !repo || !path) {
+                showToast("Veuillez remplir tous les champs cloud GitHub.", "error");
+                return;
+            }
+
+            localStorage.setItem("C2M_gitToken", token);
+            localStorage.setItem("C2M_gitRepo", repo);
+            localStorage.setItem("C2M_gitPath", path);
+
+            showToast("Configuration cloud enregistrée ! Synchronisation en cours...", "info");
+            pullDataFromGitHub(true);
+        }
+
+        // --- STREAMING_CHUNK:Implementing dataset smart union merge... -->
+        // Fusion d'historiques par ID unique pour éviter que les caissiers s'écrasent leurs ventes
+        function mergeDatasets(localData, cloudData) {
+            const mergedTransactions = mergeById(localData.transactions || [], cloudData.transactions || []);
+            const mergedClients = mergeByProperty(localData.clients || [], cloudData.clients || [], 'phone');
+            const mergedSavings = mergeByProperty(localData.savingsTransactions || [], cloudData.savingsTransactions || [], 'date');
+            const mergedSessions = mergeById(localData.sessions || [], cloudData.sessions || []);
+            const mergedTarifs = { ...(cloudData.systemTarifs || {}), ...(localData.systemTarifs || {}) };
+            const mergedUsers = mergeById(localData.users || [], cloudData.users || []);
+
+            return {
+                systemTarifs: mergedTarifs,
+                users: mergedUsers,
+                clients: mergedClients,
+                transactions: mergedTransactions,
+                savingsTransactions: mergedSavings,
+                sessions: mergedSessions
+            };
+        }
+
+        function mergeById(arr1, arr2) {
+            const map = new Map();
+            arr1.forEach(item => map.set(item.id, item));
+            arr2.forEach(item => map.set(item.id, item));
+            return Array.from(map.values());
+        }
+
+        function mergeByProperty(arr1, arr2, prop) {
+            const map = new Map();
+            arr1.forEach(item => map.set(item[prop], item));
+            arr2.forEach(item => map.set(item[prop], item));
+            return Array.from(map.values());
+        }
+
+        async function pullDataFromGitHub(showFeedback = false) {
+            const token = localStorage.getItem("C2M_gitToken");
+            const repo = localStorage.getItem("C2M_gitRepo");
+            const path = localStorage.getItem("C2M_gitPath") || "data.json";
+
+            if (!token || !repo) return;
+
+            const badge = document.getElementById('sync-status-badge');
+            badge.className = "text-[9px] text-amber-500 font-bold uppercase tracking-wider flex items-center gap-1";
+            badge.innerHTML = `<span class="w-1.5 h-1.5 rounded-full bg-amber-500 animate-spin"></span> Cloud Connexion...`;
+            document.getElementById('btn-force-sync').classList.remove('hidden');
+
+            try {
+                const url = `https://api.github.com/repos/${repo}/contents/${path}`;
+                const response = await fetch(url, {
+                    headers: { "Authorization": `token ${token}`, "Accept": "application/vnd.github.v3+json" }
+                });
+
+                if(response.status === 200) {
+                    const data = await response.json();
+                    currentGitSha = data.sha;
+                    const decData = JSON.parse(decodeURIComponent(escape(atob(data.content))));
+                    
+                    const localDataset = {
+                        systemTarifs, users, clients, transactions, savingsTransactions, sessions
+                    };
+
+                    // Effectuer la fusion intelligente
+                    const merged = mergeDatasets(localDataset, decData);
+
+                    systemTarifs = merged.systemTarifs;
+                    users = merged.users;
+                    clients = merged.clients;
+                    transactions = merged.transactions;
+                    savingsTransactions = merged.savingsTransactions;
+                    sessions = merged.sessions;
+
+                    localStorage.setItem("C2M_systemTarifs", JSON.stringify(systemTarifs));
+                    localStorage.setItem("C2M_users", JSON.stringify(users));
+                    localStorage.setItem("C2M_clients", JSON.stringify(clients));
+                    localStorage.setItem("C2M_transactions", JSON.stringify(transactions));
+                    localStorage.setItem("C2M_savingsTransactions", JSON.stringify(savingsTransactions));
+                    localStorage.setItem("C2M_sessions", JSON.stringify(sessions));
+                    
+                    populateUserDropdown();
+                    recalculateClientOrderCounts();
+                    updateAllOutputs();
+                    
+                    badge.className = "text-[9px] text-emerald-400 font-bold uppercase tracking-wider flex items-center gap-1";
+                    badge.innerHTML = `<span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span> Synchronisé Cloud ☁️`;
+                    if(showFeedback) showToast("Données fusionnées depuis le cloud avec succès.", "success");
+                } else if (response.status === 404) {
+                    // Si le fichier n'existe pas encore sur GitHub, on le crée
+                    await pushDataToGitHub();
+                }
+            } catch (err) {
+                console.error(err);
+                badge.className = "text-[9px] text-rose-500 font-bold uppercase tracking-wider flex items-center gap-1";
+                badge.innerHTML = `<span class="w-1.5 h-1.5 rounded-full bg-rose-500"></span> Erreur Cloud 🔌`;
+            }
+        }
+
+        async function pushDataToGitHub() {
+            const token = localStorage.getItem("C2M_gitToken");
+            const repo = localStorage.getItem("C2M_gitRepo");
+            const path = localStorage.getItem("C2M_gitPath") || "data.json";
+
+            if (!token || !repo) return;
+
+            try {
+                const payload = {
+                    systemTarifs, users, clients, transactions, savingsTransactions, sessions,
+                    updatedAt: new Date().toISOString()
+                };
+                const contentBase64 = btoa(unescape(encodeURIComponent(JSON.stringify(payload, null, 2))));
+                const url = `https://api.github.com/repos/${repo}/contents/${path}`;
+
+                // On récupère le dernier SHA valide pour éviter de bloquer l'écriture
+                const getRes = await fetch(url, {
+                    headers: { "Authorization": `token ${token}`, "Accept": "application/vnd.github.v3+json" }
+                });
+                if (getRes.status === 200) {
+                    const getJson = await getRes.json();
+                    currentGitSha = getJson.sha;
+                }
+
+                const bodyData = {
+                    message: `C2M Pressing Pro Sync update - ${new Date().toLocaleTimeString()}`,
+                    content: contentBase64
+                };
+                if(currentGitSha) bodyData.sha = currentGitSha;
+
+                const putRes = await fetch(url, {
+                    method: "PUT",
+                    headers: { "Authorization": `token ${token}`, "Content-Type": "application/json" },
+                    body: JSON.stringify(bodyData)
+                });
+
+                if (putRes.status === 200 || putRes.status === 201) {
+                    const putJson = await putRes.json();
+                    currentGitSha = putJson.content.sha;
+                    const badge = document.getElementById('sync-status-badge');
+                    badge.className = "text-[9px] text-emerald-400 font-bold uppercase tracking-wider flex items-center gap-1";
+                    badge.innerHTML = `<span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span> Mis à jour Cloud ☁️`;
+                }
+            } catch (err) {
+                console.error("Échec d'envoi cloud:", err);
+            }
+        }
+
+        function forceCloudSync() {
+            pullDataFromGitHub(true);
+        }
+
+        function restoreDataToMemory() {
+            systemTarifs = {...defaultTarifs};
+            users = JSON.parse(JSON.stringify(defaultUsers));
+            clients = JSON.parse(JSON.stringify(defaultClients));
+            transactions = JSON.parse(JSON.stringify(defaultTransactions));
+            savingsTransactions = JSON.parse(JSON.stringify(defaultSavings));
+            sessions = JSON.parse(JSON.stringify(defaultSessions));
+        }
+
+        // --- VARIABLES DE SESSION & D'INTERFACE ---
+        let currentUser = null;
+        let activeSessionId = null;
+        let activeTab = 'dashboard';
+        let pinBuffer = "";
+        let selectedUserId = null;
+        let activeSavingsAction = 'deposit'; 
+        let customSavingsRate = 20; 
+        let isSimulatedAfter20h = true; 
+        let currentCart = [];
+        let isDailySavingsTransferred = false;
+        let calcDisplay = "0";
+        let calcFormula = "";
+
+        let dashboardTimeframePeriod = "journalier"; 
+        let dashboardFilterTargetDate = "all"; 
+        let posActiveCategory = "all";
+
+        // --- CONFIRMATION MODALE TACTILE ---
+        let confirmCallback = null;
+        function showCustomConfirm(title, message, callback, isDanger = true) {
+            document.getElementById('confirm-title').innerText = title;
+            document.getElementById('confirm-message').innerText = message;
+            
+            const proceedBtn = document.getElementById('btn-confirm-proceed');
+            const iconBg = document.getElementById('confirm-icon-bg');
+            const icon = document.getElementById('confirm-icon');
+            
+            if (isDanger) {
+                proceedBtn.className = "flex-1 py-2.5 bg-rose-600 hover:bg-rose-50 text-white font-extrabold text-xs rounded-xl transition-all shadow-md active:scale-95";
+                iconBg.className = "inline-flex p-3 rounded-2xl bg-rose-50 text-rose-600 mb-1 animate-pulse";
+                icon.setAttribute('data-lucide', 'alert-triangle');
+            } else {
+                proceedBtn.className = "flex-1 py-2.5 bg-sky-600 hover:bg-sky-500 text-white font-extrabold text-xs rounded-xl transition-all shadow-md active:scale-95";
+                iconBg.className = "inline-flex p-3 rounded-2xl bg-sky-50 text-sky-600 mb-1";
+                icon.setAttribute('data-lucide', 'help-circle');
+            }
+            
+            confirmCallback = callback;
+            document.getElementById('confirm-modal').classList.remove('hidden');
+            lucide.createIcons();
+        }
+
+        document.getElementById('btn-confirm-cancel').onclick = function() {
+            document.getElementById('confirm-modal').classList.add('hidden');
+            confirmCallback = null;
+        };
+
+        document.getElementById('btn-confirm-proceed').onclick = function() {
+            document.getElementById('confirm-modal').classList.add('hidden');
+            if (confirmCallback) {
+                confirmCallback();
+            }
+            confirmCallback = null;
+        };
+
+        function triggerRestoreFactorySettings() {
+            showCustomConfirm(
+                "Restauration d'usine", 
+                "Voulez-vous réinitialiser l'application ? Tout votre historique comptable hors-ligne actuel sera définitivement effacé.",
+                function() {
+                    localStorage.clear();
+                    restoreDataToMemory();
+                    saveToLocalStorage();
+                    showToast("Paramètres d'usine restaurés !", "success");
+                    setTimeout(() => { window.location.reload(); }, 1000);
+                }, 
+                true
+            );
+        }
+
+        // --- EXPORTATION / IMPORTATION DE BASE DE DONNÉES EN JSON ---
+        function exportApplicationData() {
+            try {
+                const applicationBackupObj = {
+                    version: "C2M-PRESSING-PRO-UNIFIED-V2",
+                    exportDate: new Date().toISOString(),
+                    systemTarifs: systemTarifs,
+                    users: users,
+                    clients: clients,
+                    transactions: transactions,
+                    savingsTransactions: savingsTransactions,
+                    sessions: sessions
+                };
+
+                const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(applicationBackupObj, null, 2));
+                const downloadAnchorNode = document.createElement('a');
+                
+                const now = new Date();
+                const dayString = now.toISOString().slice(0, 10);
+                const timeString = now.toTimeString().slice(0, 5).replace(":", "h");
+                
+                downloadAnchorNode.setAttribute("href", dataStr);
+                downloadAnchorNode.setAttribute("download", `C2M_Pressing_Export_${dayString}_${timeString}.json`);
+                document.body.appendChild(downloadAnchorNode);
+                downloadAnchorNode.click();
+                downloadAnchorNode.remove();
+                
+                showToast("Sauvegarde réussie ! Fichier .json téléchargé.", "success");
+            } catch (err) {
+                showToast("Échec de l'exportation des données.", "error");
+                console.error(err);
+            }
+        }
+
+        function importApplicationData(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                try {
+                    const importedObj = JSON.parse(e.target.result);
+                    
+                    if (!importedObj.systemTarifs || !importedObj.transactions || !importedObj.clients) {
+                        showToast("Fichier de sauvegarde invalide.", "error");
+                        return;
+                    }
+
+                    showCustomConfirm(
+                        "Importer la sauvegarde",
+                        "Cette action va écraser votre base locale actuelle. Voulez-vous continuer ?",
+                        function() {
+                            systemTarifs = importedObj.systemTarifs;
+                            users = importedObj.users || defaultUsers;
+                            clients = importedObj.clients || [];
+                            transactions = importedObj.transactions || [];
+                            savingsTransactions = importedObj.savingsTransactions || [];
+                            sessions = importedObj.sessions || [];
+
+                            saveToLocalStorage();
+                            recalculateClientOrderCounts();
+                            updateAllOutputs();
+                            showToast("Base de données importée !", "success");
+                            
+                            setTimeout(() => {
+                                window.location.reload();
+                            }, 1200);
+                        },
+                        false
+                    );
+                } catch (err) {
+                    showToast("Erreur lors de la lecture du fichier.", "error");
+                    console.error(err);
+                }
+            };
+            reader.readAsText(file);
+            event.target.value = "";
+        }
+
+        // --- RECALCUL COHÉRENT ET DYNAMIQUE DES PASSAGES DES CLIENTS ---
+        function recalculateClientOrderCounts() {
+            clients.forEach(c => {
+                c.orderCount = 0;
+            });
+
+            transactions.forEach(t => {
+                if (t.type === "Commande") {
+                    const clientInfo = extractClientInfo(t.detail);
+                    const clientObj = clients.find(c => c.phone === clientInfo.phone);
+                    if (clientObj) {
+                        clientObj.orderCount += 1;
+                    }
+                }
+            });
+
+            clients.forEach(c => {
+                if (c.orderCount >= 10) {
+                    c.status = "Excellent";
+                } else if (c.orderCount >= 5) {
+                    c.status = "Régulier";
+                } else {
+                    c.status = "Nouveau";
+                }
+            });
+        }
+
+        function extractClientInfo(detailText) {
+            const match = detailText.match(/^([^\(]+)\s*\(?([^\)]*)\)?/);
+            if (match) {
+                const phoneMatch = match[2].match(/^[0-9+]+/);
+                return {
+                    name: match[1].trim(),
+                    phone: phoneMatch ? phoneMatch[0].trim() : "Non configuré"
+                };
+            }
+            return { name: "Client de passage", phone: "770000000" };
+        }
+
+        // --- CALCUL DES JOURS OUVRABLES (HORS DIMANCHES) ---
+        function getBusinessDaysDiff(startDateStr, endDateStr) {
+            const start = new Date(startDateStr);
+            const end = new Date(endDateStr);
+            if (isNaN(start) || isNaN(end)) return 0;
+            
+            let count = 0;
+            let cur = new Date(start);
+            cur.setHours(0,0,0,0);
+            
+            const target = new Date(end);
+            target.setHours(0,0,0,0);
+            
+            if (cur > target) return 0;
+            
+            while (cur < target) {
+                cur.setDate(cur.getDate() + 1);
+                if (cur.getDay() !== 0) { // On exclut le dimanche
+                    count++;
+                }
+            }
+            return count;
+        }
+
+        // --- ALERTES SUR FACTURES EN RETARD (DEPUIS PLUS DE 2 JOURS D'EXPLOITATION) ---
+        function getOverdueDebts() {
+            const nowReference = new Date("2026-07-01T20:30:00"); // Date de simulation
+            let result = [];
+
+            transactions.forEach(t => {
+                if (t.type === "Commande" && (t.paymentStatus === "Avance" || t.paymentStatus === "Non payé")) {
+                    const days = getBusinessDaysDiff(t.date, nowReference);
+                    if (days >= 2) {
+                        const clientInfo = extractClientInfo(t.detail);
+                        const owed = t.paymentStatus === "Avance" ? (t.amount - t.advanceAmount) : t.amount;
+                        result.push({
+                            tx: t,
+                            days: days,
+                            clientName: clientInfo.name,
+                            clientPhone: clientInfo.phone,
+                            owedAmount: owed
+                        });
+                    }
+                }
+            });
+            return result;
+        }
+
+        function renderOverdueDebtsAlerts() {
+            const container = document.getElementById('overdue-debts-list-container');
+            const alertCard = document.getElementById('overdue-debts-card');
+            const list = getOverdueDebts();
+
+            if (list.length === 0) {
+                alertCard.classList.add('hidden');
+                return;
+            }
+
+            alertCard.classList.remove('hidden');
+            container.innerHTML = "";
+
+            list.forEach(item => {
+                const card = document.createElement('div');
+                card.className = "bg-white/10 backdrop-blur-sm p-3 rounded-2xl border border-white/20 flex flex-col justify-between space-y-2";
+                card.innerHTML = `
+                    <div>
+                        <div class="flex justify-between items-center text-[10px] font-black uppercase">
+                            <span class="bg-red-700 text-white px-2 py-0.5 rounded-md">Retard: ${item.days} jours</span>
+                            <span class="text-white">${item.owedAmount} F Restant</span>
+                        </div>
+                        <h5 class="font-extrabold text-xs truncate mt-1 text-white">${item.clientName}</h5>
+                        <p class="text-[9px] text-red-100 font-mono">${item.clientPhone}</p>
+                    </div>
+                    <div class="flex justify-between items-center pt-2 border-t border-white/10 font-sans">
+                        <span class="text-[9px] text-white/80">Vente du: ${item.tx.date.slice(0,10)}</span>
+                        <button onclick="instantSettleDebt('${item.tx.id}')" class="px-2.5 py-1 bg-white text-red-600 font-extrabold rounded-lg hover:bg-slate-100 text-[10px] transition-all shadow-sm">
+                            Soldé complet
+                        </button>
+                    </div>
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        function instantSettleDebt(txId) {
+            showCustomConfirm(
+                "Règlement de facture",
+                "Confirmez-vous le solde complet de cette facture client ? Le restant dû sera encaissé.",
+                function() {
+                    const t = transactions.find(x => x.id === txId);
+                    if (t) {
+                        t.paymentStatus = "Totalement payé";
+                        t.advanceAmount = 0;
+                        saveToLocalStorage();
+                        updateAllOutputs();
+                        showToast("Facture soldée !", "success");
+                    }
+                },
+                false
+            );
+        }
+
+        // --- FILTRES DU TABLEAU DE BORD ---
+        function changeTimeframePeriod(period) {
+            dashboardTimeframePeriod = period;
+            
+            const btnJournalier = document.getElementById('timeframe-journalier');
+            const btnMensuel = document.getElementById('timeframe-mensuel');
+            const btnAnnuel = document.getElementById('timeframe-annuel');
+
+            [btnJournalier, btnMensuel, btnAnnuel].forEach(btn => {
+                btn.className = "px-4 py-1.5 text-xs font-bold rounded-lg text-slate-600 hover:text-slate-900 transition-all";
+            });
+
+            const activeBtn = document.getElementById(`timeframe-${period}`);
+            activeBtn.className = "px-4 py-1.5 text-xs font-extrabold rounded-lg transition-all bg-sky-600 text-white shadow-sm";
+
+            const pickerLabel = document.getElementById('date-picker-label');
+            const picker = document.getElementById('dashboard-target-date');
+            
+            if (period === "journalier") {
+                pickerLabel.innerText = "Jour :";
+                picker.type = "date";
+            } else if (period === "mensuel") {
+                pickerLabel.innerText = "Mois :";
+                picker.type = "month";
+            } else if (period === "annuel") {
+                pickerLabel.innerText = "Année :";
+                picker.type = "number";
+                picker.min = "2020";
+                picker.max = "2030";
+                picker.value = "2026";
+            }
+
+            updateTimeframeLabel();
+            updateAllOutputs();
+        }
+
+        function updateTimeframeLabel() {
+            const label = document.getElementById('active-timeframe-label');
+            let dateStr = dashboardFilterTargetDate === "all" ? "Toutes dates" : dashboardFilterTargetDate;
+            label.innerText = `${dashboardTimeframePeriod.toUpperCase()} (${dateStr})`;
+        }
+
+        function onDashboardDateChanged() {
+            const picker = document.getElementById('dashboard-target-date').value;
+            if (picker) {
+                dashboardFilterTargetDate = picker;
+                updateTimeframeLabel();
+                updateAllOutputs();
+                showToast(`Analyse filtrée avec succès.`, "info");
+            }
+        }
+
+        // --- STREAMING_CHUNK:Implementing secure user authentication... -->
+        function resetDashboardFilter() {
+            dashboardFilterTargetDate = "all";
+            document.getElementById('dashboard-target-date').value = "";
+            updateTimeframeLabel();
+            updateAllOutputs();
+            showToast("Affichage de toutes les dates.", "info");
+        }
+
+        function setDashboardFilterDate(dateStr) {
+            dashboardFilterTargetDate = dateStr;
+            document.getElementById('dashboard-target-date').value = dateStr;
+            dashboardTimeframePeriod = "journalier";
+            
+            const btnJournalier = document.getElementById('timeframe-journalier');
+            const btnMensuel = document.getElementById('timeframe-mensuel');
+            const btnAnnuel = document.getElementById('timeframe-annuel');
+            [btnJournalier, btnMensuel, btnAnnuel].forEach(btn => {
+                btn.className = "px-4 py-1.5 text-xs font-bold rounded-lg text-slate-600 hover:text-slate-900 transition-all";
+            });
+            btnJournalier.className = "px-4 py-1.5 text-xs font-extrabold rounded-lg transition-all bg-sky-600 text-white shadow-sm";
+            
+            updateTimeframeLabel();
+            updateAllOutputs();
+            showToast(`Filtré sur le : ${dateStr}`, "info");
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // --- CALCUL DES COMPTES PAR FILTRES ---
+        function getFilteredFinancials() {
+            let sales = 0;
+            let perceived = 0;
+            let expenses = 0;
+            let debt = 0;
+
+            transactions.forEach(t => {
+                let matches = true;
+
+                if (dashboardFilterTargetDate !== "all") {
+                    if (dashboardTimeframePeriod === "journalier") {
+                        matches = t.date.slice(0, 10) === dashboardFilterTargetDate;
+                    } else if (dashboardTimeframePeriod === "mensuel") {
+                        matches = t.date.slice(0, 7) === dashboardFilterTargetDate.slice(0, 7);
+                    } else if (dashboardTimeframePeriod === "annuel") {
+                        matches = t.date.slice(0, 4) === dashboardFilterTargetDate.slice(0, 4);
+                    }
+                }
+
+                if (matches) {
+                    if (t.type === 'Commande') {
+                        sales += t.amount;
+                        if (t.paymentStatus === 'Totalement payé') {
+                            perceived += t.amount;
+                        } else if (t.paymentStatus === 'Avance') {
+                            perceived += t.advanceAmount;
+                            debt += (t.amount - t.advanceAmount);
+                        } else if (t.paymentStatus === 'Non payé') {
+                            debt += t.amount;
+                        }
+                    } else if (t.type === 'Dépense') {
+                        expenses += t.amount;
+                    }
+                }
+            });
+
+            return { sales, perceived, expenses, debt };
+        }
+
+        // --- RENDU DU BILAN SYNTHÉTIQUE JOURNALIER ---
+        function renderDailyRegisterTable() {
+            const tbody = document.getElementById('daily-ledger-rows');
+            tbody.innerHTML = "";
+
+            let dailyMap = {};
+
+            transactions.forEach(t => {
+                const day = t.date.slice(0, 10);
+                if (!dailyMap[day]) {
+                    dailyMap[day] = {
+                        sales: 0,
+                        expenses: 0,
+                        paid: 0,
+                        debt: 0,
+                        hasOverdue: false
+                    };
+                }
+
+                if (t.type === "Commande") {
+                    dailyMap[day].sales += t.amount;
+                    if (t.paymentStatus === "Totalement payé") {
+                        dailyMap[day].paid += t.amount;
+                    } else if (t.paymentStatus === "Avance") {
+                        dailyMap[day].paid += t.advanceAmount;
+                        dailyMap[day].debt += (t.amount - t.advanceAmount);
+                    } else if (t.paymentStatus === "Non payé") {
+                        dailyMap[day].debt += t.amount;
+                    }
+
+                    const daysDiff = getBusinessDaysDiff(t.date, "2026-07-01T20:30:00");
+                    if (daysDiff >= 2 && (t.paymentStatus === "Avance" || t.paymentStatus === "Non payé")) {
+                        dailyMap[day].hasOverdue = true;
+                    }
+                } else if (t.type === "Dépense") {
+                    dailyMap[day].expenses += t.amount;
+                }
+            });
+
+            const sortedDays = Object.keys(dailyMap).sort((a, b) => b.localeCompare(a));
+
+            if (sortedDays.length === 0) {
+                tbody.innerHTML = `<tr><td colspan="7" class="p-4 text-center text-slate-400 font-bold">Aucun enregistrement comptable disponible.</td></tr>`;
+                return;
+            }
+
+            sortedDays.forEach(day => {
+                const info = dailyMap[day];
+                const tr = document.createElement('tr');
+                tr.className = "hover:bg-slate-50 transition-all border-b border-slate-100 text-xs";
+
+                let badge = '<span class="px-2 py-0.5 rounded-full bg-emerald-50 text-emerald-700 text-[10px] font-black uppercase">À Jour</span>';
+                if (info.hasOverdue) {
+                    badge = '<span class="px-2 py-0.5 rounded-full bg-rose-100 text-rose-700 text-[10px] font-black uppercase flex items-center justify-center gap-1"><i data-lucide="alert-circle" class="w-3.5 h-3.5 shrink-0 animate-ping"></i> Retard +2j</span>';
+                }
+
+                tr.innerHTML = `
+                    <td class="p-3 font-bold text-slate-900 flex items-center gap-2">
+                        <i data-lucide="calendar" class="w-4 h-4 text-slate-400"></i>
+                        <span>${day}</span>
+                    </td>
+                    <td class="p-3 text-right font-black text-sky-600">${info.sales} F</td>
+                    <td class="p-3 text-right font-bold text-emerald-600">${info.paid} F</td>
+                    <td class="p-3 text-right font-bold text-amber-600">${info.debt} F</td>
+                    <td class="p-3 text-right font-bold text-rose-600">${info.expenses} F</td>
+                    <td class="p-3 text-center">${badge}</td>
+                    <td class="p-3 text-center font-sans">
+                        <button onclick="setDashboardFilterDate('${day}')" class="px-2.5 py-1 bg-sky-50 text-sky-600 font-black hover:bg-sky-600 hover:text-white rounded-lg transition-all">
+                            Analyser
+                        </button>
+                    </td>
+                `;
+                tbody.appendChild(tr);
+            });
+            lucide.createIcons();
+        }
+
+        // --- GESTION DU CATALOGUE DE LA CAISSE (POS) ---
+        function filterPOSCatalog() {
+            const query = document.getElementById('pos-search-input').value.trim().toLowerCase();
+            renderPOSCatalog(query);
+        }
+
+        function setPOSActiveCategory(category) {
+            posActiveCategory = category;
+            const categories = ["all", "lavage", "sechage", "repassage", "forfait"];
+            categories.forEach(c => {
+                const btn = document.getElementById(`pos-cat-${c}`);
+                if (btn) {
+                    btn.className = "px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all bg-slate-100 text-slate-600 hover:bg-slate-200 shrink-0";
+                }
+            });
+            
+            const activeBtn = document.getElementById(`pos-cat-${category}`);
+            if (activeBtn) {
+                activeBtn.className = "px-3.5 py-1.5 rounded-xl text-xs font-extrabold transition-all bg-sky-600 text-white shrink-0";
+            }
+            filterPOSCatalog();
+        }
+
+        function renderPOSCatalog(searchQuery = "") {
+            const grid = document.getElementById('pos-catalog-grid');
+            grid.innerHTML = "";
+
+            let filtered = servicesCatalog;
+
+            if (posActiveCategory !== "all") {
+                filtered = filtered.filter(s => s.category === posActiveCategory);
+            }
+
+            if (searchQuery) {
+                filtered = filtered.filter(s => s.name.toLowerCase().includes(searchQuery) || s.description.toLowerCase().includes(searchQuery));
+            }
+
+            if (filtered.length === 0) {
+                grid.innerHTML = `<div class="col-span-full py-12 text-center text-xs text-slate-400 font-bold">Aucune prestation ne correspond à votre recherche.</div>`;
+                return;
+            }
+
+            filtered.forEach(s => {
+                const card = document.createElement('div');
+                card.className = "bg-white p-4 rounded-3xl border border-slate-100 hover:border-sky-500 shadow-sm hover:shadow-md transition-all cursor-pointer flex flex-col justify-between space-y-3 relative group";
+                
+                const servicePrice = systemTarifs[s.id] || 0;
+                let priceLabel = `${servicePrice} F / ${s.unit}`;
+                if (s.id === "lavage_kg") {
+                    priceLabel = `Forfait ${systemTarifs.lavage_forfait_3kg} F / 3kg (+${systemTarifs.lavage_kg} F/kg)`;
+                }
+
+                card.onclick = () => onPOSCardClicked(s.id);
+                card.innerHTML = `
+                    <div class="space-y-1">
+                        <div class="flex justify-between items-start">
+                            <span class="p-2.5 rounded-2xl bg-sky-50 text-sky-600 group-hover:bg-sky-500 group-hover:text-white transition-all">
+                                <i data-lucide="${s.icon}" class="w-5 h-5"></i>
+                            </span>
+                            <span class="text-[9px] uppercase font-black bg-slate-100 text-slate-500 px-2 py-0.5 rounded-full">${s.category}</span>
+                        </div>
+                        <h4 class="font-extrabold text-xs text-slate-900 pt-1 group-hover:text-sky-600 transition-all">${s.name}</h4>
+                        <p class="text-[10px] text-slate-400 font-medium leading-relaxed">${s.description}</p>
+                    </div>
+                    <div class="flex justify-between items-center pt-2 border-t border-slate-50">
+                        <span class="text-[11px] font-black text-sky-600">${priceLabel}</span>
+                        <span class="p-1 rounded-lg bg-sky-50 text-sky-600 group-hover:bg-sky-600 group-hover:text-white transition-all">
+                            <i data-lucide="plus" class="w-3.5 h-3.5"></i>
+                        </span>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+            lucide.createIcons();
+        }
+
+        function onPOSCardClicked(serviceId) {
+            if (serviceId === "lavage_kg" || serviceId === "pack_kg") {
+                openKgServiceModal(serviceId);
+            } else {
+                addServiceToCart(serviceId, 1);
+            }
+        }
+
+        // --- STREAMING_CHUNK:Developing cart and POS calculations... -->
+        // --- ENREGISTRER CLIENT ---
+        function registerNewClient() {
+            const name = document.getElementById('new-client-name').value.trim();
+            const phone = document.getElementById('new-client-phone').value.trim();
+
+            if (!name || !phone) {
+                showToast("Veuillez remplir les informations requises.", "error");
+                return;
+            }
+
+            const exists = clients.find(c => c.phone === phone);
+            if (exists) {
+                showToast("Ce numéro de téléphone est déjà enregistré.", "error");
+                return;
+            }
+
+            const newId = "C" + String(clients.length + 1).padStart(3, '0');
+            clients.push({
+                id: newId,
+                name: name,
+                phone: phone,
+                orderCount: 0,
+                status: "Nouveau"
+            });
+
+            document.getElementById('new-client-name').value = "";
+            document.getElementById('new-client-phone').value = "";
+            
+            showToast(`Client ${name} créé !`, "success");
+            saveToLocalStorage();
+            updateAllOutputs();
+        }
+
+        // --- MODAL DE SAISIE DE POIDS EN POS (POUR LES SERVICES AU KILO) ---
+        function openKgServiceModal(serviceId) {
+            const s = servicesCatalog.find(x => x.id === serviceId);
+            if (!s) return;
+
+            document.getElementById('kg-modal-service-id').value = s.id;
+            document.getElementById('kg-modal-title').innerText = s.name;
+            document.getElementById('kg-modal-value').value = "3.0";
+
+            const notice = document.getElementById('kg-modal-rule-notice');
+            if (s.id === "lavage_kg") {
+                notice.innerText = `💡 Règle Lavage au Kg : Forfait minimum de ${systemTarifs.lavage_forfait_3kg} F jusqu'à 3kg. Au-delà, facturation de ${systemTarifs.lavage_kg} F par kg supplémentaire.`;
+            } else {
+                notice.innerText = `💡 Règle Pack Complet : Lavage et repassage combinés au kg pour un tarif fixe de ${systemTarifs.pack_kg} F par kg.`;
+            }
+
+            document.getElementById('kg-service-modal').classList.remove('hidden');
+        }
+
+        function closeKgServiceModal() {
+            document.getElementById('kg-service-modal').classList.add('hidden');
+        }
+
+        function confirmKgServiceAdd() {
+            const id = document.getElementById('kg-modal-service-id').value;
+            const weight = parseFloat(document.getElementById('kg-modal-value').value) || 0;
+
+            if (weight <= 0) {
+                showToast("Veuillez saisir un poids valide supérieur à 0.", "error");
+                return;
+            }
+
+            addServiceToCart(id, weight);
+            closeKgServiceModal();
+        }
+
+        // --- CALCULATRICE DE COMPTOIR ---
+        function pressCalc(char) {
+            if (calcDisplay === "0" && !isNaN(char)) {
+                calcDisplay = char;
+            } else {
+                calcDisplay += char;
+            }
+            document.getElementById('calc-display').innerText = calcDisplay;
+        }
+
+        function clearCalc() {
+            calcDisplay = "0";
+            calcFormula = "";
+            document.getElementById('calc-display').innerText = "0";
+            document.getElementById('calc-formula').innerText = "";
+        }
+
+        function evalCalc() {
+            try {
+                let expr = calcDisplay.replace(/×/g, '*').replace(/÷/g, '/');
+                let result = eval(expr);
+                document.getElementById('calc-formula').innerText = calcDisplay + " =";
+                calcDisplay = String(result);
+                document.getElementById('calc-display').innerText = calcDisplay;
+            } catch (err) {
+                document.getElementById('calc-display').innerText = "Erreur";
+                setTimeout(clearCalc, 1500);
+            }
+        }
+
+        // --- AUTOCOMPLÉTION ET RECHERCHE CLIENTS ---
+        function onClientNameInput() {
+            const val = document.getElementById('order-client-name').value.trim().toLowerCase();
+            const suggestionsDiv = document.getElementById('autocomplete-suggestions');
+            
+            if (!val) {
+                suggestionsDiv.classList.add('hidden');
+                checkLoyaltyDiscount(null);
+                return;
+            }
+
+            const matches = clients.filter(c => c.name.toLowerCase().includes(val) || c.phone.includes(val));
+            
+            if (matches.length === 0) {
+                suggestionsDiv.classList.add('hidden');
+                checkLoyaltyDiscount(null);
+                return;
+            }
+
+            suggestionsDiv.innerHTML = "";
+            matches.forEach(c => {
+                const item = document.createElement('div');
+                item.className = "p-2.5 hover:bg-sky-50 cursor-pointer text-xs font-bold transition-all flex justify-between";
+                item.innerHTML = `
+                    <span>${c.name} (${c.phone})</span>
+                    <span class="text-[10px] text-sky-600 font-semibold">${c.orderCount} commandes</span>
+                `;
+                item.onclick = () => {
+                    document.getElementById('order-client-name').value = c.name;
+                    document.getElementById('order-client-phone').value = c.phone;
+                    suggestionsDiv.classList.add('hidden');
+                    checkLoyaltyDiscount(c);
+                };
+                suggestionsDiv.appendChild(item);
+            });
+            suggestionsDiv.classList.remove('hidden');
+        }
+
+        function onClientPhoneInput() {
+            onClientNameInput();
+        }
+
+        let isClientDiscountEligible = false;
+
+        function checkLoyaltyDiscount(client) {
+            const banner = document.getElementById('loyalty-banner');
+            if (client && (client.orderCount + 1) % 10 === 0) {
+                isClientDiscountEligible = true;
+                banner.classList.remove('hidden');
+                document.getElementById('loyalty-banner-desc').innerText = `${client.name} a effectué ${client.orderCount} visites. Cette 10ème commande bénéficie de 10% de réduction !`;
+            } else {
+                isClientDiscountEligible = false;
+                banner.classList.add('hidden');
+            }
+            updateCartDisplay();
+        }
+
+        // --- INITIALISATION DU SYSTEME ---
+        window.onload = function() {
+            loadFromLocalStorage(); 
+            lucide.createIcons();
+            populateUserDropdown();
+            renderAdminPricesInputs();
+            resetOrderDateTime();
+            recalculateClientOrderCounts();
+            updateAllOutputs();
+            setActiveManualType('13kg');
+            
+            // Lancer la première lecture et configurer un rafraîchissement toutes les 45 secondes
+            pullDataFromGitHub();
+            setInterval(pullDataFromGitHub, 45000);
+        };
+
+        function resetOrderDateTime() {
+            const now = new Date();
+            const tzOffset = now.getTimezoneOffset() * 60000;
+            const localISOTime = (new Date(now - tzOffset)).toISOString().slice(0, 16);
+            const input = document.getElementById('order-date-time');
+            if (input) {
+                input.value = localISOTime;
+            }
+        }
+
+        function populateUserDropdown() {
+            const select = document.getElementById('user-select-dropdown');
+            select.innerHTML = '<option value="" disabled selected>-- Sélectionnez votre nom --</option>';
+            users.forEach(u => {
+                const opt = document.createElement('option');
+                opt.value = u.id;
+                opt.innerText = u.name + ` (${u.role === 'admin' ? 'Directeur' : 'Caissier'})`;
+                select.appendChild(opt);
+            });
+        }
+
+        function onUserDropdownChange() {
+            const dropdown = document.getElementById('user-select-dropdown');
+            selectedUserId = dropdown.value;
+            pinBuffer = "";
+            document.getElementById('pin-display').innerText = "****";
+            document.getElementById('pin-section').classList.remove('hidden');
+            document.getElementById('login-error').classList.add('hidden');
+        }
+
+        function pressPin(digit) {
+            if (pinBuffer.length < 4) {
+                pinBuffer += digit;
+            }
+            document.getElementById('pin-display').innerText = "*".repeat(pinBuffer.length) + "-".repeat(4 - pinBuffer.length);
+        }
+
+        function deletePinDigit() {
+            pinBuffer = pinBuffer.slice(0, -1);
+            document.getElementById('pin-display').innerText = pinBuffer.length > 0 ? "*".repeat(pinBuffer.length) + "-".repeat(4 - pinBuffer.length) : "****";
+        }
+
+        function validatePin() {
+            const user = users.find(u => u.id === selectedUserId);
+            if (!user) return;
+
+            if (user.pin === pinBuffer) {
+                currentUser = user;
+                const sId = "S" + Date.now();
+                activeSessionId = sId;
+                sessions.push({
+                    id: sId,
+                    userName: user.name,
+                    role: user.role,
+                    login: new Date().toISOString(),
+                    logout: "En cours",
+                    active: true
+                });
+
+                saveToLocalStorage();
+                document.getElementById('login-screen').classList.add('hidden');
+                
+                document.getElementById('sidebar-username').innerText = user.name;
+                document.getElementById('sidebar-avatar').innerText = user.name.slice(0,2).toUpperCase();
+
+                showToast(`Bienvenue, ${user.name} !`, "success");
+                updateAllOutputs();
+            } else {
+                document.getElementById('login-error').classList.remove('hidden');
+                pinBuffer = "";
+                document.getElementById('pin-display').innerText = "****";
+            }
+        }
+
+        function logout() {
+            if (activeSessionId) {
+                const s = sessions.find(x => x.id === activeSessionId);
+                if (s) {
+                    s.logout = new Date().toISOString();
+                    s.active = false;
+                }
+            }
+            currentUser = null;
+            activeSessionId = null;
+            saveToLocalStorage();
+            document.getElementById('login-screen').classList.remove('hidden');
+            document.getElementById('pin-section').classList.add('hidden');
+            document.getElementById('user-select-dropdown').value = "";
+        }
+
+        // --- NAVIGATION INTERACTIVE ---
+        function switchTab(tabId) {
+            activeTab = tabId;
+            const tabs = ['dashboard', 'caisse', 'finances', 'clients', 'manuel', 'parametres'];
+            tabs.forEach(t => {
+                const el = document.getElementById(`tab-${t}`);
+                if (el) el.classList.add('hidden');
+                const nav = document.getElementById(`nav-${t}`);
+                if (nav) nav.className = "flex items-center gap-3 w-full px-4 py-3 rounded-xl font-medium text-sm transition-all hover:bg-slate-800/50 hover:text-white text-slate-300";
+            });
+
+            document.getElementById(`tab-${tabId}`).classList.remove('hidden');
+            document.getElementById(`nav-${tabId}`).className = "flex items-center gap-3 w-full px-4 py-3 rounded-xl font-medium text-sm transition-all text-white bg-slate-800/80";
+            
+            updateAllOutputs();
+        }
+
+        function switchTabMobile(tabId) {
+            switchTab(tabId);
+            document.getElementById('mobile-menu-links').classList.add('hidden');
+        }
+
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu-links');
+            menu.classList.toggle('hidden');
+        }
+
+        // --- STREAMING_CHUNK:Handling financial transactions and ledger... -->
+        // --- CONSTITUTION ET LOGIQUE COMPTABLE DU PANIER POS ---
+        function addServiceToCart(serviceId, quantityOrWeight) {
+            const s = servicesCatalog.find(x => x.id === serviceId);
+            if (!s) return;
+
+            // Vérification si l'article est déjà présent dans le panier
+            const existing = currentCart.find(item => item.serviceId === serviceId);
+            if (existing) {
+                if (serviceId === "lavage_kg" || serviceId === "pack_kg") {
+                    existing.quantity += quantityOrWeight;
+                } else {
+                    existing.quantity += 1;
+                }
+            } else {
+                currentCart.push({
+                    serviceId: s.id,
+                    name: s.name,
+                    unit: s.unit,
+                    quantity: quantityOrWeight
+                });
+            }
+
+            updateCartDisplay();
+            showToast("Prestation ajoutée au panier.", "success");
+        }
+
+        function adjustCartItemQty(index, delta) {
+            const item = currentCart[index];
+            if (!item) return;
+
+            if (item.serviceId === "lavage_kg" || item.serviceId === "pack_kg") {
+                item.quantity = Math.max(0.1, item.quantity + (delta * 0.5));
+            } else {
+                item.quantity = Math.max(0, item.quantity + delta);
+            }
+
+            if (item.quantity <= 0) {
+                currentCart.splice(index, 1);
+            }
+
+            updateCartDisplay();
+        }
+
+        function removeCartItem(index) {
+            currentCart.splice(index, 1);
+            updateCartDisplay();
+        }
+
+        function clearCurrentCart() {
+            currentCart = [];
+            updateCartDisplay();
+        }
+
+        function calculateItemPrice(serviceId, qty) {
+            let finalPrice = 0;
+
+            if (serviceId === "lavage_kg") {
+                if (qty <= 3) {
+                    finalPrice = systemTarifs.lavage_forfait_3kg;
+                } else {
+                    finalPrice = systemTarifs.lavage_forfait_3kg + ((qty - 3) * systemTarifs.lavage_kg);
+                }
+            } else if (serviceId === "pack_kg") {
+                finalPrice = qty * systemTarifs.pack_kg;
+            } else {
+                finalPrice = qty * (systemTarifs[serviceId] || 0);
+            }
+
+            return Math.round(finalPrice);
+        }
+
+        function updateCartDisplay() {
+            const container = document.getElementById('cart-items-container');
+            container.innerHTML = "";
+
+            if (currentCart.length === 0) {
+                container.innerHTML = `<p class="text-center text-xs text-slate-400 py-6 font-semibold">Aucun service sélectionné.</p>`;
+                document.getElementById('cart-subtotal').innerText = "0 F";
+                document.getElementById('cart-discount-row').classList.add('hidden');
+                document.getElementById('cart-balance-due-row').classList.add('hidden');
+                document.getElementById('cart-total').innerText = "0 F";
+                return;
+            }
+
+            let subtotal = 0;
+            currentCart.forEach((item, index) => {
+                const itemCost = calculateItemPrice(item.serviceId, item.quantity);
+                subtotal += itemCost;
+
+                const div = document.createElement('div');
+                div.className = "flex justify-between items-center bg-slate-50 border border-slate-200 rounded-2xl p-2.5 text-xs font-bold";
+                
+                let qtyLabel = item.quantity;
+                if (item.serviceId === "lavage_kg" || item.serviceId === "pack_kg") {
+                    qtyLabel = item.quantity.toFixed(1) + " kg";
+                }
+
+                div.innerHTML = `
+                    <div class="flex-1 min-w-0 pr-2">
+                        <p class="text-slate-900 font-extrabold truncate">${item.name}</p>
+                        <p class="text-[9px] text-slate-400 font-medium">${qtyLabel} (${calculateItemPrice(item.serviceId, 1)} F / ${item.unit})</p>
+                    </div>
+                    <div class="flex items-center gap-3 shrink-0">
+                        <div class="flex items-center gap-1 bg-white border border-slate-200 rounded-lg p-0.5">
+                            <button onclick="adjustCartItemQty(${index}, -1)" class="w-5 h-5 flex items-center justify-center bg-slate-100 hover:bg-slate-200 text-slate-600 rounded-md transition-all">
+                                -
+                            </button>
+                            <span class="px-1 text-center font-bold text-[10px] min-w-[20px]">${item.quantity.toFixed(item.serviceId.includes('kg') ? 1 : 0)}</span>
+                            <button onclick="adjustCartItemQty(${index}, 1)" class="w-5 h-5 flex items-center justify-center bg-slate-100 hover:bg-slate-200 text-slate-600 rounded-md transition-all">
+                                +
+                            </button>
+                        </div>
+                        <span class="text-sky-600 font-black">${itemCost} F</span>
+                        <button onclick="removeCartItem(${index})" class="p-1 text-rose-500 hover:bg-rose-50 rounded-lg transition-all">
+                            <i data-lucide="x" class="w-3.5 h-3.5"></i>
+                        </button>
+                    </div>
+                `;
+                container.appendChild(div);
+            });
+
+            let discount = 0;
+            if (isClientDiscountEligible) {
+                discount = Math.round(subtotal * 0.1);
+                document.getElementById('cart-discount-row').classList.remove('hidden');
+                document.getElementById('cart-discount-value').innerText = `- ${discount} F`;
+            } else {
+                document.getElementById('cart-discount-row').classList.add('hidden');
+            }
+
+            const netTotal = subtotal - discount;
+            document.getElementById('cart-subtotal').innerText = `${subtotal} F`;
+
+            const payStatus = document.getElementById('order-payment-status').value;
+            const advanceInput = parseFloat(document.getElementById('order-advance-amount').value) || 0;
+            
+            let balanceDue = 0;
+            let displayTotal = netTotal;
+
+            if (payStatus === "Totalement payé") {
+                balanceDue = 0;
+                displayTotal = netTotal;
+                document.getElementById('cart-balance-due-row').classList.add('hidden');
+            } else if (payStatus === "Avance") {
+                balanceDue = netTotal - advanceInput;
+                displayTotal = advanceInput;
+                document.getElementById('cart-balance-due-row').classList.remove('hidden');
+                document.getElementById('cart-balance-due').innerText = `${balanceDue} F`;
+            } else if (payStatus === "Non payé") {
+                balanceDue = netTotal;
+                displayTotal = 0;
+                document.getElementById('cart-balance-due-row').classList.remove('hidden');
+                document.getElementById('cart-balance-due').innerText = `${balanceDue} F`;
+            }
+
+            document.getElementById('cart-total').innerText = `${displayTotal} F`;
+            lucide.createIcons();
+        }
+
+        function onPaymentStatusChange() {
+            const status = document.getElementById('order-payment-status').value;
+            const container = document.getElementById('advance-input-container');
+            if (status === "Avance") {
+                container.classList.remove('hidden');
+            } else {
+                container.classList.add('hidden');
+            }
+            updateCartDisplay();
+        }
+
+        // --- ENREGISTRER UNE VENTE FINALE ---
+        function checkoutOrder() {
+            if (currentCart.length === 0) {
+                showToast("Votre panier est vide.", "error");
+                return;
+            }
+
+            let clientName = document.getElementById('order-client-name').value.trim();
+            let clientPhone = document.getElementById('order-client-phone').value.trim();
+
+            if (!clientName) {
+                clientName = "Client de passage";
+                clientPhone = "770000000";
+            }
+
+            const orderDateValue = document.getElementById('order-date-time').value;
+            const finalTxDate = orderDateValue ? new Date(orderDateValue).toISOString() : new Date().toISOString();
+
+            let subtotal = 0;
+            currentCart.forEach(item => {
+                subtotal += calculateItemPrice(item.serviceId, item.quantity);
+            });
+
+            let discount = isClientDiscountEligible ? Math.round(subtotal * 0.1) : 0;
+            const netAmount = subtotal - discount;
+
+            const paymentStatus = document.getElementById('order-payment-status').value;
+            const advanceInput = parseFloat(document.getElementById('order-advance-amount').value) || 0;
+            const laundryStatus = document.getElementById('order-laundry-status').value;
+
+            const txId = "T" + Date.now();
+            const detailDescription = `${clientName} (${clientPhone}) - ${currentCart.map(i => `${i.name} (x${i.quantity.toFixed(i.serviceId.includes('kg') ? 1 : 0)})`).join(', ')}`;
+
+            const newTx = {
+                id: txId,
+                date: finalTxDate,
+                type: "Commande",
+                detail: detailDescription,
+                amount: netAmount,
+                paymentStatus: paymentStatus,
+                advanceAmount: paymentStatus === "Avance" ? advanceInput : 0,
+                laundryStatus: laundryStatus,
+                user: currentUser ? currentUser.name : "Opérateur C2M"
+            };
+
+            transactions.push(newTx);
+
+            const clientObj = clients.find(c => c.phone === clientPhone);
+            if (clientObj) {
+                clientObj.orderCount += 1;
+            } else if (clientName !== "Client de passage") {
+                clients.push({
+                    id: "C" + String(clients.length + 1).padStart(3, '0'),
+                    name: clientName,
+                    phone: clientPhone,
+                    orderCount: 1,
+                    status: "Nouveau"
+                });
+            }
+
+            saveToLocalStorage();
+            recalculateClientOrderCounts();
+            updateAllOutputs();
+
+            showReceipt(newTx, currentCart, subtotal, discount, netAmount);
+            
+            // Réinitialisation de l'interface POS
+            currentCart = [];
+            document.getElementById('order-client-name').value = "";
+            document.getElementById('order-client-phone').value = "";
+            document.getElementById('order-advance-amount').value = "0";
+            document.getElementById('order-payment-status').value = "Totalement payé";
+            document.getElementById('advance-input-container').classList.add('hidden');
+            
+            updateCartDisplay();
+            showToast("Commande enregistrée avec succès !", "success");
+        }
+
+        // --- ENREGISTRER UNE CHARGE ---
+        function registerExpense() {
+            const cat = document.getElementById('expense-category').value;
+            const amount = parseFloat(document.getElementById('expense-amount').value) || 0;
+            const desc = document.getElementById('expense-desc').value.trim();
+
+            if (amount <= 0 || !desc) {
+                showToast("Veuillez saisir un montant et une justification.", "error");
+                return;
+            }
+
+            const txId = "T" + Date.now();
+            transactions.push({
+                id: txId,
+                date: new Date().toISOString(),
+                type: "Dépense",
+                detail: `${cat} - ${desc}`,
+                amount: amount,
+                paymentStatus: "Totalement payé",
+                advanceAmount: 0,
+                laundryStatus: "-",
+                user: currentUser ? currentUser.name : "Opérateur C2M"
+            });
+
+            document.getElementById('expense-amount').value = "";
+            document.getElementById('expense-desc').value = "";
+
+            saveToLocalStorage();
+            updateAllOutputs();
+            showToast("Charge enregistrée avec succès !", "success");
+        }
+
+        // --- MOUVEMENT DU COFFRE D'ÉPARGNE ---
+        function setSavingsAction(action) {
+            activeSavingsAction = action;
+            const btnDeposit = document.getElementById('btn-savings-deposit');
+            const btnWithdraw = document.getElementById('btn-savings-withdraw');
+
+            if (action === 'deposit') {
+                btnDeposit.className = "py-2 bg-amber-500 text-white rounded-xl text-xs font-bold transition-all border border-amber-500";
+                btnWithdraw.className = "py-2 bg-slate-50 text-slate-600 rounded-xl text-xs font-bold transition-all border border-slate-200";
+            } else {
+                btnWithdraw.className = "py-2 bg-amber-600 text-white rounded-xl text-xs font-bold transition-all border border-amber-600";
+                btnDeposit.className = "py-2 bg-slate-50 text-slate-600 rounded-xl text-xs font-bold transition-all border border-slate-200";
+            }
+        }
+
+        function executeSavingsTransaction() {
+            const amount = parseFloat(document.getElementById('savings-amount').value) || 0;
+            const motif = document.getElementById('savings-justification').value.trim() || "Ajustement de trésorerie";
+
+            if (amount <= 0) {
+                showToast("Le montant doit être supérieur à zéro.", "error");
+                return;
+            }
+
+            const transType = activeSavingsAction === 'deposit' ? "Dépôt" : "Retrait";
+            const actualAmount = activeSavingsAction === 'deposit' ? amount : -amount;
+
+            savingsTransactions.push({
+                date: new Date().toISOString(),
+                type: transType,
+                justification: motif,
+                amount: actualAmount,
+                user: currentUser ? currentUser.name : "Opérateur C2M"
+            });
+
+            document.getElementById('savings-amount').value = "";
+            document.getElementById('savings-justification').value = "";
+
+            saveToLocalStorage();
+            updateAllOutputs();
+            showToast(`Mouvement d'épargne effectué : ${transType}`, "success");
+        }
+
+        function checkSavingsSuggestionState() {
+            const banner = document.getElementById('savings-suggestion-banner');
+            const now = new Date();
+            const currentHours = now.getHours();
+
+            if (isSimulatedAfter20h || currentHours >= 20) {
+                const todayStr = new Date().toISOString().slice(0,10);
+                const todaySales = transactions
+                    .filter(t => t.type === 'Commande' && t.date.slice(0,10) === todayStr)
+                    .reduce((sum, t) => sum + t.amount, 0);
+
+                if (todaySales > 0 && !isDailySavingsTransferred) {
+                    const suggestedSavings = Math.round(todaySales * (customSavingsRate / 100));
+                    document.getElementById('suggested-day-sales').innerText = `${todaySales} F`;
+                    document.getElementById('suggested-savings-amount').innerText = `${suggestedSavings} F`;
+                    
+                    banner.classList.remove('hidden');
+                    return;
+                }
+            }
+            banner.classList.add('hidden');
+        }
+
+        function ignoreSavingsSuggestion() {
+            document.getElementById('savings-suggestion-banner').classList.add('hidden');
+        }
+
+        function executeSuggestedSavings() {
+            const todayStr = new Date().toISOString().slice(0,10);
+            const todaySales = transactions
+                .filter(t => t.type === 'Commande' && t.date.slice(0,10) === todayStr)
+                .reduce((sum, t) => sum + t.amount, 0);
+            
+            const suggestedAmount = Math.round(todaySales * (customSavingsRate / 100));
+
+            savingsTransactions.push({
+                date: new Date().toISOString(),
+                type: "Dépôt Automatique (20h)",
+                justification: `Clôture de caisse automatisée - ${todayStr}`,
+                amount: suggestedAmount,
+                user: currentUser ? currentUser.name : "Opérateur C2M"
+            });
+
+            isDailySavingsTransferred = true;
+            document.getElementById('savings-suggestion-banner').classList.add('hidden');
+            
+            saveToLocalStorage();
+            updateAllOutputs();
+            showToast(`Dépôt de ${suggestedAmount} FCFA sécurisé !`, "success");
+        }
+
+        function toggleSimulatedTime() {
+            isSimulatedAfter20h = document.getElementById('simulated-time-toggle').checked;
+            document.getElementById('simulated-time-display').innerText = isSimulatedAfter20h ? "20:30 🌙" : "14:15 ☀️";
+            updateAllOutputs();
+        }
+
+        // --- GESTION ADMINISTRATIVE DU GRAND LIVRE COMPTABLE ---
+        function renderLedgerTable() {
+            const tbody = document.getElementById('accounting-ledger-rows');
+            tbody.innerHTML = "";
+
+            const sorted = [...transactions].sort((a,b) => b.date.localeCompare(a.date));
+
+            sorted.forEach(t => {
+                const tr = document.createElement('tr');
+                tr.className = "hover:bg-slate-50 transition-all border-b border-slate-100 text-xs";
+
+                const isOrder = t.type === "Commande";
+                const badgeType = isOrder 
+                    ? '<span class="px-2 py-0.5 rounded-full bg-sky-50 text-sky-600 text-[10px] font-bold">Vente</span>'
+                    : '<span class="px-2 py-0.5 rounded-full bg-rose-50 text-rose-600 text-[10px] font-bold">Charge</span>';
+
+                let paymentBadge = "-";
+                if (isOrder) {
+                    if (t.paymentStatus === "Totalement payé") {
+                        paymentBadge = '<span class="px-2 py-0.5 rounded-md bg-emerald-500 text-white font-bold text-[10px]">Totalement payé</span>';
+                    } else if (t.paymentStatus === "Avance") {
+                        paymentBadge = `<span class="px-2 py-0.5 rounded-md bg-amber-500 text-slate-950 font-bold text-[10px]">Acompte: ${t.advanceAmount} F</span>`;
+                    } else {
+                        paymentBadge = '<span class="px-2 py-0.5 rounded-md bg-rose-600 text-white font-bold text-[10px]">Dette</span>';
+                    }
+                }
+
+                let cleanDate = t.date.replace("T", " à ");
+
+                tr.innerHTML = `
+                    <td class="p-3 font-mono font-bold text-slate-500">${cleanDate.slice(0, 19)}</td>
+                    <td class="p-3">${badgeType}</td>
+                    <td class="p-3">
+                        <p class="font-extrabold text-slate-900">${t.detail}</p>
+                        <p class="text-[9px] text-slate-400">Agent : ${t.user || 'Opérateur'}</p>
+                    </td>
+                    <td class="p-3 font-bold text-slate-600">${t.laundryStatus}</td>
+                    <td class="p-3">${paymentBadge}</td>
+                    <td class="p-3 text-right font-black ${isOrder ? 'text-sky-600' : 'text-rose-600'}">${t.amount} F</td>
+                    <td class="p-3 text-center font-sans">
+                        <div class="flex items-center justify-center gap-1">
+                            <button onclick="openEditTxModal('${t.id}')" class="p-1 hover:bg-sky-50 text-slate-500 hover:text-sky-600 rounded-lg transition-all" title="Modifier">
+                                <i data-lucide="edit-3" class="w-4 h-4"></i>
+                            </button>
+                            <button onclick="deleteTransactionDirect('${t.id}')" class="p-1 hover:bg-rose-50 text-slate-500 hover:text-rose-600 rounded-lg transition-all" title="Supprimer">
+                                <i data-lucide="trash-2" class="w-4 h-4"></i>
+                            </button>
+                        </div>
+                    </td>
+                `;
+                tbody.appendChild(tr);
+            });
+            lucide.createIcons();
+        }
+
+        // --- PROCÉDURE DE SUPPRESSION COMPTABLE ---
+        function deleteTransactionDirect(txId) {
+            showCustomConfirm(
+                "Suppression définitive",
+                "Êtes-vous sûr de vouloir supprimer définitivement cette transaction ? Tout l'historique de fidélité et les bilans seront réajustés.",
+                function() {
+                    const index = transactions.findIndex(t => t.id === txId);
+                    if (index !== -1) {
+                        transactions.splice(index, 1);
+                        saveToLocalStorage();
+                        recalculateClientOrderCounts();
+                        updateAllOutputs();
+                        showToast("Transaction supprimée !", "success");
+                    }
+                },
+                true
+            );
+        }
+
+        function triggerDeleteFromModal() {
+            const txId = document.getElementById('edit-tx-id').value;
+            closeEditTxModal();
+            deleteTransactionDirect(txId);
+        }
+
+        // --- MODAL DE MODIFICATION RETROACTIVE ---
+        function openEditTxModal(txId) {
+            const t = transactions.find(x => x.id === txId);
+            if (!t) return;
+
+            document.getElementById('edit-tx-id').value = t.id;
+            document.getElementById('edit-tx-detail').value = t.detail;
+            document.getElementById('edit-tx-amount').value = t.amount;
+            document.getElementById('edit-tx-payment').value = t.paymentStatus || 'Totalement payé';
+            document.getElementById('edit-tx-laundry').value = t.laundryStatus || '-';
+            document.getElementById('edit-tx-date').value = t.date.slice(0, 16);
+
+            onEditPaymentStatusChange();
+            document.getElementById('edit-transaction-modal').classList.remove('hidden');
+        }
+
+        function onEditPaymentStatusChange() {
+            const status = document.getElementById('edit-tx-payment').value;
+            const row = document.getElementById('edit-tx-advance-row');
+            if (status === "Avance") {
+                row.classList.remove('hidden');
+                const t = transactions.find(x => x.id === document.getElementById('edit-tx-id').value);
+                document.getElementById('edit-tx-advance-val').value = t ? t.advanceAmount : 0;
+            } else {
+                row.classList.add('hidden');
+            }
+        }
+
+        function closeEditTxModal() {
+            document.getElementById('edit-transaction-modal').classList.add('hidden');
+        }
+
+        function saveTxChanges() {
+            const id = document.getElementById('edit-tx-id').value;
+            const t = transactions.find(x => x.id === id);
+            if (!t) return;
+
+            t.detail = document.getElementById('edit-tx-detail').value.trim();
+            t.amount = parseFloat(document.getElementById('edit-tx-amount').value) || 0;
+            t.paymentStatus = document.getElementById('edit-tx-payment').value;
+            t.advanceAmount = t.paymentStatus === "Avance" ? (parseFloat(document.getElementById('edit-tx-advance-val').value) || 0) : 0;
+            t.laundryStatus = document.getElementById('edit-tx-laundry').value;
+            
+            const rawDate = document.getElementById('edit-tx-date').value;
+            if (rawDate) {
+                t.date = new Date(rawDate).toISOString();
+            }
+
+            saveToLocalStorage();
+            recalculateClientOrderCounts();
+            updateAllOutputs();
+            closeEditTxModal();
+            showToast("Écriture rectifiée !", "success");
+        }
+
+        // --- SIMULATEUR DE TICKET CLIENT ---
+        function showReceipt(tx, cartItems, subtotal, discount, netAmount) {
+            const container = document.getElementById('receipt-content');
+            
+            let itemsHtml = "";
+            cartItems.forEach(i => {
+                const isKg = i.serviceId === "lavage_kg" || i.serviceId === "pack_kg";
+                const itemCost = calculateItemPrice(i.serviceId, i.quantity);
+                itemsHtml += `
+                    <div class="flex justify-between">
+                        <span>${i.name} x${i.quantity.toFixed(isKg ? 1 : 0)}</span>
+                        <span>${itemCost} F</span>
+                    </div>
+                `;
+            });
+
+            container.innerHTML = `
+                <div class="space-y-1 text-[11px]">
+                    <p><strong>N° Ticket :</strong> ${tx.id}</p>
+                    <p><strong>Date :</strong> ${tx.date.replace("T", " ").slice(0, 16)}</p>
+                    <p><strong>Agent :</strong> ${tx.user}</p>
+                </div>
+                <div class="border-t border-dashed border-slate-200 my-2"></div>
+                <div class="space-y-1.5 font-bold">
+                    ${itemsHtml}
+                </div>
+                <div class="border-t border-dashed border-slate-200 my-2"></div>
+                <div class="space-y-1 font-bold text-right text-[11px]">
+                    <div class="flex justify-between"><span>Sous-total :</span><span>${subtotal} F</span></div>
+                    ${discount > 0 ? `<div class="flex justify-between text-emerald-600"><span>Remise fidélité :</span><span>- ${discount} F</span></div>` : ''}
+                    <div class="flex justify-between text-slate-900 text-sm font-black">
+                        <span>Paiement (${tx.paymentStatus}) :</span>
+                        <span>${tx.amount} F</span>
+                    </div>
+                    ${tx.paymentStatus === "Avance" ? `<div class="flex justify-between text-rose-500 text-[10px]"><span>Reste à percevoir :</span><span>${netAmount - tx.advanceAmount} F</span></div>` : ''}
+                    ${tx.paymentStatus === "Non payé" ? `<div class="flex justify-between text-rose-500 text-[10px]"><span>Reste à percevoir :</span><span>${netAmount} F</span></div>` : ''}
+                </div>
+                <div class="border-t border-dashed border-slate-200 my-2"></div>
+                <div class="space-y-1 text-[11px]">
+                    <p><strong>Statut linge :</strong> ${tx.laundryStatus}</p>
+                </div>
+            `;
+
+            document.getElementById('receipt-modal').classList.remove('hidden');
+        }
+
+        function closeReceiptModal() {
+            document.getElementById('receipt-modal').classList.add('hidden');
+        }
+
+        function printReceipt() {
+            window.print();
+        }
+
+        // --- GESTION DES FICHIERS CLIENTS (CRM) ---
+        function renderClientsList() {
+            const tbody = document.getElementById('clients-list-rows');
+            tbody.innerHTML = "";
+
+            clients.forEach(c => {
+                const tr = document.createElement('tr');
+                tr.className = "hover:bg-slate-50 transition-all border-b border-slate-100 text-xs";
+
+                const cycleCount = c.orderCount % 10;
+                const progressToGift = 10 - cycleCount;
+                
+                let progressBadge = "";
+                if (progressToGift === 10 && c.orderCount > 0) {
+                    progressBadge = `<span class="px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-800 font-extrabold text-[10px]">Remise Prête (10%) !</span>`;
+                } else {
+                    progressBadge = `<span class="text-slate-500 font-bold font-mono">Encore ${progressToGift} commandes</span>`;
+                }
+
+                let statusColor = "bg-slate-100 text-slate-700";
+                if (c.status === "Excellent") statusColor = "bg-sky-100 text-sky-800 font-extrabold";
+                if (c.status === "Régulier") statusColor = "bg-amber-100 text-amber-800 font-extrabold";
+
+                tr.innerHTML = `
+                    <td class="p-3 font-mono font-bold text-slate-500">${c.id}</td>
+                    <td class="p-3 font-extrabold text-slate-900">${c.name}</td>
+                    <td class="p-3 font-mono font-bold text-slate-600">${c.phone}</td>
+                    <td class="p-3 text-center font-black">${c.orderCount}</td>
+                    <td class="p-3 text-center">${progressBadge}</td>
+                    <td class="p-3 text-right">
+                        <span class="px-2 py-0.5 rounded-full text-[10px] font-bold ${statusColor}">${c.status}</span>
+                    </td>
+                `;
+                tbody.appendChild(tr);
+            });
+            document.getElementById('total-clients-count').innerText = `${clients.length} clients enregistrés`;
+        }
+
+        // --- TRADUCTION DE LA SIGNALÉTIQUE CORÉENNE ---
+        const machineManuals = {
+            "13kg": {
+                title: "Lave-Linge LG TROMM 13 kg (Sélecteur & Options)",
+                rows: [
+                    { korean: "표준세탁 (Pyo-jun)", french: "Lavage Standard / Normal", desc: "Pour les chemises, pantalons et coton de tous les jours.", time: "45-60 min" },
+                    { korean: "스피드워시 (Speed)", french: "Lavage Rapide", desc: "Le meilleur choix pour optimiser le temps sur le linge frais ou peu sale.", time: "15-25 min" },
+                    { korean: "이불 (I-bul)", french: "Couvertures & Couettes", desc: "Programme lourd pour pièces de literie volumineuses.", time: "1h10" },
+                    { korean: "알뜰삶음 (Al-tteul)", french: "Lavage Éco-Chaud", desc: "Ébullition écologique. Très énergivore mais désinfectant.", time: "1h30" },
+                    { korean: "헹굼+탈수 (Rinse)", french: "Rinçage + Essorage", desc: "Uniquement rincer et essorer l'eau du linge humide.", time: "15 min" },
+                    { korean: "물온도 (Mul-on-do)", french: "Température de l'Eau", desc: "Réglage de température. Préférer '냉수' (Eau Froide) pour la Senelec.", time: "-" },
+                    { korean: "탈수 (Tal-su)", french: "Force d'Essorage", desc: "Sélectionnez '강' (Fort) ou '최강' (Max) pour réduire le temps de séchage.", time: "-" }
+                ]
+            },
+            "21kg": {
+                title: "Lave-Linge LG TROMM 21 kg Pro (Écran Tactile)",
+                rows: [
+                    { korean: "표준세탁 (Pyo-jun)", french: "Lavage Coton Standard", desc: "Idéal pour les grands volumes de textile régulier.", time: "50 min" },
+                    { korean: "스피드워시+건조", french: "Lavage Express + Séchage", desc: "Enchaîne directement un lavage express et un séchage thermique.", time: "1h20" },
+                    { korean: "셔츠한벌건조", french: "Séchage d'une seule chemise", desc: "Séchage direct optimisé pour les vêtements suspendus.", time: "30 min" },
+                    { korean: "통살균 (Tub Clean)", french: "Nettoyage de Cuve", desc: "Programme d'entretien à vide de la cuve avec désinfectants.", time: "1h00" },
+                    { korean: "터보샷 (TurboShot)", french: "Jets sous pression", desc: "Option de rinçage rapide. Économise 15 minutes par machine.", time: "-" }
+                ]
+            },
+            "10kg": {
+                title: "LG 10 kg Standard d'Exploitation",
+                rows: [
+                    { korean: "표준세탁 (Pyo-jun)", french: "Coton Standard", desc: "Lavage de base pour les petits paniers.", time: "1h15" },
+                    { korean: "급속세탁 (Geup-sok)", french: "Lavage Express 30'", desc: "Lavage ultra-rapide très économique.", time: "30 min" },
+                    { korean: "울/섬세 (Ul/Seom)", french: "Laine / Textiles Délicats", desc: "Protège les textiles précieux (robes, dentelle).", time: "40 min" },
+                    { korean: "탈수 (Tal-su)", french: "Bouton Essorage seul", desc: "Pour essorer le linge lavé à la main.", time: "12 min" }
+                ]
+            }
+        };
+
+        let activeManualMachine = '13kg';
+
+        function setActiveManualType(machineKey) {
+            activeManualMachine = machineKey;
+            
+            const btn13 = document.getElementById('btn-manual-13kg');
+            const btn21 = document.getElementById('btn-manual-21kg');
+            const btn10 = document.getElementById('btn-manual-10kg');
+
+            [btn13, btn21, btn10].forEach(btn => {
+                btn.className = "flex-1 lg:flex-none px-4 py-1.5 text-xs font-semibold rounded-lg text-slate-600 hover:text-slate-900";
+            });
+
+            document.getElementById(`btn-manual-${machineKey}`).className = "flex-1 lg:flex-none px-4 py-1.5 text-xs font-extrabold rounded-lg bg-white text-slate-900 shadow-sm";
+
+            renderManualRows();
+        }
+
+        function renderManualRows() {
+            const data = machineManuals[activeManualMachine];
+            document.getElementById('manual-machine-title').innerText = data.title;
+
+            const tbody = document.getElementById('manual-table-rows');
+            tbody.innerHTML = "";
+
+            data.rows.forEach(r => {
+                const tr = document.createElement('tr');
+                tr.className = "hover:bg-slate-50 transition-all border-b border-slate-100 text-xs";
+                tr.innerHTML = `
+                    <td class="p-3 font-mono font-black text-sky-600">${r.korean}</td>
+                    <td class="p-3 font-bold text-slate-900">${r.french}</td>
+                    <td class="p-3 text-slate-500 font-semibold">${r.desc}</td>
+                    <td class="p-3 text-right font-mono font-bold text-slate-600">${r.time}</td>
+                `;
+                tbody.appendChild(tr);
+            });
+        }
+
+        // --- PLAYLIST FORMATION ---
+        const videoSources = [
+            "https://images.unsplash.com/photo-1545173168-9f1947eebd01?q=80&w=600&auto=format&fit=crop",
+            "https://images.unsplash.com/photo-1517677208171-0bc6725a3e60?q=80&w=600&auto=format&fit=crop",
+            "https://images.unsplash.com/photo-1582719508461-905c673771fd?q=80&w=600&auto=format&fit=crop"
+        ];
+
+        function selectVideoSource(idx) {
+            for (let i = 0; i < 3; i++) {
+                const btn = document.getElementById(`video-btn-${i}`);
+                if (btn) btn.className = "w-full flex items-center justify-between p-2.5 rounded-xl hover:bg-slate-50 text-slate-600 text-left text-xs font-semibold";
+            }
+            document.getElementById(`video-btn-${idx}`).className = "w-full flex items-center justify-between p-2.5 rounded-xl bg-sky-50 border border-sky-200 text-sky-800 font-bold text-left text-xs";
+
+            const player = document.getElementById('tutorial-player');
+            player.innerHTML = `
+                <div class="absolute inset-0 bg-cover bg-center opacity-65 flex items-center justify-center cursor-pointer" style="background-image: url('${videoSources[idx]}');" onclick="playMockVideo(${idx})">
+                    <div class="w-12 h-12 rounded-full bg-sky-500 hover:bg-sky-400 flex items-center justify-center text-white shadow-lg transition-all">
+                        <i data-lucide="play" class="w-5 h-5 fill-white"></i>
+                    </div>
+                </div>
+            `;
+            lucide.createIcons();
+        }
+
+        function playMockVideo(idx) {
+            const player = document.getElementById('tutorial-player');
+            player.innerHTML = `
+                <div class="absolute inset-0 bg-slate-900 flex flex-col items-center justify-center text-center p-4">
+                    <i data-lucide="video" class="w-12 h-12 text-sky-400 animate-bounce"></i>
+                    <p class="text-xs font-bold text-white mt-2">Démonstration vidéo #${idx+1} en cours de lecture...</p>
+                    <button onclick="selectVideoSource(${idx})" class="mt-4 px-3 py-1 bg-white/10 hover:bg-white/20 text-white rounded-lg text-[10px] font-bold">Retour</button>
+                </div>
+            `;
+            lucide.createIcons();
+        }
+
+        // --- ENREGISTREMENT ET ÉDITION ADMINISTRATIVE DES TARIFS ---
+        function renderAdminPricesInputs() {
+            const container = document.getElementById('admin-prices-panel');
+            container.innerHTML = "";
+
+            const translations = {
+                S001: "Lavage Standard 21kg (F)",
+                S002: "Lavage Rapide 21kg (F)",
+                S003: "Séchage Standard (F)",
+                S004: "Séchage Rapide (F)",
+                S005: "Repassage Standard (F)",
+                S006: "Repassage Robe/Costume (F)",
+                S007: "Pack Complet Lavage/Séchage (F)",
+                lavage_kg: "Lavage au kg supplémentaire (F)",
+                lavage_forfait_3kg: "Forfait Lavage minimum -3kg (F)",
+                pack_kg: "Pack complet au kg (F)",
+                sechage_piece: "Séchage thermique unitaire (F)",
+                lavage_couette: "Lavage Couette unitaire (F)",
+                habit_special: "Habits spéciaux unitaire (F)"
+            };
+
+            Object.keys(systemTarifs).forEach(key => {
+                const labelText = translations[key] || key;
+                const div = document.createElement('div');
+                div.className = "flex justify-between items-center text-xs font-semibold gap-3";
+                div.innerHTML = `
+                    <span class="text-slate-600">${labelText}</span>
+                    <div class="flex items-center gap-1 shrink-0 font-sans">
+                        <input type="number" id="input-price-${key}" value="${systemTarifs[key]}" class="w-20 bg-slate-50 border border-slate-200 rounded-lg px-2 py-1 text-right font-black focus:outline-none">
+                        <button onclick="updatePriceField('${key}')" class="p-1.5 bg-sky-50 text-sky-600 hover:bg-sky-600 hover:text-white rounded-lg transition-all" title="Mettre à jour">
+                            <i data-lucide="check" class="w-3.5 h-3.5"></i>
+                        </button>
+                    </div>
+                `;
+                container.appendChild(div);
+            });
+            lucide.createIcons();
+        }
+
+        // --- STREAMING_CHUNK:Rendering visual UI outputs and Chart.js... -->
+        function updatePriceField(key) {
+            const input = document.getElementById(`input-price-${key}`);
+            const newVal = parseFloat(input.value) || 0;
+
+            if (newVal <= 0) {
+                showToast("Le montant doit être supérieur à zéro.", "error");
+                return;
+            }
+
+            systemTarifs[key] = newVal;
+            saveToLocalStorage();
+            updateAllOutputs();
+            showToast("Tarif mis à jour !", "success");
+        }
+
+        function updateActiveUserPin() {
+            const currentVal = document.getElementById('current-pin-input').value;
+            const newVal = document.getElementById('new-pin-input').value;
+
+            if (!currentUser) return;
+
+            if (currentUser.pin === currentVal) {
+                if (newVal.length === 4 && !isNaN(newVal)) {
+                    currentUser.pin = newVal;
+                    saveToLocalStorage();
+                    document.getElementById('current-pin-input').value = "";
+                    document.getElementById('new-pin-input').value = "";
+                    showToast("Code PIN modifié !", "success");
+                } else {
+                    showToast("Le code PIN doit comporter 4 chiffres.", "error");
+                }
+            } else {
+                showToast("Code secret actuel erroné.", "error");
+            }
+        }
+
+        function updateCaissierAccount(userId) {
+            const inputName = document.getElementById(`edit-${userId === 'u2' ? 'c1' : 'c2'}-name`).value.trim();
+            const inputPin = document.getElementById(`edit-${userId === 'u2' ? 'c1' : 'c2'}-pin`).value.trim();
+
+            const c = users.find(x => x.id === userId);
+            if (!c) return;
+
+            if (inputName) c.name = inputName;
+            if (inputPin && inputPin.length === 4 && !isNaN(inputPin)) c.pin = inputPin;
+
+            saveToLocalStorage();
+            populateUserDropdown();
+            showToast("Collaborateur mis à jour !", "success");
+        }
+
+        // --- GRAPH COMPTABILITE ET ANALYSE ---
+        let myFinanceChart = null;
+
+        function computeWeeklyChartData() {
+            const labels = [];
+            const revenue = [];
+            const expenses = [];
+            const savings = [];
+
+            for (let i = 6; i >= 0; i--) {
+                const d = new Date();
+                d.setDate(d.getDate() - i);
+                const dayStr = d.toISOString().slice(0, 10);
+                
+                labels.push(dayStr.slice(5, 10));
+
+                const revTotal = transactions
+                    .filter(t => t.type === 'Commande' && t.date.slice(0,10) === dayStr)
+                    .reduce((sum, t) => sum + t.amount, 0);
+
+                const expTotal = transactions
+                    .filter(t => t.type === 'Dépense' && t.date.slice(0,10) === dayStr)
+                    .reduce((sum, t) => sum + t.amount, 0);
+
+                const savTotal = savingsTransactions
+                    .filter(s => s.date.slice(0,10) === dayStr)
+                    .reduce((sum, s) => sum + s.amount, 0);
+
+                revenue.push(revTotal);
+                expenses.push(expTotal);
+                savings.push(Math.max(0, savTotal)); 
+            }
+
+            return { labels, revenue, expenses, savings };
+        }
+
+        function renderChart() {
+            const ctx = document.getElementById('financeChart');
+            if (!ctx) return;
+
+            const chartData = computeWeeklyChartData();
+
+            if (myFinanceChart) {
+                myFinanceChart.destroy();
+            }
+
+            myFinanceChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: chartData.labels,
+                    datasets: [
+                        {
+                            label: 'Ventes (F)',
+                            data: chartData.revenue,
+                            backgroundColor: 'rgba(14, 165, 233, 0.85)',
+                            borderColor: '#0284c7',
+                            borderWidth: 1,
+                            borderRadius: 6
+                        },
+                        {
+                            label: 'Dépenses (F)',
+                            data: chartData.expenses,
+                            backgroundColor: 'rgba(244, 63, 94, 0.85)',
+                            borderColor: '#e11d48',
+                            borderWidth: 1,
+                            borderRadius: 6
+                        },
+                        {
+                            label: 'Épargnes (F)',
+                            data: chartData.savings,
+                            backgroundColor: 'rgba(245, 158, 11, 0.85)',
+                            borderColor: '#d97706',
+                            borderWidth: 1,
+                            borderRadius: 6
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'bottom',
+                            labels: {
+                                font: { size: 10, family: "'Outfit', sans-serif" }
+                            }
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            ticks: { font: { size: 9, family: "'Outfit', sans-serif" } }
+                        },
+                        x: {
+                            grid: { display: false },
+                            ticks: { font: { size: 9, family: "'Outfit', sans-serif" } }
+                        }
+                    }
+                }
+            });
+        }
+
+        // --- ACTUALISATION GLOBALE DE TOUS LES PANNEAUX ---
+        function updateAllOutputs() {
+            const periodData = getFilteredFinancials();
+            
+            document.getElementById('stat-sales-value').innerText = `${periodData.sales} F`;
+            document.getElementById('stat-perceived-value').innerText = `${periodData.perceived} F`;
+            document.getElementById('stat-expenses-value').innerText = `${periodData.expenses} F`;
+            document.getElementById('stat-debt-value').innerText = `${periodData.debt} F`;
+
+            const labels = {
+                journalier: "AUJOURD'HUI",
+                mensuel: "CE MOIS",
+                annuel: "CETTE ANNÉE"
+            };
+            const currentLabelText = labels[dashboardTimeframePeriod] || "GLOBAL";
+            document.getElementById('stat-period-tag-1').innerText = currentLabelText;
+            document.getElementById('stat-period-tag-2').innerText = currentLabelText;
+            document.getElementById('stat-period-tag-perceived').innerText = currentLabelText;
+
+            const currentSavingsBalance = savingsTransactions.reduce((sum, s) => sum + s.amount, 0);
+            document.getElementById('savings-balance-status').innerText = `${currentSavingsBalance} F`;
+
+            renderOverdueDebtsAlerts();
+            renderDailyRegisterTable();
+            renderLedgerTable();
+            renderClientsList();
+            renderPOSCatalog();
+            checkSavingsSuggestionState();
+            renderChart();
+
+            // Historique court du tableau de bord
+            const recentContainer = document.getElementById('dashboard-recent-orders');
+            recentContainer.innerHTML = "";
+            const recentOrders = transactions.filter(t => t.type === 'Commande').slice(-4).reverse();
+            
+            if (recentOrders.length === 0) {
+                recentContainer.innerHTML = `<p class="text-center text-xs text-slate-400 py-6">Aucune vente enregistrée.</p>`;
+            } else {
+                recentOrders.forEach(o => {
+                    const div = document.createElement('div');
+                    div.className = "p-3 bg-slate-50 border border-slate-100 rounded-2xl flex justify-between items-center text-xs";
+                    div.innerHTML = `
+                        <div class="truncate pr-2">
+                            <p class="font-extrabold text-slate-900 truncate">${o.detail}</p>
+                            <p class="text-[9px] text-slate-400 font-mono">${o.date.slice(11, 16)} - ${o.paymentStatus}</p>
+                        </div>
+                        <span class="font-black text-sky-600 shrink-0">${o.amount} F</span>
+                    `;
+                    recentContainer.appendChild(div);
+                });
+            }
+        }
+
+        // --- LOGIQUE D'AFFICHAGE TOAST (NOTIFICATIONS FLUTTER-STYLE) ---
+        function showToast(message, type = "success") {
+            const container = document.getElementById('toast-container');
+            const toast = document.createElement('div');
+            
+            const bgColors = {
+                success: 'bg-emerald-600 text-white border-emerald-700',
+                error: 'bg-rose-600 text-white border-rose-700',
+                info: 'bg-teal-600 text-white border-teal-700'
+            };
+
+            toast.className = `p-4 rounded-2xl shadow-2xl text-xs font-bold ${bgColors[type]} border flex items-center gap-2.5 transition-all duration-300 animate-bounce`;
+            toast.innerHTML = `<i data-lucide="info" class="w-4 h-4 shrink-0"></i><span>${message}</span>`;
+
+            container.appendChild(toast);
+            lucide.createIcons();
+
+            setTimeout(() => {
+                toast.classList.add('opacity-0');
+                setTimeout(() => { toast.remove(); }, 300);
+            }, 3000);
+        }
+    </script>
+</body>
+</html>
