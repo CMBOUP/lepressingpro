@@ -39,7 +39,7 @@
       "id": "C001",
       "name": "Moussa Diop",
       "phone": "771234567",
-      "orderCount": 1,
+      "orderCount": 0,
       "status": "Nouveau"
     },
     {
@@ -648,17 +648,6 @@
       "user": "Directeur C2M"
     },
     {
-      "id": "T102",
-      "date": "2026-06-26T14:15",
-      "type": "Commande",
-      "detail": "Fatou Sow (781234567) - Pack Complet (Lav+Séch+Rep) (x1.0)",
-      "amount": 4000,
-      "paymentStatus": "Non payé",
-      "advanceAmount": 0,
-      "laundryStatus": "Prêt",
-      "user": "Amadou Ndiaye (Caissier 1)"
-    },
-    {
       "id": "T103",
       "date": "2026-06-30T09:00",
       "type": "Commande",
@@ -1233,5 +1222,5 @@
       "active": true
     }
   ],
-  "updatedAt": "2026-07-07T21:08:50.863Z"
+  "updatedAt": "2026-07-07T21:09:25.777Z"
 }
