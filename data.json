@@ -687,6 +687,13 @@
       "justification": "Ajustement de trésorerie",
       "amount": 22000,
       "user": "Directeur C2M"
+    },
+    {
+      "date": "2026-07-07T01:07:57.740Z",
+      "type": "Retrait",
+      "justification": "Ajustement de trésorerie",
+      "amount": -5560,
+      "user": "Directeur C2M"
     }
   ],
   "sessions": [
@@ -867,5 +874,5 @@
       "active": false
     }
   ],
-  "updatedAt": "2026-07-07T01:06:54.873Z"
+  "updatedAt": "2026-07-07T01:07:57.741Z"
 }
