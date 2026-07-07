@@ -46,7 +46,7 @@
       "id": "C002",
       "name": "Fatou Sow",
       "phone": "781234567",
-      "orderCount": 1,
+      "orderCount": 0,
       "status": "Nouveau"
     },
     {
@@ -1220,7 +1220,15 @@
       "login": "2026-07-07T20:51:43.501Z",
       "logout": "En cours",
       "active": true
+    },
+    {
+      "id": "S1783459163014",
+      "userName": "Directeur C2M",
+      "role": "admin",
+      "login": "2026-07-07T21:19:23.019Z",
+      "logout": "En cours",
+      "active": true
     }
   ],
-  "updatedAt": "2026-07-07T21:09:25.777Z"
+  "updatedAt": "2026-07-07T21:19:23.032Z"
 }
