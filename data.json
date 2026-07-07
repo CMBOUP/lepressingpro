@@ -46,7 +46,7 @@
       "id": "C002",
       "name": "Fatou Sow",
       "phone": "781234567",
-      "orderCount": 1,
+      "orderCount": 0,
       "status": "Nouveau"
     },
     {
@@ -57,19 +57,7 @@
       "status": "Nouveau"
     }
   ],
-  "transactions": [
-    {
-      "id": "T105",
-      "date": "2026-06-24T10:00",
-      "type": "Dépense",
-      "detail": "Senelec - Woyofal d'exploitation",
-      "amount": 15000,
-      "paymentStatus": "Totalement payé",
-      "advanceAmount": 0,
-      "laundryStatus": "-",
-      "user": "Amadou Ndiaye (Caissier 1)"
-    }
-  ],
+  "transactions": [],
   "savingsTransactions": [
     {
       "date": "2026-06-29T20:10",
@@ -152,5 +140,5 @@
       "active": true
     }
   ],
-  "updatedAt": "2026-07-07T00:44:31.275Z"
+  "updatedAt": "2026-07-07T00:44:35.280Z"
 }
