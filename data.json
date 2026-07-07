@@ -81,17 +81,6 @@
       "user": "Amadou Ndiaye (Caissier 1)"
     },
     {
-      "id": "T103",
-      "date": "2026-06-30T09:00",
-      "type": "Commande",
-      "detail": "Ibrahima Gueye (709876543) - Séchage Standard (x1.0)",
-      "amount": 1000,
-      "paymentStatus": "Totalement payé",
-      "advanceAmount": 0,
-      "laundryStatus": "Livré",
-      "user": "Fatou Sow (Caissier 2)"
-    },
-    {
       "id": "T105",
       "date": "2026-06-24T10:00",
       "type": "Dépense",
@@ -185,5 +174,5 @@
       "active": true
     }
   ],
-  "updatedAt": "2026-07-07T00:44:16.134Z"
+  "updatedAt": "2026-07-07T00:44:24.146Z"
 }
