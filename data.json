@@ -1069,9 +1069,9 @@
       "userName": "Madame Mboup",
       "role": "caissier",
       "login": "2026-07-07T14:56:59.372Z",
-      "logout": "En cours",
-      "active": true
+      "logout": "2026-07-07T14:57:33.876Z",
+      "active": false
     }
   ],
-  "updatedAt": "2026-07-07T14:56:59.375Z"
+  "updatedAt": "2026-07-07T14:57:33.878Z"
 }
