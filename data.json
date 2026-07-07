@@ -29,8 +29,8 @@
     },
     {
       "id": "u3",
-      "name": "Fatou Sow (Caissier 2)",
-      "pin": "1111",
+      "name": "Monsieur Mboup",
+      "pin": "1989",
       "role": "caissier"
     }
   ],
@@ -1065,5 +1065,5 @@
       "active": true
     }
   ],
-  "updatedAt": "2026-07-07T14:56:06.503Z"
+  "updatedAt": "2026-07-07T14:56:38.658Z"
 }
