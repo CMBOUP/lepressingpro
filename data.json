@@ -146,6 +146,13 @@
       "phone": "705506183",
       "orderCount": 1,
       "status": "Nouveau"
+    },
+    {
+      "id": "C017",
+      "name": "Ameth Diouf",
+      "phone": "775120195",
+      "orderCount": 1,
+      "status": "Nouveau"
     }
   ],
   "transactions": [
@@ -753,6 +760,17 @@
       "advanceAmount": 0,
       "laundryStatus": "En cours de lavage",
       "user": "Directeur C2M"
+    },
+    {
+      "id": "T1783445769812",
+      "date": "2026-07-07T17:33:00.000Z",
+      "type": "Commande",
+      "detail": "Ameth Diouf (775120195) - Lavage au Kg (min 3kg) (x9.0)",
+      "amount": 2800,
+      "paymentStatus": "Non payé",
+      "advanceAmount": 0,
+      "laundryStatus": "En cours de lavage",
+      "user": "Directeur C2M"
     }
   ],
   "savingsTransactions": [
@@ -1176,5 +1194,5 @@
       "active": true
     }
   ],
-  "updatedAt": "2026-07-07T17:34:26.360Z"
+  "updatedAt": "2026-07-07T17:36:09.832Z"
 }
