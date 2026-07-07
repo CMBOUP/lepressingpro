@@ -102,7 +102,7 @@
       "id": "C010",
       "name": "Vente globale",
       "phone": "",
-      "orderCount": 0,
+      "orderCount": 1,
       "status": "Nouveau"
     },
     {
@@ -698,6 +698,17 @@
       "advanceAmount": 0,
       "laundryStatus": "-",
       "user": "Directeur C2M"
+    },
+    {
+      "id": "T1783444845110",
+      "date": "2026-07-07T17:05:00.000Z",
+      "type": "Commande",
+      "detail": "Eliza () - Lavage au Kg (min 3kg) (x6.0)",
+      "amount": 1900,
+      "paymentStatus": "Non payé",
+      "advanceAmount": 0,
+      "laundryStatus": "En cours de lavage",
+      "user": "Directeur C2M"
     }
   ],
   "savingsTransactions": [
@@ -1113,5 +1124,5 @@
       "active": true
     }
   ],
-  "updatedAt": "2026-07-07T17:19:09.904Z"
+  "updatedAt": "2026-07-07T17:20:45.112Z"
 }
