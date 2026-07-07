@@ -1061,9 +1061,9 @@
       "userName": "Directeur C2M",
       "role": "admin",
       "login": "2026-07-07T14:54:56.550Z",
-      "logout": "En cours",
-      "active": true
+      "logout": "2026-07-07T14:56:50.697Z",
+      "active": false
     }
   ],
-  "updatedAt": "2026-07-07T14:56:38.658Z"
+  "updatedAt": "2026-07-07T14:56:50.699Z"
 }
