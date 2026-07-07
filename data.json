@@ -1079,7 +1079,15 @@
       "login": "2026-07-07T14:57:40.523Z",
       "logout": "2026-07-07T14:58:09.148Z",
       "active": false
+    },
+    {
+      "id": "S1783436296993",
+      "userName": "Madame Mboup",
+      "role": "caissier",
+      "login": "2026-07-07T14:58:16.994Z",
+      "logout": "En cours",
+      "active": true
     }
   ],
-  "updatedAt": "2026-07-07T14:58:09.151Z"
+  "updatedAt": "2026-07-07T14:58:16.995Z"
 }
