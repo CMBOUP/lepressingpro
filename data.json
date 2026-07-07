@@ -23,8 +23,8 @@
     },
     {
       "id": "u2",
-      "name": "Amadou Ndiaye (Caissier 1)",
-      "pin": "0000",
+      "name": "Madame Mboup",
+      "pin": "2021",
       "role": "caissier"
     },
     {
@@ -1065,5 +1065,5 @@
       "active": true
     }
   ],
-  "updatedAt": "2026-07-07T14:55:38.215Z"
+  "updatedAt": "2026-07-07T14:56:06.503Z"
 }
