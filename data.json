@@ -631,7 +631,7 @@
     },
     {
       "id": "T1783386414872",
-      "date": "2026-07-07T00:41:00.000Z",
+      "date": "2026-07-06T00:41:00.000Z",
       "type": "Commande",
       "detail": "Mère Rama (770000000) - Lavage au Kg (min 3kg) (x7.0)",
       "amount": 2100,
@@ -1215,5 +1215,5 @@
       "active": true
     }
   ],
-  "updatedAt": "2026-07-07T20:55:28.334Z"
+  "updatedAt": "2026-07-07T20:55:56.024Z"
 }
