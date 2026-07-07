@@ -1260,7 +1260,15 @@
       "login": "2026-07-07T21:30:55.812Z",
       "logout": "2026-07-07T21:32:07.840Z",
       "active": false
+    },
+    {
+      "id": "S1783459954491",
+      "userName": "1234",
+      "role": "caissier",
+      "login": "2026-07-07T21:32:34.491Z",
+      "logout": "En cours",
+      "active": true
     }
   ],
-  "updatedAt": "2026-07-07T21:32:07.856Z"
+  "updatedAt": "2026-07-07T21:32:34.493Z"
 }
