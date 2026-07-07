@@ -1,0 +1,112 @@
+{
+  "systemTarifs": {
+    "S001": 2500,
+    "S002": 1500,
+    "S003": 1000,
+    "S004": 500,
+    "S005": 300,
+    "S006": 1000,
+    "S007": 4000,
+    "lavage_kg": 300,
+    "lavage_forfait_3kg": 1000,
+    "pack_kg": 600,
+    "sechage_piece": 500,
+    "lavage_couette": 2500,
+    "habit_special": 2000
+  },
+  "users": [
+    {
+      "id": "u1",
+      "name": "Directeur C2M",
+      "pin": "1234",
+      "role": "admin"
+    },
+    {
+      "id": "u2",
+      "name": "Amadou Ndiaye (Caissier 1)",
+      "pin": "0000",
+      "role": "caissier"
+    },
+    {
+      "id": "u3",
+      "name": "Fatou Sow (Caissier 2)",
+      "pin": "1111",
+      "role": "caissier"
+    }
+  ],
+  "clients": [
+    {
+      "id": "C001",
+      "name": "Moussa Diop",
+      "phone": "771234567",
+      "orderCount": 0,
+      "status": "Nouveau"
+    },
+    {
+      "id": "C002",
+      "name": "Fatou Sow",
+      "phone": "781234567",
+      "orderCount": 0,
+      "status": "Nouveau"
+    },
+    {
+      "id": "C003",
+      "name": "Ibrahima Gueye",
+      "phone": "709876543",
+      "orderCount": 0,
+      "status": "Nouveau"
+    }
+  ],
+  "transactions": [],
+  "savingsTransactions": [
+    {
+      "date": "2026-06-29T20:10",
+      "type": "Dépôt Automatique (20h)",
+      "justification": "Clôture du 29 Juin",
+      "amount": 2440,
+      "user": "Amadou Ndiaye (Caissier 1)"
+    },
+    {
+      "date": "2026-07-06T23:56:37.432Z",
+      "type": "Retrait",
+      "justification": "Ajustement de trésorerie",
+      "amount": -2440,
+      "user": "Directeur C2M"
+    }
+  ],
+  "sessions": [
+    {
+      "id": "S01",
+      "userName": "Amadou Ndiaye (Caissier 1)",
+      "role": "caissier",
+      "login": "2026-06-30T08:00",
+      "logout": "En cours",
+      "active": true
+    },
+    {
+      "id": "S1783381581996",
+      "userName": "Directeur C2M",
+      "role": "admin",
+      "login": "2026-07-06T23:46:21.996Z",
+      "logout": "En cours",
+      "active": true
+    },
+    {
+      "id": "S1783383200260",
+      "userName": "Directeur C2M",
+      "role": "admin",
+      "login": "2026-07-07T00:13:20.260Z",
+      "logout": "En cours",
+      "active": true
+    },
+    {
+      "id": "S1783383609515",
+      "userName": "Directeur C2M",
+      "role": "admin",
+      "login": "2026-07-07T00:20:09.515Z",
+      "logout": "En cours",
+      "active": true
+    }
+  ],
+  "updatedAt": "2026-07-07T00:28:50.858Z"
+}
