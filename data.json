@@ -637,8 +637,8 @@
       "id": "T1783386414872",
       "date": "2026-07-07T00:41:00.000Z",
       "type": "Commande",
-      "detail": "Client de passage (770000000) - Lavage au Kg (min 3kg) (x7.0)",
-      "amount": 2200,
+      "detail": "Mère Rama (770000000) - Lavage au Kg (min 3kg) (x7.0)",
+      "amount": 2100,
       "paymentStatus": "Non payé",
       "advanceAmount": 0,
       "laundryStatus": "En cours de lavage",
@@ -874,5 +874,5 @@
       "active": false
     }
   ],
-  "updatedAt": "2026-07-07T01:10:35.635Z"
+  "updatedAt": "2026-07-07T01:12:22.993Z"
 }
