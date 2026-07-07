@@ -748,7 +748,7 @@
       "date": "2026-07-07T17:05:00.000Z",
       "type": "Commande",
       "detail": "Samba () - Lavage au Kg (min 3kg) (x4.5)",
-      "amount": 1450,
+      "amount": 1500,
       "paymentStatus": "Non payé",
       "advanceAmount": 0,
       "laundryStatus": "En cours de lavage",
@@ -1176,5 +1176,5 @@
       "active": true
     }
   ],
-  "updatedAt": "2026-07-07T17:33:10.722Z"
+  "updatedAt": "2026-07-07T17:34:26.360Z"
 }
