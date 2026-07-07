@@ -53,22 +53,11 @@
       "id": "C003",
       "name": "Ibrahima Gueye",
       "phone": "709876543",
-      "orderCount": 1,
+      "orderCount": 0,
       "status": "Nouveau"
     }
   ],
   "transactions": [
-    {
-      "id": "T101",
-      "date": "2026-06-29T10:30",
-      "type": "Commande",
-      "detail": "Moussa Diop (771234567) - Lavage Standard 21kg",
-      "amount": 2500,
-      "paymentStatus": "Avance",
-      "advanceAmount": 1000,
-      "laundryStatus": "En cours de lavage",
-      "user": "Amadou Ndiaye (Caissier 1)"
-    },
     {
       "id": "T102",
       "date": "2026-06-26T14:15",
@@ -174,5 +163,5 @@
       "active": true
     }
   ],
-  "updatedAt": "2026-07-07T00:44:24.146Z"
+  "updatedAt": "2026-07-07T00:44:27.262Z"
 }
