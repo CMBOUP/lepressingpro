@@ -223,7 +223,7 @@
       "date": "2026-07-02T06:07:00.000Z",
       "type": "Commande",
       "detail": "Madame Ly (779528105) - Lavage au Kg (min 3kg) (x18.6)",
-      "amount": 5680,
+      "amount": 5600,
       "paymentStatus": "Totalement payé",
       "advanceAmount": 0,
       "laundryStatus": "Livré",
@@ -1233,5 +1233,5 @@
       "active": true
     }
   ],
-  "updatedAt": "2026-07-07T21:00:47.847Z"
+  "updatedAt": "2026-07-07T21:02:20.135Z"
 }
