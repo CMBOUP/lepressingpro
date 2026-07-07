@@ -150,17 +150,6 @@
   ],
   "transactions": [
     {
-      "id": "T1783385113861",
-      "date": "2026-07-07T00:41:00.000Z",
-      "type": "Commande",
-      "detail": "Client de passage (770000000) - Lavage au Kg (min 3kg) (x3.0)",
-      "amount": 1000,
-      "paymentStatus": "Totalement payé",
-      "advanceAmount": 0,
-      "laundryStatus": "En cours de lavage",
-      "user": "Directeur C2M"
-    },
-    {
       "id": "T1782980032878",
       "date": "2026-06-20T04:07:00.000Z",
       "type": "Commande",
@@ -874,5 +863,5 @@
       "active": false
     }
   ],
-  "updatedAt": "2026-07-07T01:12:22.993Z"
+  "updatedAt": "2026-07-07T01:12:38.532Z"
 }
