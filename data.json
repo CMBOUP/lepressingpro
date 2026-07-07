@@ -153,6 +153,13 @@
       "phone": "775120195",
       "orderCount": 1,
       "status": "Nouveau"
+    },
+    {
+      "id": "C018",
+      "name": "Mère Rama",
+      "phone": "773541458",
+      "orderCount": 1,
+      "status": "Nouveau"
     }
   ],
   "transactions": [
@@ -760,6 +767,17 @@
       "advanceAmount": 0,
       "laundryStatus": "En cours de lavage",
       "user": "Directeur C2M"
+    },
+    {
+      "id": "T1783458001967",
+      "date": "2026-07-07T19:49:00.000Z",
+      "type": "Commande",
+      "detail": "Mère Rama (773541458) - Lavage au Kg (min 3kg) (x6.5)",
+      "amount": 2050,
+      "paymentStatus": "Totalement payé",
+      "advanceAmount": 0,
+      "laundryStatus": "En cours de lavage",
+      "user": "Directeur C2M"
     }
   ],
   "savingsTransactions": [
@@ -1215,5 +1233,5 @@
       "active": true
     }
   ],
-  "updatedAt": "2026-07-07T20:55:56.024Z"
+  "updatedAt": "2026-07-07T21:00:01.982Z"
 }
