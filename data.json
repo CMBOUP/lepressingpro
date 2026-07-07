@@ -687,6 +687,17 @@
       "advanceAmount": 0,
       "laundryStatus": "-",
       "user": "Amadou Ndiaye (Caissier 1)"
+    },
+    {
+      "id": "T1783436044005",
+      "date": "2026-07-07T14:54:04.005Z",
+      "type": "Dépense",
+      "detail": "Électricité (Senelec) - Woyofal",
+      "amount": 2000,
+      "paymentStatus": "Totalement payé",
+      "advanceAmount": 0,
+      "laundryStatus": "-",
+      "user": "Directeur C2M"
     }
   ],
   "savingsTransactions": [
@@ -1046,5 +1057,5 @@
       "active": true
     }
   ],
-  "updatedAt": "2026-07-07T14:53:14.558Z"
+  "updatedAt": "2026-07-07T14:54:04.013Z"
 }
