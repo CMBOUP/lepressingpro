@@ -617,7 +617,7 @@
       "type": "Commande",
       "detail": "Ndeye () - Lavage au Kg (min 3kg) (x13.5)",
       "amount": 4150,
-      "paymentStatus": "Non payé",
+      "paymentStatus": "Totalement payé",
       "advanceAmount": 0,
       "laundryStatus": "En cours de lavage",
       "user": "Directeur C2M"
@@ -1030,5 +1030,5 @@
       "active": true
     }
   ],
-  "updatedAt": "2026-07-07T14:28:54.059Z"
+  "updatedAt": "2026-07-07T14:32:25.776Z"
 }
