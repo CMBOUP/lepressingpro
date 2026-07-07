@@ -102,7 +102,7 @@
       "id": "C010",
       "name": "Vente globale",
       "phone": "",
-      "orderCount": 0,
+      "orderCount": 1,
       "status": "Nouveau"
     },
     {
@@ -778,6 +778,17 @@
       "advanceAmount": 0,
       "laundryStatus": "En cours de lavage",
       "user": "Directeur C2M"
+    },
+    {
+      "id": "T1783458242354",
+      "date": "2026-07-07T19:49:00.000Z",
+      "type": "Commande",
+      "detail": "Fatima () - Pack complet au Kg (x9.5)",
+      "amount": 5700,
+      "paymentStatus": "Totalement payé",
+      "advanceAmount": 0,
+      "laundryStatus": "Livré",
+      "user": "Directeur C2M"
     }
   ],
   "savingsTransactions": [
@@ -1233,5 +1244,5 @@
       "active": true
     }
   ],
-  "updatedAt": "2026-07-07T21:02:20.135Z"
+  "updatedAt": "2026-07-07T21:04:02.364Z"
 }
