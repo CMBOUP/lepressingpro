@@ -102,7 +102,7 @@
       "id": "C010",
       "name": "Vente globale",
       "phone": "",
-      "orderCount": 0,
+      "orderCount": 1,
       "status": "Nouveau"
     },
     {
@@ -709,6 +709,17 @@
       "advanceAmount": 0,
       "laundryStatus": "En cours de lavage",
       "user": "Directeur C2M"
+    },
+    {
+      "id": "T1783444996415",
+      "date": "2026-07-07T17:05:00.000Z",
+      "type": "Commande",
+      "detail": "Mère rama () - Lavage au Kg (min 3kg) (x6.0)",
+      "amount": 1900,
+      "paymentStatus": "Totalement payé",
+      "advanceAmount": 0,
+      "laundryStatus": "Livré",
+      "user": "Directeur C2M"
     }
   ],
   "savingsTransactions": [
@@ -1124,5 +1135,5 @@
       "active": true
     }
   ],
-  "updatedAt": "2026-07-07T17:21:16.340Z"
+  "updatedAt": "2026-07-07T17:23:16.422Z"
 }
