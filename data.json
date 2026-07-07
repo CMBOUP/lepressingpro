@@ -648,17 +648,6 @@
       "user": "Directeur C2M"
     },
     {
-      "id": "T101",
-      "date": "2026-06-29T10:30",
-      "type": "Commande",
-      "detail": "Moussa Diop (771234567) - Lavage Standard 21kg",
-      "amount": 2500,
-      "paymentStatus": "Avance",
-      "advanceAmount": 1000,
-      "laundryStatus": "En cours de lavage",
-      "user": "Amadou Ndiaye (Caissier 1)"
-    },
-    {
       "id": "T102",
       "date": "2026-06-26T14:15",
       "type": "Commande",
@@ -1244,5 +1233,5 @@
       "active": true
     }
   ],
-  "updatedAt": "2026-07-07T21:04:32.859Z"
+  "updatedAt": "2026-07-07T21:08:50.863Z"
 }
