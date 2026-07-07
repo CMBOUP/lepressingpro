@@ -767,7 +767,7 @@
       "type": "Commande",
       "detail": "Ameth Diouf (775120195) - Lavage au Kg (min 3kg) (x9.0)",
       "amount": 4500,
-      "paymentStatus": "Non payé",
+      "paymentStatus": "Totalement payé",
       "advanceAmount": 0,
       "laundryStatus": "En cours de lavage",
       "user": "Directeur C2M"
@@ -1218,5 +1218,5 @@
       "active": true
     }
   ],
-  "updatedAt": "2026-07-07T20:41:26.994Z"
+  "updatedAt": "2026-07-07T20:42:21.490Z"
 }
