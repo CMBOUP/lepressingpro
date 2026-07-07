@@ -1266,9 +1266,9 @@
       "userName": "1234",
       "role": "caissier",
       "login": "2026-07-07T21:32:34.491Z",
-      "logout": "En cours",
-      "active": true
+      "logout": "2026-07-07T21:33:45.130Z",
+      "active": false
     }
   ],
-  "updatedAt": "2026-07-07T21:33:08.297Z"
+  "updatedAt": "2026-07-07T21:33:45.132Z"
 }
