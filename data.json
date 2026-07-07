@@ -615,8 +615,8 @@
       "id": "T1783386272415",
       "date": "2026-07-07T00:41:00.000Z",
       "type": "Commande",
-      "detail": "Client de passage (770000000) - Lavage au Kg (min 3kg) (x9.5)",
-      "amount": 2950,
+      "detail": "Fatou(770000000) - Lavage au Kg (min 3kg) (x9.5)",
+      "amount": 3000,
       "paymentStatus": "Totalement payé",
       "advanceAmount": 0,
       "laundryStatus": "Livré",
@@ -874,5 +874,5 @@
       "active": false
     }
   ],
-  "updatedAt": "2026-07-07T01:07:57.741Z"
+  "updatedAt": "2026-07-07T01:10:35.635Z"
 }
