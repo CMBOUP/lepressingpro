@@ -39,25 +39,70 @@
       "id": "C001",
       "name": "Moussa Diop",
       "phone": "771234567",
-      "orderCount": 0,
+      "orderCount": 1,
       "status": "Nouveau"
     },
     {
       "id": "C002",
       "name": "Fatou Sow",
       "phone": "781234567",
-      "orderCount": 0,
+      "orderCount": 1,
       "status": "Nouveau"
     },
     {
       "id": "C003",
       "name": "Ibrahima Gueye",
       "phone": "709876543",
-      "orderCount": 0,
+      "orderCount": 1,
       "status": "Nouveau"
     }
   ],
-  "transactions": [],
+  "transactions": [
+    {
+      "id": "T101",
+      "date": "2026-06-29T10:30",
+      "type": "Commande",
+      "detail": "Moussa Diop (771234567) - Lavage Standard 21kg",
+      "amount": 2500,
+      "paymentStatus": "Avance",
+      "advanceAmount": 1000,
+      "laundryStatus": "En cours de lavage",
+      "user": "Amadou Ndiaye (Caissier 1)"
+    },
+    {
+      "id": "T102",
+      "date": "2026-06-26T14:15",
+      "type": "Commande",
+      "detail": "Fatou Sow (781234567) - Pack Complet (Lav+Séch+Rep) (x1.0)",
+      "amount": 4000,
+      "paymentStatus": "Non payé",
+      "advanceAmount": 0,
+      "laundryStatus": "Prêt",
+      "user": "Amadou Ndiaye (Caissier 1)"
+    },
+    {
+      "id": "T103",
+      "date": "2026-06-30T09:00",
+      "type": "Commande",
+      "detail": "Ibrahima Gueye (709876543) - Séchage Standard (x1.0)",
+      "amount": 1000,
+      "paymentStatus": "Totalement payé",
+      "advanceAmount": 0,
+      "laundryStatus": "Livré",
+      "user": "Fatou Sow (Caissier 2)"
+    },
+    {
+      "id": "T105",
+      "date": "2026-06-24T10:00",
+      "type": "Dépense",
+      "detail": "Senelec - Woyofal d'exploitation",
+      "amount": 15000,
+      "paymentStatus": "Totalement payé",
+      "advanceAmount": 0,
+      "laundryStatus": "-",
+      "user": "Amadou Ndiaye (Caissier 1)"
+    }
+  ],
   "savingsTransactions": [
     {
       "date": "2026-06-29T20:10",
@@ -80,6 +125,38 @@
       "userName": "Amadou Ndiaye (Caissier 1)",
       "role": "caissier",
       "login": "2026-06-30T08:00",
+      "logout": "En cours",
+      "active": true
+    },
+    {
+      "id": "S1783381947678",
+      "userName": "Directeur C2M",
+      "role": "admin",
+      "login": "2026-07-06T23:52:27.678Z",
+      "logout": "En cours",
+      "active": true
+    },
+    {
+      "id": "S1783382023369",
+      "userName": "Directeur C2M",
+      "role": "admin",
+      "login": "2026-07-06T23:53:43.370Z",
+      "logout": "En cours",
+      "active": true
+    },
+    {
+      "id": "S1783382213832",
+      "userName": "Directeur C2M",
+      "role": "admin",
+      "login": "2026-07-06T23:56:53.832Z",
+      "logout": "En cours",
+      "active": true
+    },
+    {
+      "id": "S1783384890391",
+      "userName": "Directeur C2M",
+      "role": "admin",
+      "login": "2026-07-07T00:41:30.391Z",
       "logout": "En cours",
       "active": true
     },
@@ -108,5 +185,5 @@
       "active": true
     }
   ],
-  "updatedAt": "2026-07-07T00:28:50.858Z"
+  "updatedAt": "2026-07-07T00:44:16.134Z"
 }
