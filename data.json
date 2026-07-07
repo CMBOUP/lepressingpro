@@ -60,7 +60,7 @@
       "id": "C004",
       "name": "Fatou",
       "phone": "779419493",
-      "orderCount": 2,
+      "orderCount": 3,
       "status": "Nouveau"
     },
     {
@@ -771,6 +771,17 @@
       "advanceAmount": 0,
       "laundryStatus": "En cours de lavage",
       "user": "Directeur C2M"
+    },
+    {
+      "id": "T1783455180815",
+      "date": "2026-07-07T20:10:00.000Z",
+      "type": "Commande",
+      "detail": "Fatou (779419493) - Lavage au Kg (min 3kg) (x14.0)",
+      "amount": 4300,
+      "paymentStatus": "Totalement payé",
+      "advanceAmount": 0,
+      "laundryStatus": "En cours de lavage",
+      "user": "Directeur C2M"
     }
   ],
   "savingsTransactions": [
@@ -1218,5 +1229,5 @@
       "active": true
     }
   ],
-  "updatedAt": "2026-07-07T20:10:11.104Z"
+  "updatedAt": "2026-07-07T20:13:00.818Z"
 }
