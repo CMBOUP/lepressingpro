@@ -60,7 +60,7 @@
       "id": "C004",
       "name": "Fatou",
       "phone": "779419493",
-      "orderCount": 3,
+      "orderCount": 2,
       "status": "Nouveau"
     },
     {
@@ -156,61 +156,6 @@
     }
   ],
   "transactions": [
-    {
-      "id": "T101",
-      "date": "2026-06-29T10:30",
-      "type": "Commande",
-      "detail": "Moussa Diop (771234567) - Lavage Standard 21kg",
-      "amount": 2500,
-      "paymentStatus": "Avance",
-      "advanceAmount": 1000,
-      "laundryStatus": "En cours de lavage",
-      "user": "Amadou Ndiaye (Caissier 1)"
-    },
-    {
-      "id": "T102",
-      "date": "2026-06-26T14:15",
-      "type": "Commande",
-      "detail": "Fatou Sow (781234567) - Pack Complet (Lav+Séch+Rep) (x1.0)",
-      "amount": 4000,
-      "paymentStatus": "Non payé",
-      "advanceAmount": 0,
-      "laundryStatus": "Prêt",
-      "user": "Amadou Ndiaye (Caissier 1)"
-    },
-    {
-      "id": "T103",
-      "date": "2026-06-30T09:00",
-      "type": "Commande",
-      "detail": "Ibrahima Gueye (709876543) - Séchage Standard (x1.0)",
-      "amount": 1000,
-      "paymentStatus": "Totalement payé",
-      "advanceAmount": 0,
-      "laundryStatus": "Livré",
-      "user": "Fatou Sow (Caissier 2)"
-    },
-    {
-      "id": "T104",
-      "date": "2026-06-30T11:20",
-      "type": "Dépense",
-      "detail": "Détergent - Lessive liquide pro",
-      "amount": 4500,
-      "paymentStatus": "Totalement payé",
-      "advanceAmount": 0,
-      "laundryStatus": "-",
-      "user": "Amadou Ndiaye (Caissier 1)"
-    },
-    {
-      "id": "T105",
-      "date": "2026-06-24T10:00",
-      "type": "Dépense",
-      "detail": "Senelec - Woyofal d'exploitation",
-      "amount": 15000,
-      "paymentStatus": "Totalement payé",
-      "advanceAmount": 0,
-      "laundryStatus": "-",
-      "user": "Amadou Ndiaye (Caissier 1)"
-    },
     {
       "id": "T1782980032878",
       "date": "2026-06-20T04:07:00.000Z",
@@ -696,6 +641,61 @@
       "user": "Directeur C2M"
     },
     {
+      "id": "T101",
+      "date": "2026-06-29T10:30",
+      "type": "Commande",
+      "detail": "Moussa Diop (771234567) - Lavage Standard 21kg",
+      "amount": 2500,
+      "paymentStatus": "Avance",
+      "advanceAmount": 1000,
+      "laundryStatus": "En cours de lavage",
+      "user": "Amadou Ndiaye (Caissier 1)"
+    },
+    {
+      "id": "T102",
+      "date": "2026-06-26T14:15",
+      "type": "Commande",
+      "detail": "Fatou Sow (781234567) - Pack Complet (Lav+Séch+Rep) (x1.0)",
+      "amount": 4000,
+      "paymentStatus": "Non payé",
+      "advanceAmount": 0,
+      "laundryStatus": "Prêt",
+      "user": "Amadou Ndiaye (Caissier 1)"
+    },
+    {
+      "id": "T103",
+      "date": "2026-06-30T09:00",
+      "type": "Commande",
+      "detail": "Ibrahima Gueye (709876543) - Séchage Standard (x1.0)",
+      "amount": 1000,
+      "paymentStatus": "Totalement payé",
+      "advanceAmount": 0,
+      "laundryStatus": "Livré",
+      "user": "Fatou Sow (Caissier 2)"
+    },
+    {
+      "id": "T104",
+      "date": "2026-06-30T11:20",
+      "type": "Dépense",
+      "detail": "Détergent - Lessive liquide pro",
+      "amount": 4500,
+      "paymentStatus": "Totalement payé",
+      "advanceAmount": 0,
+      "laundryStatus": "-",
+      "user": "Amadou Ndiaye (Caissier 1)"
+    },
+    {
+      "id": "T105",
+      "date": "2026-06-24T10:00",
+      "type": "Dépense",
+      "detail": "Senelec - Woyofal d'exploitation",
+      "amount": 15000,
+      "paymentStatus": "Totalement payé",
+      "advanceAmount": 0,
+      "laundryStatus": "-",
+      "user": "Amadou Ndiaye (Caissier 1)"
+    },
+    {
       "id": "T1783436044005",
       "date": "2026-07-07T14:54:04.005Z",
       "type": "Dépense",
@@ -771,17 +771,6 @@
       "advanceAmount": 0,
       "laundryStatus": "En cours de lavage",
       "user": "Directeur C2M"
-    },
-    {
-      "id": "T1783455180815",
-      "date": "2026-07-07T20:10:00.000Z",
-      "type": "Commande",
-      "detail": "Fatou (779419493) - Lavage au Kg (min 3kg) (x14.0)",
-      "amount": 4300,
-      "paymentStatus": "Totalement payé",
-      "advanceAmount": 0,
-      "laundryStatus": "En cours de lavage",
-      "user": "Directeur C2M"
     }
   ],
   "savingsTransactions": [
@@ -841,46 +830,6 @@
       "userName": "Amadou Ndiaye (Caissier 1)",
       "role": "caissier",
       "login": "2026-06-30T08:00",
-      "logout": "En cours",
-      "active": true
-    },
-    {
-      "id": "S1783384512713",
-      "userName": "Directeur C2M",
-      "role": "admin",
-      "login": "2026-07-07T00:35:12.713Z",
-      "logout": "En cours",
-      "active": true
-    },
-    {
-      "id": "S1783384563968",
-      "userName": "Directeur C2M",
-      "role": "admin",
-      "login": "2026-07-07T00:36:03.968Z",
-      "logout": "En cours",
-      "active": true
-    },
-    {
-      "id": "S1783413516939",
-      "userName": "Directeur C2M",
-      "role": "admin",
-      "login": "2026-07-07T08:38:36.939Z",
-      "logout": "En cours",
-      "active": true
-    },
-    {
-      "id": "S1783413772697",
-      "userName": "Directeur C2M",
-      "role": "admin",
-      "login": "2026-07-07T08:42:52.697Z",
-      "logout": "En cours",
-      "active": true
-    },
-    {
-      "id": "S1783413967992",
-      "userName": "Directeur C2M",
-      "role": "admin",
-      "login": "2026-07-07T08:46:07.992Z",
       "logout": "En cours",
       "active": true
     },
@@ -1069,6 +1018,46 @@
       "active": false
     },
     {
+      "id": "S1783384512713",
+      "userName": "Directeur C2M",
+      "role": "admin",
+      "login": "2026-07-07T00:35:12.713Z",
+      "logout": "En cours",
+      "active": true
+    },
+    {
+      "id": "S1783384563968",
+      "userName": "Directeur C2M",
+      "role": "admin",
+      "login": "2026-07-07T00:36:03.968Z",
+      "logout": "En cours",
+      "active": true
+    },
+    {
+      "id": "S1783413516939",
+      "userName": "Directeur C2M",
+      "role": "admin",
+      "login": "2026-07-07T08:38:36.939Z",
+      "logout": "En cours",
+      "active": true
+    },
+    {
+      "id": "S1783413772697",
+      "userName": "Directeur C2M",
+      "role": "admin",
+      "login": "2026-07-07T08:42:52.697Z",
+      "logout": "En cours",
+      "active": true
+    },
+    {
+      "id": "S1783413967992",
+      "userName": "Directeur C2M",
+      "role": "admin",
+      "login": "2026-07-07T08:46:07.992Z",
+      "logout": "En cours",
+      "active": true
+    },
+    {
       "id": "S1783414716379",
       "userName": "Directeur C2M",
       "role": "admin",
@@ -1221,13 +1210,13 @@
       "active": true
     },
     {
-      "id": "S1783455011102",
+      "id": "S1783456788208",
       "userName": "Directeur C2M",
       "role": "admin",
-      "login": "2026-07-07T20:10:11.102Z",
-      "logout": "2026-07-07T20:19:35.763Z",
-      "active": false
+      "login": "2026-07-07T20:39:48.209Z",
+      "logout": "En cours",
+      "active": true
     }
   ],
-  "updatedAt": "2026-07-07T20:19:35.765Z"
+  "updatedAt": "2026-07-07T20:39:48.213Z"
 }
