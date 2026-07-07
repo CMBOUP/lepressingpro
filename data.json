@@ -551,7 +551,7 @@
       "type": "Commande",
       "detail": "Client de passage (774273815) - Lavage au Kg (min 3kg) (x6.8)",
       "amount": 2000,
-      "paymentStatus": "Non payé",
+      "paymentStatus": "Totalement payé",
       "advanceAmount": 0,
       "laundryStatus": "En cours de lavage",
       "user": "Directeur C2M"
@@ -1038,5 +1038,5 @@
       "active": true
     }
   ],
-  "updatedAt": "2026-07-07T14:49:44.735Z"
+  "updatedAt": "2026-07-07T14:50:41.166Z"
 }
