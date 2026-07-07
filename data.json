@@ -102,7 +102,7 @@
       "id": "C010",
       "name": "Vente globale",
       "phone": "",
-      "orderCount": 0,
+      "orderCount": 1,
       "status": "Nouveau"
     },
     {
@@ -621,6 +621,17 @@
       "advanceAmount": 0,
       "laundryStatus": "Livré",
       "user": "Directeur C2M"
+    },
+    {
+      "id": "T1783386361053",
+      "date": "2026-07-07T00:41:00.000Z",
+      "type": "Commande",
+      "detail": "Ndeye () - Lavage au Kg (min 3kg) (x13.5)",
+      "amount": 4150,
+      "paymentStatus": "Non payé",
+      "advanceAmount": 0,
+      "laundryStatus": "En cours de lavage",
+      "user": "Directeur C2M"
     }
   ],
   "savingsTransactions": [
@@ -845,5 +856,5 @@
       "active": false
     }
   ],
-  "updatedAt": "2026-07-07T01:04:32.416Z"
+  "updatedAt": "2026-07-07T01:06:01.054Z"
 }
