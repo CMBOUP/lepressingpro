@@ -23,8 +23,8 @@
     },
     {
       "id": "u2",
-      "name": "Madame Mboup",
-      "pin": "2021",
+      "name": "1234",
+      "pin": "1984",
       "role": "caissier"
     },
     {
@@ -1262,5 +1262,5 @@
       "active": true
     }
   ],
-  "updatedAt": "2026-07-07T21:30:55.819Z"
+  "updatedAt": "2026-07-07T21:31:56.155Z"
 }
