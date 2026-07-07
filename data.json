@@ -483,7 +483,7 @@
       "id": "T1783125255239",
       "date": "2026-07-03T22:15:00.000Z",
       "type": "Commande",
-      "detail": "Client de passage (770000000) - Pack complet au Kg (x23.5)",
+      "detail": "Baye (770000000) - Pack complet au Kg (x23.5)",
       "amount": 14100,
       "paymentStatus": "Avance",
       "advanceAmount": 10000,
@@ -1030,5 +1030,5 @@
       "active": true
     }
   ],
-  "updatedAt": "2026-07-07T14:34:26.757Z"
+  "updatedAt": "2026-07-07T14:37:02.089Z"
 }
