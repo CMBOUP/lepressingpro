@@ -116,7 +116,7 @@
       "id": "C012",
       "name": "Adji Kiné",
       "phone": "705535300",
-      "orderCount": 1,
+      "orderCount": 2,
       "status": "Nouveau"
     },
     {
@@ -731,6 +731,17 @@
       "advanceAmount": 0,
       "laundryStatus": "En cours de lavage",
       "user": "Directeur C2M"
+    },
+    {
+      "id": "T1783445349794",
+      "date": "2026-07-07T17:05:00.000Z",
+      "type": "Commande",
+      "detail": "Adji Kiné (705535300) - Lavage au Kg (min 3kg) (x12.0)",
+      "amount": 3700,
+      "paymentStatus": "Non payé",
+      "advanceAmount": 0,
+      "laundryStatus": "En cours de lavage",
+      "user": "Directeur C2M"
     }
   ],
   "savingsTransactions": [
@@ -1146,5 +1157,5 @@
       "active": true
     }
   ],
-  "updatedAt": "2026-07-07T17:27:08.764Z"
+  "updatedAt": "2026-07-07T17:29:09.813Z"
 }
