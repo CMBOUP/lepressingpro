@@ -57,7 +57,19 @@
       "status": "Nouveau"
     }
   ],
-  "transactions": [],
+  "transactions": [
+    {
+      "id": "T1783385113861",
+      "date": "2026-07-07T00:41:00.000Z",
+      "type": "Commande",
+      "detail": "Client de passage (770000000) - Lavage au Kg (min 3kg) (x3.0)",
+      "amount": 1000,
+      "paymentStatus": "Totalement payé",
+      "advanceAmount": 0,
+      "laundryStatus": "En cours de lavage",
+      "user": "Directeur C2M"
+    }
+  ],
   "savingsTransactions": [
     {
       "date": "2026-06-29T20:10",
@@ -80,30 +92,6 @@
       "userName": "Amadou Ndiaye (Caissier 1)",
       "role": "caissier",
       "login": "2026-06-30T08:00",
-      "logout": "En cours",
-      "active": true
-    },
-    {
-      "id": "S1783381581996",
-      "userName": "Directeur C2M",
-      "role": "admin",
-      "login": "2026-07-06T23:46:21.996Z",
-      "logout": "En cours",
-      "active": true
-    },
-    {
-      "id": "S1783383200260",
-      "userName": "Directeur C2M",
-      "role": "admin",
-      "login": "2026-07-07T00:13:20.260Z",
-      "logout": "En cours",
-      "active": true
-    },
-    {
-      "id": "S1783383609515",
-      "userName": "Directeur C2M",
-      "role": "admin",
-      "login": "2026-07-07T00:20:09.515Z",
       "logout": "En cours",
       "active": true
     },
@@ -136,9 +124,33 @@
       "userName": "Directeur C2M",
       "role": "admin",
       "login": "2026-07-07T00:41:30.391Z",
+      "logout": "2026-07-07T00:47:26.124Z",
+      "active": false
+    },
+    {
+      "id": "S1783381581996",
+      "userName": "Directeur C2M",
+      "role": "admin",
+      "login": "2026-07-06T23:46:21.996Z",
+      "logout": "En cours",
+      "active": true
+    },
+    {
+      "id": "S1783383200260",
+      "userName": "Directeur C2M",
+      "role": "admin",
+      "login": "2026-07-07T00:13:20.260Z",
+      "logout": "En cours",
+      "active": true
+    },
+    {
+      "id": "S1783383609515",
+      "userName": "Directeur C2M",
+      "role": "admin",
+      "login": "2026-07-07T00:20:09.515Z",
       "logout": "En cours",
       "active": true
     }
   ],
-  "updatedAt": "2026-07-07T00:45:42.871Z"
+  "updatedAt": "2026-07-07T00:47:26.125Z"
 }
