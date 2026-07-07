@@ -766,7 +766,7 @@
       "date": "2026-07-07T17:33:00.000Z",
       "type": "Commande",
       "detail": "Ameth Diouf (775120195) - Lavage au Kg (min 3kg) (x9.0)",
-      "amount": 2700,
+      "amount": 4500,
       "paymentStatus": "Non payé",
       "advanceAmount": 0,
       "laundryStatus": "En cours de lavage",
@@ -1218,5 +1218,5 @@
       "active": true
     }
   ],
-  "updatedAt": "2026-07-07T20:39:48.213Z"
+  "updatedAt": "2026-07-07T20:41:26.994Z"
 }
