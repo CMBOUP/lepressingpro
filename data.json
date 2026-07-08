@@ -785,6 +785,28 @@
       "advanceAmount": 0,
       "laundryStatus": "En cours de lavage",
       "user": "Directeur C2M"
+    },
+    {
+      "id": "T1783520000500",
+      "date": "2026-07-08T14:13:20.500Z",
+      "type": "Dépense",
+      "detail": "Électricité (Senelec) - Woyofal",
+      "amount": 2000,
+      "paymentStatus": "Totalement payé",
+      "advanceAmount": 0,
+      "laundryStatus": "-",
+      "user": "Directeur C2M"
+    },
+    {
+      "id": "T1783520115836",
+      "date": "2026-07-08T14:15:15.836Z",
+      "type": "Dépense",
+      "detail": "Détergent / Lessive - Saaba",
+      "amount": 5350,
+      "paymentStatus": "Totalement payé",
+      "advanceAmount": 0,
+      "laundryStatus": "-",
+      "user": "Directeur C2M"
     }
   ],
   "savingsTransactions": [
@@ -1407,5 +1429,5 @@
       "active": true
     }
   ],
-  "updatedAt": "2026-07-08T14:12:56.571Z"
+  "updatedAt": "2026-07-08T14:15:15.842Z"
 }
