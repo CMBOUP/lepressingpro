@@ -102,7 +102,7 @@
       "id": "C010",
       "name": "Vente globale",
       "phone": "",
-      "orderCount": 0,
+      "orderCount": 1,
       "status": "Nouveau"
     },
     {
@@ -767,6 +767,17 @@
       "advanceAmount": 0,
       "laundryStatus": "Livré",
       "user": "Directeur C2M"
+    },
+    {
+      "id": "T1783515603197",
+      "date": "2026-07-07T21:40:00.000Z",
+      "type": "Commande",
+      "detail": "Ndèye () - Lavage Couette (x1)",
+      "amount": 2500,
+      "paymentStatus": "Non payé",
+      "advanceAmount": 0,
+      "laundryStatus": "En cours de lavage",
+      "user": "Directeur C2M"
     }
   ],
   "savingsTransactions": [
@@ -1373,5 +1384,5 @@
       "active": true
     }
   ],
-  "updatedAt": "2026-07-08T12:57:50.894Z"
+  "updatedAt": "2026-07-08T13:00:03.205Z"
 }
