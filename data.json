@@ -583,13 +583,13 @@
     },
     {
       "id": "T1783202466891",
-      "date": "2026-07-04T19:58:00.000Z",
+      "date": "2026-07-08T19:58:00.000Z",
       "type": "Commande",
       "detail": "Mai () - Lavage au Kg (min 3kg) (x8.3)",
       "amount": 2500,
-      "paymentStatus": "Non payé",
+      "paymentStatus": "Totalement payé",
       "advanceAmount": 0,
-      "laundryStatus": "En cours de lavage",
+      "laundryStatus": "Livré",
       "user": "Directeur C2M"
     },
     {
@@ -1357,5 +1357,5 @@
       "active": true
     }
   ],
-  "updatedAt": "2026-07-08T11:17:42.549Z"
+  "updatedAt": "2026-07-08T11:19:29.688Z"
 }
