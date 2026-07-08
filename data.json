@@ -761,7 +761,7 @@
       "amount": 2150,
       "paymentStatus": "Non payé",
       "advanceAmount": 0,
-      "laundryStatus": "En cours de lavage",
+      "laundryStatus": "Livré",
       "user": "Directeur C2M"
     },
     {
@@ -1445,5 +1445,5 @@
       "active": true
     }
   ],
-  "updatedAt": "2026-07-08T18:54:23.842Z"
+  "updatedAt": "2026-07-08T18:55:09.683Z"
 }
