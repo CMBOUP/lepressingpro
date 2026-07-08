@@ -167,6 +167,13 @@
       "phone": "776837889",
       "orderCount": 0,
       "status": "Nouveau"
+    },
+    {
+      "id": "C020",
+      "name": "Ndiémé",
+      "phone": "772867152",
+      "orderCount": 1,
+      "status": "Nouveau"
     }
   ],
   "transactions": [
@@ -807,6 +814,17 @@
       "advanceAmount": 0,
       "laundryStatus": "-",
       "user": "Directeur C2M"
+    },
+    {
+      "id": "T1783537222894",
+      "date": "2026-07-08T18:54:00.000Z",
+      "type": "Commande",
+      "detail": "Ndiémé (772867152) - Lavage au Kg (min 3kg) (x12.0)",
+      "amount": 3700,
+      "paymentStatus": "Totalement payé",
+      "advanceAmount": 0,
+      "laundryStatus": "Livré",
+      "user": "Directeur C2M"
     }
   ],
   "savingsTransactions": [
@@ -1445,5 +1463,5 @@
       "active": true
     }
   ],
-  "updatedAt": "2026-07-08T18:55:09.683Z"
+  "updatedAt": "2026-07-08T19:00:22.903Z"
 }
