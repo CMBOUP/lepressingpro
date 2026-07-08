@@ -785,17 +785,6 @@
       "advanceAmount": 0,
       "laundryStatus": "En cours de lavage",
       "user": "Directeur C2M"
-    },
-    {
-      "id": "T1783516008300",
-      "date": "2026-07-07T21:40:00.000Z",
-      "type": "Commande",
-      "detail": "Aissatou (776837889) - Lavage au Kg (min 3kg) (x6.5)",
-      "amount": 2050,
-      "paymentStatus": "Totalement payé",
-      "advanceAmount": 0,
-      "laundryStatus": "Livré",
-      "user": "Directeur C2M"
     }
   ],
   "savingsTransactions": [
@@ -1402,5 +1391,5 @@
       "active": true
     }
   ],
-  "updatedAt": "2026-07-08T13:06:48.309Z"
+  "updatedAt": "2026-07-08T13:07:26.251Z"
 }
