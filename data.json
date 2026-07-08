@@ -744,9 +744,9 @@
       "type": "Commande",
       "detail": "Samba () - Lavage au Kg (min 3kg) (x4.5)",
       "amount": 1500,
-      "paymentStatus": "Non payé",
+      "paymentStatus": "Totalement payé",
       "advanceAmount": 0,
-      "laundryStatus": "En cours de lavage",
+      "laundryStatus": "Livré",
       "user": "Directeur C2M"
     },
     {
@@ -1463,5 +1463,5 @@
       "active": true
     }
   ],
-  "updatedAt": "2026-07-08T19:00:22.903Z"
+  "updatedAt": "2026-07-08T19:02:23.233Z"
 }
