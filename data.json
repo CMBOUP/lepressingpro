@@ -165,7 +165,7 @@
       "id": "C019",
       "name": "Aissatou",
       "phone": "776837889",
-      "orderCount": 1,
+      "orderCount": 0,
       "status": "Nouveau"
     }
   ],
@@ -1389,7 +1389,15 @@
       "login": "2026-07-08T12:57:50.888Z",
       "logout": "En cours",
       "active": true
+    },
+    {
+      "id": "S1783517562418",
+      "userName": "Directeur C2M",
+      "role": "admin",
+      "login": "2026-07-08T13:32:42.418Z",
+      "logout": "En cours",
+      "active": true
     }
   ],
-  "updatedAt": "2026-07-08T13:07:26.251Z"
+  "updatedAt": "2026-07-08T13:32:42.421Z"
 }
