@@ -722,13 +722,13 @@
     },
     {
       "id": "T1783445349794",
-      "date": "2026-07-07T17:05:00.000Z",
+      "date": "2026-07-08T17:05:00.000Z",
       "type": "Commande",
       "detail": "Adji Kiné (705535300) - Lavage au Kg (min 3kg) (x12.0)",
       "amount": 3650,
-      "paymentStatus": "Non payé",
+      "paymentStatus": "Totalement payé",
       "advanceAmount": 0,
-      "laundryStatus": "En cours de lavage",
+      "laundryStatus": "Livré",
       "user": "Directeur C2M"
     },
     {
@@ -1399,5 +1399,5 @@
       "active": true
     }
   ],
-  "updatedAt": "2026-07-08T13:32:42.421Z"
+  "updatedAt": "2026-07-08T13:33:38.376Z"
 }
