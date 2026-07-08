@@ -818,6 +818,13 @@
       "justification": "Ajustement de trésorerie",
       "amount": -5560,
       "user": "Directeur C2M"
+    },
+    {
+      "date": "2026-07-08T00:31:33.405Z",
+      "type": "Dépôt",
+      "justification": "Épargne",
+      "amount": 10000,
+      "user": "Directeur C2M"
     }
   ],
   "sessions": [
@@ -1310,5 +1317,5 @@
       "active": true
     }
   ],
-  "updatedAt": "2026-07-08T00:31:02.061Z"
+  "updatedAt": "2026-07-08T00:31:33.409Z"
 }
