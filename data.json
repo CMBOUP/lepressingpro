@@ -893,7 +893,7 @@
       "date": "2026-07-09T10:21:00.000Z",
       "type": "Commande",
       "detail": "Rennette (772663087) - Lavage au Kg (min 3kg) (x11.0)",
-      "amount": 3400,
+      "amount": 3300,
       "paymentStatus": "Non payé",
       "advanceAmount": 0,
       "laundryStatus": "Livré",
@@ -1600,5 +1600,5 @@
       "active": true
     }
   ],
-  "updatedAt": "2026-07-09T16:02:07.215Z"
+  "updatedAt": "2026-07-09T16:02:38.489Z"
 }
