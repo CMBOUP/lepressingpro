@@ -850,9 +850,9 @@
       "type": "Commande",
       "detail": "Mohamed (707528905) - Lavage au Kg (min 3kg) (x5.5)",
       "amount": 1750,
-      "paymentStatus": "Non payé",
+      "paymentStatus": "Totalement payé",
       "advanceAmount": 0,
-      "laundryStatus": "En cours de lavage",
+      "laundryStatus": "Livré",
       "user": "Directeur C2M"
     },
     {
@@ -1662,5 +1662,5 @@
       "active": true
     }
   ],
-  "updatedAt": "2026-07-09T20:11:04.738Z"
+  "updatedAt": "2026-07-09T20:12:13.171Z"
 }
