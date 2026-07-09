@@ -102,7 +102,7 @@
       "id": "C010",
       "name": "Vente globale",
       "phone": "",
-      "orderCount": 1,
+      "orderCount": 0,
       "status": "Nouveau"
     },
     {
@@ -831,7 +831,7 @@
       "date": "2026-07-09T10:21:00.000Z",
       "type": "Commande",
       "detail": "Maman (7835618615) - Lavage au Kg (min 3kg) (x6.5)",
-      "amount": 2050,
+      "amount": 2000,
       "paymentStatus": "Totalement payé",
       "advanceAmount": 0,
       "laundryStatus": "En cours de lavage",
@@ -1539,5 +1539,5 @@
       "active": true
     }
   ],
-  "updatedAt": "2026-07-09T12:21:29.117Z"
+  "updatedAt": "2026-07-09T12:21:52.419Z"
 }
