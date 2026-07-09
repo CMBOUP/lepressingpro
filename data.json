@@ -875,7 +875,7 @@
       "date": "2026-07-09T10:21:00.000Z",
       "type": "Commande",
       "detail": "Adji Kiné (705535300) - Lavage au Kg (min 3kg) (x6.0)",
-      "amount": 1900,
+      "amount": 1950,
       "paymentStatus": "Non payé",
       "advanceAmount": 0,
       "laundryStatus": "En cours de lavage",
@@ -1558,5 +1558,5 @@
       "active": true
     }
   ],
-  "updatedAt": "2026-07-09T13:18:15.590Z"
+  "updatedAt": "2026-07-09T13:18:49.264Z"
 }
