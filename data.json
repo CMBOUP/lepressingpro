@@ -963,6 +963,13 @@
       "justification": "Clôture de caisse automatisée - 2026-07-09",
       "amount": 2480,
       "user": "Directeur C2M"
+    },
+    {
+      "date": "2026-07-09T19:14:05.283Z",
+      "type": "Retrait",
+      "justification": "Ajustement de trésorerie",
+      "amount": -1480,
+      "user": "Directeur C2M"
     }
   ],
   "sessions": [
@@ -1647,5 +1654,5 @@
       "active": true
     }
   ],
-  "updatedAt": "2026-07-09T19:13:34.736Z"
+  "updatedAt": "2026-07-09T19:14:05.290Z"
 }
