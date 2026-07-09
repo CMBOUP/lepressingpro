@@ -858,6 +858,17 @@
       "advanceAmount": 0,
       "laundryStatus": "En cours de lavage",
       "user": "Directeur C2M"
+    },
+    {
+      "id": "T1783599689115",
+      "date": "2026-07-09T10:21:00.000Z",
+      "type": "Commande",
+      "detail": "Ndèye Amy () - Pack complet au Kg (x4.0)",
+      "amount": 2400,
+      "paymentStatus": "Non payé",
+      "advanceAmount": 0,
+      "laundryStatus": "En cours de lavage",
+      "user": "Directeur C2M"
     }
   ],
   "savingsTransactions": [
@@ -1528,5 +1539,5 @@
       "active": true
     }
   ],
-  "updatedAt": "2026-07-09T12:20:34.684Z"
+  "updatedAt": "2026-07-09T12:21:29.117Z"
 }
