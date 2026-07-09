@@ -67,7 +67,7 @@
       "id": "C005",
       "name": "Mohamed",
       "phone": "707528905",
-      "orderCount": 1,
+      "orderCount": 2,
       "status": "Nouveau"
     },
     {
@@ -124,7 +124,7 @@
       "name": "Maman",
       "phone": "7835618615",
       "orderCount": 5,
-      "status": "Nouveau"
+      "status": "Régulier"
     },
     {
       "id": "C014",
@@ -836,6 +836,17 @@
       "advanceAmount": 0,
       "laundryStatus": "En cours de lavage",
       "user": "Directeur C2M"
+    },
+    {
+      "id": "T1783599486922",
+      "date": "2026-07-09T10:21:00.000Z",
+      "type": "Commande",
+      "detail": "Mohamed (707528905) - Lavage au Kg (min 3kg) (x5.5)",
+      "amount": 1750,
+      "paymentStatus": "Non payé",
+      "advanceAmount": 0,
+      "laundryStatus": "En cours de lavage",
+      "user": "Directeur C2M"
     }
   ],
   "savingsTransactions": [
@@ -1506,5 +1517,5 @@
       "active": true
     }
   ],
-  "updatedAt": "2026-07-09T12:16:59.526Z"
+  "updatedAt": "2026-07-09T12:18:06.924Z"
 }
