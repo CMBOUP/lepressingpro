@@ -123,7 +123,7 @@
       "id": "C013",
       "name": "Maman",
       "phone": "7835618615",
-      "orderCount": 4,
+      "orderCount": 5,
       "status": "Nouveau"
     },
     {
@@ -825,6 +825,17 @@
       "advanceAmount": 0,
       "laundryStatus": "Livré",
       "user": "Directeur C2M"
+    },
+    {
+      "id": "T1783599419523",
+      "date": "2026-07-09T10:21:00.000Z",
+      "type": "Commande",
+      "detail": "Maman (7835618615) - Lavage au Kg (min 3kg) (x6.5)",
+      "amount": 2050,
+      "paymentStatus": "Totalement payé",
+      "advanceAmount": 0,
+      "laundryStatus": "En cours de lavage",
+      "user": "Directeur C2M"
     }
   ],
   "savingsTransactions": [
@@ -1495,5 +1506,5 @@
       "active": true
     }
   ],
-  "updatedAt": "2026-07-09T12:15:39.762Z"
+  "updatedAt": "2026-07-09T12:16:59.526Z"
 }
