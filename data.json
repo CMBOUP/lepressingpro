@@ -1606,7 +1606,15 @@
       "login": "2026-07-09T17:11:40.022Z",
       "logout": "2026-07-09T17:11:47.956Z",
       "active": false
+    },
+    {
+      "id": "S1783617146737",
+      "userName": "Madame Mboup",
+      "role": "caissier",
+      "login": "2026-07-09T17:12:26.737Z",
+      "logout": "En cours",
+      "active": true
     }
   ],
-  "updatedAt": "2026-07-09T17:11:47.959Z"
+  "updatedAt": "2026-07-09T17:12:26.740Z"
 }
