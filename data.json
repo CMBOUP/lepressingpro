@@ -956,6 +956,13 @@
       "justification": "Épargne",
       "amount": 10000,
       "user": "Directeur C2M"
+    },
+    {
+      "date": "2026-07-09T19:13:34.733Z",
+      "type": "Dépôt Automatique (20h)",
+      "justification": "Clôture de caisse automatisée - 2026-07-09",
+      "amount": 2480,
+      "user": "Directeur C2M"
     }
   ],
   "sessions": [
@@ -1640,5 +1647,5 @@
       "active": true
     }
   ],
-  "updatedAt": "2026-07-09T19:13:02.738Z"
+  "updatedAt": "2026-07-09T19:13:34.736Z"
 }
