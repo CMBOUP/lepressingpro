@@ -1537,7 +1537,15 @@
       "login": "2026-07-09T12:15:39.757Z",
       "logout": "En cours",
       "active": true
+    },
+    {
+      "id": "S1783603035491",
+      "userName": "Directeur C2M",
+      "role": "admin",
+      "login": "2026-07-09T13:17:15.504Z",
+      "logout": "En cours",
+      "active": true
     }
   ],
-  "updatedAt": "2026-07-09T12:21:52.419Z"
+  "updatedAt": "2026-07-09T13:17:15.509Z"
 }
