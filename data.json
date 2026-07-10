@@ -919,10 +919,10 @@
     },
     {
       "id": "T1783707305300",
-      "date": "2026-07-10T17:55:00.000Z",
+      "date": "2026-07-10T15:55:00.000Z",
       "type": "Commande",
       "detail": "Falla () - Lavage au Kg (min 3kg) (x10.5)",
-      "amount": 3250,
+      "amount": 3150,
       "paymentStatus": "Non payé",
       "advanceAmount": 0,
       "laundryStatus": "En cours de lavage",
@@ -1768,5 +1768,5 @@
       "active": true
     }
   ],
-  "updatedAt": "2026-07-10T18:17:50.662Z"
+  "updatedAt": "2026-07-10T18:18:06.095Z"
 }
