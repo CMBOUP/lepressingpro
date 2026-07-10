@@ -941,13 +941,24 @@
     },
     {
       "id": "T1783707404566",
-      "date": "2026-07-10T15:55:00.000Z",
+      "date": "2026-07-10T17:55:00.000Z",
       "type": "Commande",
       "detail": "Maiga () - Lavage au Kg (min 3kg) (x3.6)",
-      "amount": 1100,
+      "amount": 1180,
       "paymentStatus": "Totalement payé",
       "advanceAmount": 0,
       "laundryStatus": "Livré",
+      "user": "Directeur C2M"
+    },
+    {
+      "id": "T1783707542727",
+      "date": "2026-07-10T18:19:02.727Z",
+      "type": "Dépense",
+      "detail": "Électricité (Senelec) - Woyofall",
+      "amount": 2000,
+      "paymentStatus": "Totalement payé",
+      "advanceAmount": 0,
+      "laundryStatus": "-",
       "user": "Directeur C2M"
     }
   ],
@@ -1768,5 +1779,5 @@
       "active": true
     }
   ],
-  "updatedAt": "2026-07-10T18:18:20.786Z"
+  "updatedAt": "2026-07-10T18:19:02.727Z"
 }
