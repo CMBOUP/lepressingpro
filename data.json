@@ -769,12 +769,12 @@
     },
     {
       "id": "T1783458001967",
-      "date": "2026-07-08T19:49:00.000Z",
+      "date": "2026-07-08T17:49:00.000Z",
       "type": "Commande",
       "detail": "Mère Rama (773541458) - Lavage au Kg (min 3kg) (x6.5)",
       "amount": 2150,
-      "paymentStatus": "Avance",
-      "advanceAmount": 2000,
+      "paymentStatus": "Totalement payé",
+      "advanceAmount": 0,
       "laundryStatus": "Livré",
       "user": "Directeur C2M"
     },
@@ -1710,5 +1710,5 @@
       "active": true
     }
   ],
-  "updatedAt": "2026-07-10T17:57:46.542Z"
+  "updatedAt": "2026-07-10T17:58:13.072Z"
 }
