@@ -971,13 +971,6 @@
       "user": "Amadou Ndiaye (Caissier 1)"
     },
     {
-      "date": "2026-07-06T23:56:37.432Z",
-      "type": "Retrait",
-      "justification": "Ajustement de trésorerie",
-      "amount": -2440,
-      "user": "Directeur C2M"
-    },
-    {
       "date": "2026-07-02T08:09:42.611Z",
       "type": "Retrait",
       "justification": "Ajustement de trésorerie",
@@ -1003,6 +996,13 @@
       "type": "Dépôt",
       "justification": "Ajustement de trésorerie",
       "amount": 22000,
+      "user": "Directeur C2M"
+    },
+    {
+      "date": "2026-07-06T23:56:37.432Z",
+      "type": "Retrait",
+      "justification": "Ajustement de trésorerie",
+      "amount": -2440,
       "user": "Directeur C2M"
     },
     {
@@ -1049,78 +1049,6 @@
       "login": "2026-06-30T08:00",
       "logout": "En cours",
       "active": true
-    },
-    {
-      "id": "S1783381947678",
-      "userName": "Directeur C2M",
-      "role": "admin",
-      "login": "2026-07-06T23:52:27.678Z",
-      "logout": "En cours",
-      "active": true
-    },
-    {
-      "id": "S1783382023369",
-      "userName": "Directeur C2M",
-      "role": "admin",
-      "login": "2026-07-06T23:53:43.370Z",
-      "logout": "En cours",
-      "active": true
-    },
-    {
-      "id": "S1783382213832",
-      "userName": "Directeur C2M",
-      "role": "admin",
-      "login": "2026-07-06T23:56:53.832Z",
-      "logout": "En cours",
-      "active": true
-    },
-    {
-      "id": "S1783384890391",
-      "userName": "Directeur C2M",
-      "role": "admin",
-      "login": "2026-07-07T00:41:30.391Z",
-      "logout": "2026-07-07T00:47:26.124Z",
-      "active": false
-    },
-    {
-      "id": "S1783381581996",
-      "userName": "Directeur C2M",
-      "role": "admin",
-      "login": "2026-07-06T23:46:21.996Z",
-      "logout": "En cours",
-      "active": true
-    },
-    {
-      "id": "S1783383200260",
-      "userName": "Directeur C2M",
-      "role": "admin",
-      "login": "2026-07-07T00:13:20.260Z",
-      "logout": "En cours",
-      "active": true
-    },
-    {
-      "id": "S1783383609515",
-      "userName": "Directeur C2M",
-      "role": "admin",
-      "login": "2026-07-07T00:20:09.515Z",
-      "logout": "En cours",
-      "active": true
-    },
-    {
-      "id": "S1783385255641",
-      "userName": "Directeur C2M",
-      "role": "admin",
-      "login": "2026-07-07T00:47:35.641Z",
-      "logout": "2026-07-07T00:48:54.772Z",
-      "active": false
-    },
-    {
-      "id": "S1783385369291",
-      "userName": "Directeur C2M",
-      "role": "admin",
-      "login": "2026-07-07T00:49:29.291Z",
-      "logout": "2026-07-07T01:13:32.981Z",
-      "active": false
     },
     {
       "id": "S1782979677084",
@@ -1216,6 +1144,78 @@
       "role": "admin",
       "login": "2026-07-07T00:53:23.555Z",
       "logout": "2026-07-07T00:59:05.365Z",
+      "active": false
+    },
+    {
+      "id": "S1783381947678",
+      "userName": "Directeur C2M",
+      "role": "admin",
+      "login": "2026-07-06T23:52:27.678Z",
+      "logout": "En cours",
+      "active": true
+    },
+    {
+      "id": "S1783382023369",
+      "userName": "Directeur C2M",
+      "role": "admin",
+      "login": "2026-07-06T23:53:43.370Z",
+      "logout": "En cours",
+      "active": true
+    },
+    {
+      "id": "S1783382213832",
+      "userName": "Directeur C2M",
+      "role": "admin",
+      "login": "2026-07-06T23:56:53.832Z",
+      "logout": "En cours",
+      "active": true
+    },
+    {
+      "id": "S1783384890391",
+      "userName": "Directeur C2M",
+      "role": "admin",
+      "login": "2026-07-07T00:41:30.391Z",
+      "logout": "2026-07-07T00:47:26.124Z",
+      "active": false
+    },
+    {
+      "id": "S1783381581996",
+      "userName": "Directeur C2M",
+      "role": "admin",
+      "login": "2026-07-06T23:46:21.996Z",
+      "logout": "En cours",
+      "active": true
+    },
+    {
+      "id": "S1783383200260",
+      "userName": "Directeur C2M",
+      "role": "admin",
+      "login": "2026-07-07T00:13:20.260Z",
+      "logout": "En cours",
+      "active": true
+    },
+    {
+      "id": "S1783383609515",
+      "userName": "Directeur C2M",
+      "role": "admin",
+      "login": "2026-07-07T00:20:09.515Z",
+      "logout": "En cours",
+      "active": true
+    },
+    {
+      "id": "S1783385255641",
+      "userName": "Directeur C2M",
+      "role": "admin",
+      "login": "2026-07-07T00:47:35.641Z",
+      "logout": "2026-07-07T00:48:54.772Z",
+      "active": false
+    },
+    {
+      "id": "S1783385369291",
+      "userName": "Directeur C2M",
+      "role": "admin",
+      "login": "2026-07-07T00:49:29.291Z",
+      "logout": "2026-07-07T01:13:32.981Z",
       "active": false
     },
     {
@@ -1523,14 +1523,6 @@
       "active": true
     },
     {
-      "id": "S1783470662040",
-      "userName": "Directeur C2M",
-      "role": "admin",
-      "login": "2026-07-08T00:31:02.058Z",
-      "logout": "En cours",
-      "active": true
-    },
-    {
       "id": "S1783469535748",
       "userName": "Directeur C2M",
       "role": "admin",
@@ -1553,6 +1545,14 @@
       "login": "2026-07-08T00:14:24.716Z",
       "logout": "2026-07-08T00:32:26.396Z",
       "active": false
+    },
+    {
+      "id": "S1783470662040",
+      "userName": "Directeur C2M",
+      "role": "admin",
+      "login": "2026-07-08T00:31:02.058Z",
+      "logout": "En cours",
+      "active": true
     },
     {
       "id": "S1783470763492",
@@ -1809,7 +1809,15 @@
       "login": "2026-07-10T23:06:27.888Z",
       "logout": "En cours",
       "active": true
+    },
+    {
+      "id": "S1783727613794",
+      "userName": "Directeur C2M",
+      "role": "admin",
+      "login": "2026-07-10T23:53:33.794Z",
+      "logout": "En cours",
+      "active": true
     }
   ],
-  "updatedAt": "2026-07-10T23:06:27.891Z"
+  "updatedAt": "2026-07-10T23:53:33.796Z"
 }
