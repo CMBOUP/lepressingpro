@@ -102,7 +102,7 @@
       "id": "C010",
       "name": "Vente globale",
       "phone": "",
-      "orderCount": 1,
+      "orderCount": 0,
       "status": "Nouveau"
     },
     {
@@ -158,7 +158,7 @@
       "id": "C018",
       "name": "Mère Rama",
       "phone": "773541458",
-      "orderCount": 1,
+      "orderCount": 2,
       "status": "Nouveau"
     },
     {
@@ -926,6 +926,17 @@
       "paymentStatus": "Non payé",
       "advanceAmount": 0,
       "laundryStatus": "En cours de lavage",
+      "user": "Directeur C2M"
+    },
+    {
+      "id": "T1783707349038",
+      "date": "2026-07-10T17:55:00.000Z",
+      "type": "Commande",
+      "detail": "Mère Rama (773541458) - Lavage au Kg (min 3kg) (x8.3)",
+      "amount": 2590,
+      "paymentStatus": "Totalement payé",
+      "advanceAmount": 0,
+      "laundryStatus": "Livré",
       "user": "Directeur C2M"
     }
   ],
@@ -1746,5 +1757,5 @@
       "active": true
     }
   ],
-  "updatedAt": "2026-07-10T18:15:05.302Z"
+  "updatedAt": "2026-07-10T18:15:49.040Z"
 }
