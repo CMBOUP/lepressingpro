@@ -102,7 +102,7 @@
       "id": "C010",
       "name": "Vente globale",
       "phone": "",
-      "orderCount": 1,
+      "orderCount": 0,
       "status": "Nouveau"
     },
     {
@@ -908,10 +908,10 @@
     },
     {
       "id": "T1783707249024",
-      "date": "2026-07-10T17:55:00.000Z",
+      "date": "2026-07-10T15:55:00.000Z",
       "type": "Commande",
       "detail": "Talla Dia (778721913) - Lavage au Kg (min 3kg) (x17.8)",
-      "amount": 5440,
+      "amount": 5400,
       "paymentStatus": "Totalement payé",
       "advanceAmount": 0,
       "laundryStatus": "En cours de lavage",
@@ -1768,5 +1768,5 @@
       "active": true
     }
   ],
-  "updatedAt": "2026-07-10T18:16:44.568Z"
+  "updatedAt": "2026-07-10T18:17:50.662Z"
 }
