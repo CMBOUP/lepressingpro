@@ -181,6 +181,13 @@
       "phone": "772663087",
       "orderCount": 1,
       "status": "Nouveau"
+    },
+    {
+      "id": "C022",
+      "name": "Talla Dia",
+      "phone": "778721913",
+      "orderCount": 1,
+      "status": "Nouveau"
     }
   ],
   "transactions": [
@@ -897,6 +904,17 @@
       "paymentStatus": "Non payé",
       "advanceAmount": 0,
       "laundryStatus": "Livré",
+      "user": "Directeur C2M"
+    },
+    {
+      "id": "T1783707249024",
+      "date": "2026-07-10T17:55:00.000Z",
+      "type": "Commande",
+      "detail": "Talla Dia (778721913) - Lavage au Kg (min 3kg) (x17.8)",
+      "amount": 5440,
+      "paymentStatus": "Totalement payé",
+      "advanceAmount": 0,
+      "laundryStatus": "En cours de lavage",
       "user": "Directeur C2M"
     }
   ],
@@ -1717,5 +1735,5 @@
       "active": true
     }
   ],
-  "updatedAt": "2026-07-10T17:58:56.097Z"
+  "updatedAt": "2026-07-10T18:14:09.025Z"
 }
