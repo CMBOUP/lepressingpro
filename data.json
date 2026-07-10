@@ -102,7 +102,7 @@
       "id": "C010",
       "name": "Vente globale",
       "phone": "",
-      "orderCount": 0,
+      "orderCount": 1,
       "status": "Nouveau"
     },
     {
@@ -913,6 +913,17 @@
       "detail": "Talla Dia (778721913) - Lavage au Kg (min 3kg) (x17.8)",
       "amount": 5440,
       "paymentStatus": "Totalement payé",
+      "advanceAmount": 0,
+      "laundryStatus": "En cours de lavage",
+      "user": "Directeur C2M"
+    },
+    {
+      "id": "T1783707305300",
+      "date": "2026-07-10T17:55:00.000Z",
+      "type": "Commande",
+      "detail": "Falla () - Lavage au Kg (min 3kg) (x10.5)",
+      "amount": 3250,
+      "paymentStatus": "Non payé",
       "advanceAmount": 0,
       "laundryStatus": "En cours de lavage",
       "user": "Directeur C2M"
@@ -1735,5 +1746,5 @@
       "active": true
     }
   ],
-  "updatedAt": "2026-07-10T18:14:09.025Z"
+  "updatedAt": "2026-07-10T18:15:05.302Z"
 }
