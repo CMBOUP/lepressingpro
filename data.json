@@ -158,7 +158,7 @@
       "id": "C018",
       "name": "Mère Rama",
       "phone": "773541458",
-      "orderCount": 2,
+      "orderCount": 3,
       "status": "Nouveau"
     },
     {
@@ -959,6 +959,17 @@
       "paymentStatus": "Totalement payé",
       "advanceAmount": 0,
       "laundryStatus": "-",
+      "user": "Directeur C2M"
+    },
+    {
+      "id": "T1784116983200",
+      "date": "2026-07-15T11:57:00.000Z",
+      "type": "Commande",
+      "detail": "Mère Rama (773541458) - Pack complet au Kg (x10.0)",
+      "amount": 6000,
+      "paymentStatus": "Avance",
+      "advanceAmount": 5000,
+      "laundryStatus": "Livré",
       "user": "Directeur C2M"
     }
   ],
@@ -1883,5 +1894,5 @@
       "active": true
     }
   ],
-  "updatedAt": "2026-07-15T11:57:25.823Z"
+  "updatedAt": "2026-07-15T12:03:03.218Z"
 }
